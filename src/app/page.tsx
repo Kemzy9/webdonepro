@@ -17,10 +17,7 @@ export default function Home() {
 
     
 <Hero/>
-            <Feature />
- 
-
-<Baner/>
+            
 
 
     </main>
