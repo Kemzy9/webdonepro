@@ -53,45 +53,161 @@ const GeneratedComponent: React.FC = () => {
         </div>
       </div>
 
-      {/* Features Grid - Updated with new design */}
+      {/* Core Features Section */}
       <div className="container mx-auto px-6 py-32">
-        <h2 className="text-4xl font-bold text-center text-white mb-16">
-          Powered by Advanced
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Technology</span>
-        </h2>
+        <div className="text-center mb-24">
+          <h2 className="text-5xl font-bold text-white mb-6">
+            Transform Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">Design Workflow</span>
+          </h2>
+          <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+            Experience the next generation of web design with AI-powered tools that adapt to your needs
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mt-32">
+        <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              icon: "🤖",
-              title: "AI-Powered Design",
-              description: "Let our AI analyze your requirements and generate stunning designs tailored to your brand.",
-              gradient: "from-violet-500/20 to-violet-500/10"
+              title: "Smart Layout Generation",
+              description: "AI analyzes your content and generates optimal layouts that match your brand identity and goals"
             },
             {
-              icon: "⚡",
-              title: "Lightning Fast",
-              description: "Create professional websites in minutes, not hours. Speed up your workflow dramatically.",
-              gradient: "from-fuchsia-500/20 to-fuchsia-500/10"
+              title: "Responsive Adaptation",
+              description: "Designs automatically adapt to any screen size with intelligent breakpoint handling"
             },
             {
-              icon: "✨",
-              title: "Modern Templates",
-              description: "Access hundreds of customizable, responsive templates designed for modern web.",
-              gradient: "from-purple-500/20 to-purple-500/10"
+              title: "Component Library",
+              description: "Access thousands of pre-built components that seamlessly integrate with your design"
             }
           ].map((feature, index) => (
-            <div key={index} className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl blur opacity-0 group-hover:opacity-70 transition-all duration-500"></div>
-              <div className="relative bg-white/10 backdrop-blur-lg p-8 rounded-2xl hover:transform hover:-translate-y-2 transition duration-300 border border-white/10">
-                <div className={`h-16 w-16 bg-gradient-to-r ${feature.gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300`}>
-                  <span className="text-3xl">{feature.icon}</span>
-                </div>
-                <h3 className="text-white text-2xl font-bold mb-4">{feature.title}</h3>
-                <p className="text-gray-300 text-lg">
-                  {feature.description}
-                </p>
+            <div key={index} className="group relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl blur-xl"></div>
+              <div className="relative">
+                <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{feature.description}</p>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Advanced Capabilities Section */}
+      <div className="container mx-auto px-6 py-32 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 blur-3xl"></div>
+        <div className="relative">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-white mb-8">
+                Advanced Design <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">Intelligence</span>
+              </h2>
+              <div className="space-y-6">
+                {[
+                  {
+                    title: "Predictive Design Suggestions",
+                    description: "AI analyzes your design patterns and suggests improvements in real-time"
+                  },
+                  {
+                    title: "Smart Color Harmonies",
+                    description: "Automatically generate and adjust color schemes that perfectly match your brand"
+                  },
+                  {
+                    title: "Typography Intelligence",
+                    description: "Get smart font pairing suggestions and hierarchy recommendations"
+                  }
+                ].map((feature, index) => (
+                  <div key={index} className="p-6 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
+                    <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                    <p className="text-gray-400">{feature.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative h-[600px] bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-2xl overflow-hidden">
+              <div className="absolute inset-0 backdrop-blur-sm"></div>
+              {/* Add interactive demo or image here */}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Workflow Optimization Section */}
+      <div className="container mx-auto px-6 py-32">
+        <div className="max-w-4xl mx-auto text-center mb-24">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Streamlined <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">Workflow</span>
+          </h2>
+          <p className="text-gray-300 text-xl">
+            Design faster and smarter with our integrated workflow solutions
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12">
+          {[
+            {
+              title: "Version Control",
+              description: "Track changes and manage design versions with intelligent history management",
+              features: ["Automatic backups", "Design comparison", "Branching workflows"]
+            },
+            {
+              title: "Collaboration Tools",
+              description: "Work together seamlessly with real-time collaboration features",
+              features: ["Live editing", "Comment threads", "Role management"]
+            },
+            {
+              title: "Asset Management",
+              description: "Organize and optimize your design assets automatically",
+              features: ["Smart categorization", "Auto-optimization", "Cloud storage"]
+            },
+            {
+              title: "Export & Deploy",
+              description: "Deploy your designs with one click to any platform",
+              features: ["Multiple formats", "Code generation", "Hosting integration"]
+            }
+          ].map((item, index) => (
+            <div key={index} className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+              <div className="relative p-8 bg-white/5 rounded-2xl border border-white/10">
+                <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
+                <p className="text-gray-400 mb-6">{item.description}</p>
+                <ul className="space-y-3">
+                  {item.features.map((feature, i) => (
+                    <li key={i} className="text-gray-300 flex items-center">
+                      <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mr-3"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Performance Metrics Section */}
+      <div className="container mx-auto px-6 py-32">
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              metric: "10x",
+              label: "Faster Development",
+              description: "Accelerate your design process with AI assistance"
+            },
+            {
+              metric: "95%",
+              label: "Time Saved",
+              description: "Reduce repetitive tasks with automation"
+            },
+            {
+              metric: "24/7",
+              label: "Design Generation",
+              description: "Continuous design suggestions and improvements"
+            }
+          ].map((stat, index) => (
+            <div key={index} className="relative p-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-4">
+                {stat.metric}
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">{stat.label}</h3>
+              <p className="text-gray-400">{stat.description}</p>
             </div>
           ))}
         </div>
