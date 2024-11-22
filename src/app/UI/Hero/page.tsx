@@ -232,7 +232,7 @@ const GeneratedComponent: React.FC = () => {
               name: "Mark Chen",
               role: "Startup Founder",
               image: "/testimonial2.jpg",
-              quote: "WebLikePro helped us launch our startup website in record time. The AI suggestions were spot-on!"
+              quote: "webdonePro helped us launch our startup website in record time. The AI suggestions were spot-on!"
             },
             {
               name: "Emma Davis",
@@ -490,7 +490,7 @@ const GeneratedComponent: React.FC = () => {
                 <div className="h-10 w-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center">
                   <span className="text-white text-xl font-bold">W</span>
                 </div>
-                <span className="text-white text-xl font-bold">WebLikePro</span>
+                <span className="text-white text-xl font-bold">webdonePro</span>
               </div>
               <p className="text-gray-400">Building the future of web development with AI.</p>
             </div>
@@ -525,7 +525,7 @@ const GeneratedComponent: React.FC = () => {
             ))}
           </div>
   <a
-      href="https://weblike.ai"
+      href="https://webdone.ai"
       target="_blank"
       rel="noopener noreferrer"
       className="group inline-flex items-center gap-1.5 rounded-lg border border-gray-700/50 bg-gray-900 px-3 py-2 text-sm transition-all hover:border-gray-700 hover:bg-gray-800"
@@ -540,7 +540,7 @@ const GeneratedComponent: React.FC = () => {
       </svg>
       <span className="text-gray-300">by</span>
       <span className="bg-gradient-to-r from-blue-400 to-violet-500 bg-clip-text font-medium text-transparent">
-        weblike.ai
+        webdone.ai
       </span>
       <svg
         className="h-4 w-4 text-gray-400 transition-transform group-hover:translate-x-0.5"
@@ -557,7 +557,7 @@ const GeneratedComponent: React.FC = () => {
       </svg>
     </a>
           <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400">© 2024 WebLikePro. All rights reserved.</p>
+            <p className="text-gray-400">© 2024 webdonePro. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a>
