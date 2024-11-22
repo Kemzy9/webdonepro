@@ -906,82 +906,15 @@ export default GeneratedComponent;`;
   };
 
   return (
-    <div className="h-screen bg-gray-900">
-      <div className="flex justify-between items-center text-white bg-gray-900 mb-4 ">
-        <div className="flex space-x-2">
-          {/* Keep only the Preview button visible */}
-          <button
-            className="px-4 py-2 rounded bg-blue-500 text-white"
-            onClick={() => setActiveTab('preview')}
-          >
-            <Eye className="inline-block mr-2" size={18} />
-            Preview
-          </button>
-        </div>
+    <div className= "bg-gray-900  h-screen">
 
-        <label
-          onClick={toggleEditMode}
-          className="inline-flex items-center cursor-pointer"
-        >
-          <input
-            type="checkbox"
-            checked={isEditMode}
-            onChange={toggleEditMode}
-            className="sr-only peer"
-          />
-          <div
-            className={`relative w-11 h-6 rounded-full ${isEditMode ? 'bg-blue-600' : 'bg-gray-200'} peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800`}
-          >
-            <div
-              className={`absolute top-[2px] left-[2px] bg-gray-900 border-gray-300 border rounded-full h-5 w-5 transition-transform duration-300 ease-in-out ${isEditMode ? 'translate-x-5' : 'translate-x-0'}`}
-            ></div>
-          </div>
-          <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-            Edit
-          </span>
-        </label>
-        <button
-          className="px-4 py-2 bg-green-500 text-white rounded flex items-center"
-          onClick={handleOpenLive}
-        >
-          <ExternalLink className="inline-block mr-2" size={18} />
-          Open Live
-        </button>
-
-
-        <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Code Type</h3>
-                <select
-                  value={codeType}
-                  onChange={(e) => setCodeType(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                >
-                  <option value="html">HTML</option>
-                  <option value="jsx">JSX</option>
-                  <option value="tsx">TSX</option>
-                </select>
-              </div>
-
-        <Undo2 />
-        <Redo2 color="#121111" />
    
-        <button
-          className="px-2 py-1 bg-gray-300 text-gray-700 rounded text-sm hover:bg-gray-400 transition-colors"
-          onClick={showCodeSection}
-        >
-          <Code className="inline-block mr-1" size={14} />
-          Show Code
-        </button>
 
-        {/* Add a small button to show code */}
-
-      </div>
-
-      <div className="flex h-screen bg-gray-100">
+      <div className="flex h-screen bg-gray-900">
         <div className={`w-80 bg-gray-900 border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             <h2 className="text-lg font-semibold">Chat</h2>
-            <button onClick={toggleChat} className="text-gray-500 hover:text-gray-700">
+            <button onClick={toggleChat} className="text-white hover:text-gray-700">
               <FiX size={24} />
             </button>
           </div>
@@ -1041,8 +974,8 @@ export default GeneratedComponent;`;
         {/* Left Sidebar */}
          <div className={`bg-gray-900 border-r border-gray-200 flex flex-col transition-all duration-300 ${isLeftSidebarMinimized ? 'w-16' : 'w-64'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-            {!isLeftSidebarMinimized && <h2 className="text-lg font-semibold">Elements</h2>}
-            <button onClick={toggleLeftSidebar} className="text-gray-500 hover:text-gray-700">
+            {!isLeftSidebarMinimized && <h2 className="text-lg font-semibold text-white">Elements</h2>}
+            <button onClick={toggleLeftSidebar} className="text-white hover:text-gray-700">
               {isLeftSidebarMinimized ? <Sparkles size={24} /> : <Smartphone size={24} />}
             </button>
           </div>
@@ -1228,7 +1161,7 @@ export default GeneratedComponent;`;
                       </Rnd>
                     ))}
                   </div>
-
+                
                   {/* Code Section */}
                   <div className={`${activeTab === 'code' ? 'block' : 'hidden'} bg-gray-900`}>
                     <textarea
@@ -1253,8 +1186,26 @@ export default GeneratedComponent;`;
         <div className={`bg-gradient-to-b from-indigo-100 to-white border-l border-gray-200 flex flex-col transition-all duration-300 ${isRightSidebarMinimized ? 'w-16' : 'w-60'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-gray-900">
           <Logo />
+          <button
+          className="px-2 py-1 bg-gray-300 text-gray-700 rounded text-sm hover:bg-gray-400 transition-colors"
+          onClick={showCodeSection}
+        >
+          <Code className="inline-block mr-1" size={14} />
+          
+        </button>
+
+          {/* Keep only the Preview button visible */}
+          <button
+            className="px-4 py-2 rounded bg-blue-500 text-white"
+            onClick={() => setActiveTab('preview')}
+          >
+            <Eye className="inline-block mr-2" size={18} />
+
+          </button>
+    
+
             {!isRightSidebarMinimized && <h2 className="text-lg font-semibold text-black">weblike</h2>}
-            <button onClick={toggleRightSidebar} className="text-gray-500 hover:text-indigo-600 transition-colors">
+            <button onClick={toggleRightSidebar} className="text-white hover:text-indigo-600 transition-colors">
               {isRightSidebarMinimized ? <Minimize2 size={24} /> : <Maximize2 size={24} />}
             </button>
           </div>
@@ -1339,6 +1290,18 @@ export default GeneratedComponent;`;
                     )}
                   </div>
                 </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Code Type</h3>
+                <select
+                  value={codeType}
+                  onChange={(e) => setCodeType(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                >
+                  <option value="html">HTML</option>
+                  <option value="jsx">JSX</option>
+                  <option value="tsx">TSX</option>
+                </select>
+              </div>
 
                 {/* Color Settings */}
                 <div className="bg-gray-900 p-6 rounded-xl shadow-md">
@@ -1357,7 +1320,7 @@ export default GeneratedComponent;`;
                             onClick={() => setActiveColorIndex(index)}
                             className={`w-12 h-12 rounded-full border-4 ${activeColorIndex === index ? 'border-indigo-500' : 'border-white'} shadow-inner`}
                           />
-                          <div className="mt-1 text-xs text-gray-500 text-center">{color}</div>
+                          <div className="mt-1 text-xs text-white text-center">{color}</div>
                         </div>
                       ))}
                     </div>
@@ -1434,10 +1397,10 @@ export default GeneratedComponent;`;
               <div className="flex justify-between items-center mb-4">
                 {!isGalleryMinimized && <h2 className="text-xl font-bold">Gallery</h2>}
                 <div className="flex items-center">
-                  <button onClick={toggleMinimizeGallery} className="text-gray-500 hover:text-gray-700 mr-2">
+                  <button onClick={toggleMinimizeGallery} className="text-white hover:text-gray-700 mr-2">
                     {isGalleryMinimized ? <FiMaximize2 className="text-xl" /> : <FiMinimize2 className="text-xl" />}
                   </button>
-                  <button onClick={toggleGallery} className="text-gray-500 hover:text-gray-700">
+                  <button onClick={toggleGallery} className="text-white hover:text-gray-700">
                     <FiX className="text-xl" />
                   </button>
                 </div>
@@ -1504,7 +1467,7 @@ export default GeneratedComponent;`;
         )}
 
 
-        {/* Publish Modal */}
+        
    
 
 
