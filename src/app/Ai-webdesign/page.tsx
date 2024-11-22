@@ -131,37 +131,37 @@ const Aiwebdesign: React.FC = () => {
     const results = [
         {
             title: (keyword[0] || 'AI website generator') + ' - Create Professional Websites in Minutes with AI',
-            url: 'https://www.weblike.pro/',
+            url: 'https://www.webd.one/',
             description: `Transform your ideas into stunning websites using our advanced ${keyword[1] || 'website builder'}. No coding required - perfect for businesses, creators, and professionals.`,
             imageUrl: '/professional-website.png',
         },
         {
             title: (keyword[2] || 'no-code website') + ' - E-commerce Solutions with Smart AI Integration',
-            url: 'https://www.weblike.pro/',
+            url: 'https://www.webd.one/',
             description: `Launch your online store quickly with our ${keyword[3] || 'AI web design'} platform. Features include smart product organization, secure payments, and inventory management.`,
             imageUrl: '/ecommerce-store.png',
         },
         {
             title: (keyword[4] || 'custom website') + ' - AI-Powered Portfolio Websites for Creatives',
-            url: 'https://www.weblike.pro/',
+            url: 'https://www.webd.one/',
             description: `Showcase your work beautifully with our ${keyword[5] || 'business website'} solutions. Perfect for artists, photographers, designers, and creative professionals.`,
             imageUrl: '/portfolio-template.png',
         },
         {
             title: (keyword[6] || 'portfolio website') + ' - Enterprise-Grade Websites with Advanced Features',
-            url: 'https://www.weblike.pro/',
+            url: 'https://www.webd.one/',
             description: `Build scalable, secure, and powerful websites with our ${keyword[7] || 'e-commerce website'} platform. Includes advanced analytics, user management, and custom integrations.`,
             imageUrl: '/enterprise-website.png',
         },
         {
             title: (keyword[8] || 'responsive design') + ' - Restaurant & Hospitality Website Builder',
-            url: 'https://www.weblike.pro/',
+            url: 'https://www.webd.one/',
             description: `Create appetizing restaurant websites with our ${keyword[9] || 'modern website'} builder. Features online ordering, reservation systems, and menu management powered by AI.`,
             imageUrl: '/restaurant-template.png',
         },
         {
             title: (keyword[10] || 'professional website') + ' - Educational Institution Website Solutions',
-            url: 'https://www.weblike.pro/',
+            url: 'https://www.webd.one/',
             description: `Design comprehensive educational websites with our ${keyword[11] || 'website templates'}. Includes learning management systems, student portals, and course catalogs using our AI tools.`,
             imageUrl: '/education-website.png',
         }
@@ -174,13 +174,13 @@ const Aiwebdesign: React.FC = () => {
 
     // For meta tags, use primary keywords
     const primaryKeywords = keyword.slice(0, 5).join(', '); // Take first 5 keywords
-    const pageTitle = `${keyword[0] || 'AI Website Builder'} - Introducing Weblike AI landing page builder`;
-    const pageDescription = `Create modern websites in minutes with ${keyword[1] || 'website builder'} - Weblike AI`;
+    const pageTitle = `${keyword[0] || 'AI landing page Builder'} - Introducing webdone AI landing page builder For React `;
+    const pageDescription = `Create modern landing page  in minutes with ${keyword[1] || 'landing page builder'} - webdone AI`;
 
     const schemaMarkup = {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Weblike Website Builder",
+        "name": "webdone Website Builder",
         "applicationCategory": "WebApplication",
         "operatingSystem": "Web Browser",
         "offers": {
@@ -198,8 +198,8 @@ const Aiwebdesign: React.FC = () => {
             "worstRating": "1"
         },
         "description": "Create professional websites without coding using our AI-powered website builder.",
-        "image": "https://www.weblike.pro/chat.png",
-        "screenshot": "https://www.weblike.pro/twitter-card.png",
+        "image": "https://www.webd.one/chat.png",
+        "screenshot": "https://www.webd.one/twitter-card.png",
         "featureList": [
             "AI-Powered Design",
             "Drag-and-Drop Editor",
@@ -220,13 +220,13 @@ const Aiwebdesign: React.FC = () => {
                 <title>{pageTitle}</title>
                 <meta name="description" content={pageDescription} />
                 <meta name="keywords" content={keyword.join(', ')} />
-                <link rel="canonical" href="https://www.weblike.pro" />
+                <link rel="canonical" href="https://www.webd.one" />
                 
                 {/* OpenGraph Tags */}
                 <meta property="og:title" content={pageTitle} />
                 <meta property="og:description" content={pageDescription} />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://www.weblike.pro/blog" />
+                <meta property="og:url" content="https://www.webd.one/blog" />
                 
                 {/* Twitter Tags */}
                 <meta name="twitter:card" content="summary_large_image" />
