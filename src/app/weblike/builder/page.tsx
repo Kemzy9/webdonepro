@@ -9,7 +9,7 @@ import Client from '@/app/weblike/weblike/client/page';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import LogoGenerator from '@/app/weblike/weblike/logogenerator/page';
-import BuilderPage from '@/app/weblike/builder/ BuilderPage';
+import BuilderPage from './ BuilderPage';
 import { FiGrid, FiX, FiMinimize2, FiMaximize2, FiCode, FiEye, FiDownload, FiSmartphone, FiMonitor, FiSave, FiShare2, FiSliders, FiImage, FiDroplet, FiPlay } from 'react-icons/fi';
 import { Rnd } from 'react-rnd';
 import { FiMessageSquare, FiSend } from 'react-icons/fi';
@@ -221,120 +221,117 @@ const CodePreview: React.FC = () => {
   };
 
 
-
-const saveCode = useCallback(async () => {
-  if (!previewRef.current) return;
-
-  const zip = new JSZip();
-  const fileExtension = codeType === 'html' ? 'html' : codeType === 'jsx' ? 'jsx' : 'tsx';
-
-  let saveableCode = previewRef.current.innerHTML;
-
-  // Process images and create image imports
-  const imagePromises = Object.entries(images).map(async ([imageId, file]) => {
-    const imageContent = await file.arrayBuffer();
-    const fileName = `image_${imageId}.${file.name.split('.').pop()}`;
-    zip.file(`images/${fileName}`, imageContent);
-    return { imageId, fileName, originalName: file.name };
-  });
-
-  const processedImages = await Promise.all(imagePromises);
-
-  if (codeType === 'html') {
-    // HTML format remains the same
-    saveableCode = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generated Page</title>
-  <style>
-    ${processedImages.map(({ imageId }) => `
-      [data-image-id="${imageId}"] {
-        background-size: ${imageSize};
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-    `).join('\n')}
-  </style>
-</head>
-<body>
-  ${saveableCode}
-</body>
-</html>`;
-  } else {
-    // JSX/TSX format with proper image handling
-    const imageVariableNames = processedImages.reduce((acc, { imageId, originalName }) => {
-      const safeName = `image${imageId.replace(/[^a-zA-Z0-9]/g, '')}`;
-      acc[imageId] = safeName;
-      return acc;
-    }, {} as { [key: string]: string });
-
-    // Transform the code to use proper React/TSX syntax
-    saveableCode = saveableCode
-      .replace(/<!--[\s\S]*?-->/g, '')
-      .replace(/class=/g, 'className=')
-      .replace(/for=/g, 'htmlFor=')
-      .replace(/charset=/g, 'charSet=')
-      .replace(/data-image-id="([^"]+)"/g, (match, imageId) => {
-        const varName = imageVariableNames[imageId];
-        return `style={{ 
-          backgroundImage: \`url(\${${varName}})\`,
-          backgroundSize: '${imageSize}',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}`;
-      })
-      .replace(/style="([^"]*)"/g, (match, styles) => {
-        const styleObject = styles.split(';')
-          .filter((style: string) => style.trim())
-          .reduce((acc: Record<string, string>, style: string) => {
-            const [key, value] = style.split(':').map(s => s.trim());
-            if (key && value) {
-              const camelKey = key.replace(/-([a-z])/g, g => g[1].toUpperCase());
-              acc[camelKey] = value;
-            }
-            return acc;
-          }, {});
-        return `style={${JSON.stringify(styleObject)}}`;
-      })
-      .replace(/<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)([^>]*?)>/g, 
-        (match, tag, attributes) => `<${tag}${attributes} />`);
-
-    // Create React component with image imports
-    saveableCode = `
-import React from 'react';
-${processedImages.map(({ fileName, imageId }) => 
-  `import ${imageVariableNames[imageId]} from './images/${fileName}';`
-).join('\n')}
-
-${codeType === 'tsx' ? 'interface Props {}\n' : ''}
-
-const GeneratedComponent: React.FC${codeType === 'tsx' ? '<Props>' : ''} = () => {
-  return (
-    <div className="generated-component">
-      ${saveableCode}
-    </div>
-  );
-};
-
-export default GeneratedComponent;`;
-  }
-
-  // Add code to zip
-  zip.file(`index.${fileExtension}`, saveableCode);
-  // Add images to zip
-  processedImages.forEach(({ fileName, originalName }) => {
-    zip.file(`images/${fileName}`, originalName);
-  });
-
-  // Generate and save zip
-  const content = await zip.generateAsync({ type: 'blob' });
-  saveAs(content, `weblike-export.zip`);
-}, [codeType, images, imageSize, addedImages, imageUrls]);
-
-// ... rest of the code ...
+  const saveCode = useCallback(async () => {
+    if (!previewRef.current) return;
+  
+    const zip = new JSZip();
+    const fileExtension = codeType === 'html' ? 'html' : codeType === 'jsx' ? 'jsx' : 'tsx';
+  
+    let saveableCode = previewRef.current.innerHTML;
+  
+    // Process images and create image imports
+    const imagePromises = Object.entries(images).map(async ([imageId, file]) => {
+      const imageContent = await file.arrayBuffer();
+      const fileName = `image_${imageId}.${file.name.split('.').pop()}`;
+      zip.file(`images/${fileName}`, imageContent);
+      return { imageId, fileName, originalName: file.name };
+    });
+  
+    const processedImages = await Promise.all(imagePromises);
+  
+    if (codeType === 'html') {
+      // HTML format remains the same
+      saveableCode = `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Page</title>
+    <style>
+      ${processedImages.map(({ imageId }) => `
+        [data-image-id="${imageId}"] {
+          background-size: ${imageSize};
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      `).join('\n')}
+    </style>
+  </head>
+  <body>
+    ${saveableCode}
+  </body>
+  </html>`;
+    } else {
+      // JSX/TSX format with proper image handling
+      const imageVariableNames = processedImages.reduce((acc, { imageId, originalName }) => {
+        const safeName = `image${imageId.replace(/[^a-zA-Z0-9]/g, '')}`;
+        acc[imageId] = safeName;
+        return acc;
+      }, {} as { [key: string]: string });
+  
+      // Transform the code to use proper React/TSX syntax
+      saveableCode = saveableCode
+        .replace(/<!--[\s\S]*?-->/g, '')
+        .replace(/class=/g, 'className=')
+        .replace(/for=/g, 'htmlFor=')
+        .replace(/charset=/g, 'charSet=')
+        .replace(/data-image-id="([^"]+)"/g, (match, imageId) => {
+          const varName = imageVariableNames[imageId];
+          return `style={{ 
+            backgroundImage: \`url(\${${varName}})\`,
+            backgroundSize: '${imageSize}',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}`;
+        })
+        .replace(/style="([^"]*)"/g, (match, styles) => {
+          const styleObject = styles.split(';')
+            .filter((style: string) => style.trim())
+            .reduce((acc: Record<string, string>, style: string) => {
+              const [key, value] = style.split(':').map(s => s.trim());
+              if (key && value) {
+                const camelKey = key.replace(/-([a-z])/g, g => g[1].toUpperCase());
+                acc[camelKey] = value;
+              }
+              return acc;
+            }, {});
+          return `style={${JSON.stringify(styleObject)}}`;
+        })
+        .replace(/<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)([^>]*?)>/g, 
+          (match, tag, attributes) => `<${tag}${attributes} />`);
+  
+      // Create React component with image imports
+      saveableCode = `
+  import React from 'react';
+  ${processedImages.map(({ fileName, imageId }) => 
+    `import ${imageVariableNames[imageId]} from './images/${fileName}';`
+  ).join('\n')}
+  
+  ${codeType === 'tsx' ? 'interface Props {}\n' : ''}
+  
+  const GeneratedComponent: React.FC${codeType === 'tsx' ? '<Props>' : ''} = () => {
+    return (
+      <div className="generated-component">
+        ${saveableCode}
+      </div>
+    );
+  };
+  
+  export default GeneratedComponent;`;
+    }
+  
+    // Add code to zip
+    zip.file(`index.${fileExtension}`, saveableCode);
+    // Add images to zip
+    processedImages.forEach(({ fileName, originalName }) => {
+      zip.file(`images/${fileName}`, originalName);
+    });
+  
+    // Generate and save zip
+    const content = await zip.generateAsync({ type: 'blob' });
+    saveAs(content, `weblike-export.zip`);
+  }, [codeType, images, imageSize, addedImages, imageUrls]);
 
   const handleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newColors = [...selectedColors];
@@ -906,15 +903,14 @@ export default GeneratedComponent;`;
   };
 
   return (
-    <div className= "bg-gray-900  h-screen">
+    <div className="bg-gray-90 h-screen">
+     
 
-   
-
-      <div className="flex h-screen bg-gray-900">
+      <div className="flex h-screen bg-gray-100">
         <div className={`w-80 bg-gray-900 border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             <h2 className="text-lg font-semibold">Chat</h2>
-            <button onClick={toggleChat} className="text-white hover:text-gray-700">
+            <button onClick={toggleChat} className="text-gray-500 hover:text-gray-700">
               <FiX size={24} />
             </button>
           </div>
@@ -974,8 +970,8 @@ export default GeneratedComponent;`;
         {/* Left Sidebar */}
          <div className={`bg-gray-900 border-r border-gray-200 flex flex-col transition-all duration-300 ${isLeftSidebarMinimized ? 'w-16' : 'w-64'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-            {!isLeftSidebarMinimized && <h2 className="text-lg font-semibold text-white">Elements</h2>}
-            <button onClick={toggleLeftSidebar} className="text-white hover:text-gray-700">
+            {!isLeftSidebarMinimized && <h2 className="text-lg font-semibold">Elements</h2>}
+            <button onClick={toggleLeftSidebar} className="text-gray-500 hover:text-gray-700">
               {isLeftSidebarMinimized ? <Sparkles size={24} /> : <Smartphone size={24} />}
             </button>
           </div>
@@ -1161,7 +1157,7 @@ export default GeneratedComponent;`;
                       </Rnd>
                     ))}
                   </div>
-                
+
                   {/* Code Section */}
                   <div className={`${activeTab === 'code' ? 'block' : 'hidden'} bg-gray-900`}>
                     <textarea
@@ -1187,25 +1183,21 @@ export default GeneratedComponent;`;
           <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-gray-900">
           <Logo />
           <button
-          className="px-2 py-1 bg-gray-300 text-gray-700 rounded text-sm hover:bg-gray-400 transition-colors"
-          onClick={showCodeSection}
-        >
-          <Code className="inline-block mr-1" size={14} />
-          
-        </button>
-
-          {/* Keep only the Preview button visible */}
-          <button
             className="px-4 py-2 rounded bg-blue-500 text-white"
             onClick={() => setActiveTab('preview')}
           >
             <Eye className="inline-block mr-2" size={18} />
 
           </button>
-    
+          <button
+          className="px-2 py-1 bg-gray-300 text-gray-700 rounded text-sm hover:bg-gray-400 transition-colors"
+          onClick={showCodeSection}
+        >
+          <Code className="inline-block mr-1" size={14} />
 
+        </button>
             {!isRightSidebarMinimized && <h2 className="text-lg font-semibold text-black">weblike</h2>}
-            <button onClick={toggleRightSidebar} className="text-white hover:text-indigo-600 transition-colors">
+            <button onClick={toggleRightSidebar} className="text-gray-500 hover:text-indigo-600 transition-colors">
               {isRightSidebarMinimized ? <Minimize2 size={24} /> : <Maximize2 size={24} />}
             </button>
           </div>
@@ -1290,18 +1282,6 @@ export default GeneratedComponent;`;
                     )}
                   </div>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Code Type</h3>
-                <select
-                  value={codeType}
-                  onChange={(e) => setCodeType(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                >
-                  <option value="html">HTML</option>
-                  <option value="jsx">JSX</option>
-                  <option value="tsx">TSX</option>
-                </select>
-              </div>
 
                 {/* Color Settings */}
                 <div className="bg-gray-900 p-6 rounded-xl shadow-md">
@@ -1320,7 +1300,7 @@ export default GeneratedComponent;`;
                             onClick={() => setActiveColorIndex(index)}
                             className={`w-12 h-12 rounded-full border-4 ${activeColorIndex === index ? 'border-indigo-500' : 'border-white'} shadow-inner`}
                           />
-                          <div className="mt-1 text-xs text-white text-center">{color}</div>
+                          <div className="mt-1 text-xs text-gray-500 text-center">{color}</div>
                         </div>
                       ))}
                     </div>
@@ -1358,7 +1338,18 @@ export default GeneratedComponent;`;
                 </div>
 
               </div>
-
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Code Type</h3>
+                <select
+                  value={codeType}
+                  onChange={(e) => setCodeType(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                >
+                  <option value="html">HTML</option>
+                  <option value="jsx">JSX</option>
+                  <option value="tsx">TSX</option>
+                </select>
+              </div>
                 {/* Animation Settings */}
                 <div className="bg-gray-900 p-6 rounded-xl shadow-md">
                   <h3 className="text-lg font-semibold text-gray-800 flex items-center mb-4">
@@ -1397,10 +1388,10 @@ export default GeneratedComponent;`;
               <div className="flex justify-between items-center mb-4">
                 {!isGalleryMinimized && <h2 className="text-xl font-bold">Gallery</h2>}
                 <div className="flex items-center">
-                  <button onClick={toggleMinimizeGallery} className="text-white hover:text-gray-700 mr-2">
+                  <button onClick={toggleMinimizeGallery} className="text-gray-500 hover:text-gray-700 mr-2">
                     {isGalleryMinimized ? <FiMaximize2 className="text-xl" /> : <FiMinimize2 className="text-xl" />}
                   </button>
-                  <button onClick={toggleGallery} className="text-white hover:text-gray-700">
+                  <button onClick={toggleGallery} className="text-gray-500 hover:text-gray-700">
                     <FiX className="text-xl" />
                   </button>
                 </div>
@@ -1467,7 +1458,7 @@ export default GeneratedComponent;`;
         )}
 
 
-        
+        {/* Publish Modal */}
    
 
 
@@ -1501,7 +1492,5 @@ export default GeneratedComponent;`;
 };
 
 export default CodePreview;
-
-
+      
 ///latest version
-///on of the best landing yet just checked bg imag working in jsx,tsx,js
