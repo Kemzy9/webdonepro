@@ -1,5 +1,5 @@
 module.exports = {
-    siteUrl: 'https://www.weblike.pro',
+    siteUrl: 'https://www.webd.one',
     generateRobotsTxt: true,
     // Optional: additional settings
   };
