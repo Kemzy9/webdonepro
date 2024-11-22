@@ -1,17 +1,16 @@
 "use client";
-import React, { useState, useEffect, useRef, ChangeEvent, MouseEvent, useCallback,Suspense } from 'react';
+import React, { useState, useEffect, useRef, ChangeEvent, MouseEvent, useCallback, Suspense } from 'react';
 
-import { Download, Maximize2, Code, Minimize2, Sparkles, ExternalLink, Redo2, Undo2, Type, Eye, Grip, Smartphone, Monitor, Palette, Droplet, Play, LayoutList, MousePointerClick, X, MessageSquare , } from 'lucide-react';
+import { Download, Maximize2, Code, Minimize2, Sparkles, ExternalLink, Redo2, Undo2, Type, Eye,  Smartphone, MousePointerClick,  } from 'lucide-react';
 
-
-import LogoGenerator from '@/app/weblike/weblike/logogenerator/page';
+import StyleControls from '@/app/weblike/weblike/style/StyleControls';
+import Gallery from '@/app/weblike/weblike/gallery/Gallery';
 import Client from '@/app/weblike/weblike/client/page';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import Gallery from '@/app/weblike/weblike/gallery/Gallery';
-import BuilderPage from './ BuilderPage';
+import LogoGenerator from '@/app/weblike/weblike/logogenerator/page';
+import BuilderPage from '@/app/weblike/builder/ BuilderPage';
 import { FiGrid, FiX, FiMinimize2, FiMaximize2, FiCode, FiEye, FiDownload, FiSmartphone, FiMonitor, FiSave, FiShare2, FiSliders, FiImage, FiDroplet, FiPlay } from 'react-icons/fi';
-import StyleControls from '@/app/weblike/weblike/style/StyleControls';
 import { Rnd } from 'react-rnd';
 import { FiMessageSquare, FiSend } from 'react-icons/fi';
 import Logo from '@/app/UI/logo/page';
@@ -66,12 +65,17 @@ const CodePreview: React.FC = () => {
   const [activeColorIndex, setActiveColorIndex] = useState<number>(0);
 
 
+
+
   
-  // ... existing functions ...
-
-
-
-
+ 
+  useEffect(() => {
+    if (initialCode) {
+      setCode(initialCode);
+      setOutput(initialCode);
+    }
+  }, []);
+  
   ;
   const toggleLeftSidebar = () => {
     setIsLeftSidebarMinimized(!isLeftSidebarMinimized);
@@ -138,37 +142,43 @@ const CodePreview: React.FC = () => {
 
 
   const handleOpenLive = () => {
-    const domain = process.env.DOMAIN;
-
-    // Generate full HTML document with the domain environment variable
+    // Generate full HTML document with styles and images
     const fullHtml = `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Live Preview</title>
-        </head>
-        <body>
-            <script>
-                // Optionally use the domain in your script here
-                const domain = "${domain}";
-            </script>
-            ${output}
-        </body>
-        </html>
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Live Preview</title>
+        <style>
+          ${Object.entries(imageUrls).map(([imageId, url]) => `
+            [data-image-id="${imageId}"] {
+              background-image: url('${url}');
+              background-size: ${imageSize};
+              background-position: center;
+              background-repeat: no-repeat;
+            }
+          `).join('\n')}
+        </style>
+      </head>
+      <body>
+        ${output}
+      </body>
+      </html>
     `;
-
+  
     // Create a Blob with the HTML content
     const blob = new Blob([fullHtml], { type: 'text/html' });
-
-    // Create a data URL from the Blob
     const dataUrl = URL.createObjectURL(blob);
-
+  
     // Open the data URL in a new tab
     window.open(dataUrl, '_blank');
+  
+    // Clean up the URL object
+    setTimeout(() => URL.revokeObjectURL(dataUrl), 100);
   };
-
+  
+  // ... existing code ...
 
 
   // Add this to force re-render when needed
@@ -210,124 +220,121 @@ const CodePreview: React.FC = () => {
     }
   };
 
-  const saveCode = useCallback(async () => {
-    if (!previewRef.current) return;
-
-    const zip = new JSZip();
-    const fileExtension = codeType === 'html' ? 'html' : codeType === 'jsx' ? 'jsx' : 'tsx';
-
-    // Get the current state of the preview
-    let saveableCode = previewRef.current.innerHTML;
-    // Process images
-    const imagePromises = Object.entries(images).map(async ([imageId, file]) => {
-      const imageContent = await file.arrayBuffer();
-      const fileName = `image_${imageId}.${file.name.split('.').pop()}`;
-      zip.file(`images/${fileName}`, imageContent);
-      return { imageId, fileName };
-    });
-    const processedImages = await Promise.all(imagePromises);
-    // Update image paths in the code
-    processedImages.forEach(({ imageId, fileName }) => {
-      const imgRegex = new RegExp(`data-image-id="${imageId}"[^>]*src="[^"]*"`, 'g');
-      saveableCode = saveableCode.replace(imgRegex, `data-image-id="${imageId}" src="images/${fileName}"`);
-    });
-    // Add image elements to the code
-    addedImages.forEach((img, index) => {
-      const imgFileName = `added-image-${index}.png`;
-      zip.file(`images/${imgFileName}`, img.src.split(',')[1], { base64: true });
-
-      const imgElement = `<img src="./images/${imgFileName}" style="position: absolute; left: ${img.position.x}px; top: ${img.position.y}px; width: ${img.size.width}px; height: ${img.size.height}px;" />`;
-      saveableCode += imgElement;
-    });
 
 
+const saveCode = useCallback(async () => {
+  if (!previewRef.current) return;
 
+  const zip = new JSZip();
+  const fileExtension = codeType === 'html' ? 'html' : codeType === 'jsx' ? 'jsx' : 'tsx';
 
+  let saveableCode = previewRef.current.innerHTML;
 
-    if (codeType === 'html') {
-      // For HTML, update image paths and create a style tag
-      let styleContent = '';
-      processedImages.forEach(({ imageId, fileName }) => {
-        const imgRegex = new RegExp(`data-image-id="${imageId}"`, 'g');
-        saveableCode = saveableCode.replace(imgRegex, `data-image-id="${imageId}" style="background-image: url('./images/${fileName}')"`);
+  // Process images and create image imports
+  const imagePromises = Object.entries(images).map(async ([imageId, file]) => {
+    const imageContent = await file.arrayBuffer();
+    const fileName = `image_${imageId}.${file.name.split('.').pop()}`;
+    zip.file(`images/${fileName}`, imageContent);
+    return { imageId, fileName, originalName: file.name };
+  });
 
-        // Add to style content
-        styleContent += `
-            [data-image-id="${imageId}"] {
-              background-size: ${imageSize};
-              background-position: center;
-              background-repeat: no-repeat;
-            }
-          `;
-      });
+  const processedImages = await Promise.all(imagePromises);
 
-      // Add style tag to the head of the HTML
-      saveableCode = `
-          <html>
-            <head>
-              <style>${styleContent}</style>
-            </head>
-            <body>
-              ${saveableCode}
-            </body>
-          </html>
-        `;
-    } else {
-      // Convert HTML to JSX/TSX
-      saveableCode = saveableCode
-        .replace(/class=/g, 'className=')
-        .replace(/for=/g, 'htmlFor=')
-        .replace(/style="([^"]*)"/g, (match, styles) => {
-          const styleObject = styles.split(';').reduce((acc: Record<string, string>, style: string) => {
-            const [key, value] = style.split(':').map((s: string) => s.trim());
+  if (codeType === 'html') {
+    // HTML format remains the same
+    saveableCode = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generated Page</title>
+  <style>
+    ${processedImages.map(({ imageId }) => `
+      [data-image-id="${imageId}"] {
+        background-size: ${imageSize};
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    `).join('\n')}
+  </style>
+</head>
+<body>
+  ${saveableCode}
+</body>
+</html>`;
+  } else {
+    // JSX/TSX format with proper image handling
+    const imageVariableNames = processedImages.reduce((acc, { imageId, originalName }) => {
+      const safeName = `image${imageId.replace(/[^a-zA-Z0-9]/g, '')}`;
+      acc[imageId] = safeName;
+      return acc;
+    }, {} as { [key: string]: string });
+
+    // Transform the code to use proper React/TSX syntax
+    saveableCode = saveableCode
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/class=/g, 'className=')
+      .replace(/for=/g, 'htmlFor=')
+      .replace(/charset=/g, 'charSet=')
+      .replace(/data-image-id="([^"]+)"/g, (match, imageId) => {
+        const varName = imageVariableNames[imageId];
+        return `style={{ 
+          backgroundImage: \`url(\${${varName}})\`,
+          backgroundSize: '${imageSize}',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}`;
+      })
+      .replace(/style="([^"]*)"/g, (match, styles) => {
+        const styleObject = styles.split(';')
+          .filter((style: string) => style.trim())
+          .reduce((acc: Record<string, string>, style: string) => {
+            const [key, value] = style.split(':').map(s => s.trim());
             if (key && value) {
-              const jsxKey = key.replace(/-./g, (x: string) => x.charAt(1).toUpperCase() + x.slice(2));
-              acc[jsxKey] = value.replace(/"/g, "'");
+              const camelKey = key.replace(/-([a-z])/g, g => g[1].toUpperCase());
+              acc[camelKey] = value;
             }
             return acc;
           }, {});
-          return `style={${JSON.stringify(styleObject)}}`;
-        })
-        .replace(/(\w+)="(\{[^}]+\})"/g, (match: string, attr: string, value: string) => `${attr}=${value}`)
-        .replace(/<([a-z]+)([^>]*)>/g, (match: string, tag: string, attrs: string) => {
-          const jsxAttrs = attrs.replace(/(\w+)="([^"]+)"/g, (attrMatch: string, attr: string, value: string) => {
-            if (attr === 'style') return attrMatch;
-            return `${attr}="${value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}"`;
-          });
-          return `<${tag}${jsxAttrs}>`;
-        })
-        .replace(/&nbsp;/g, '{" "}')
-        .replace(/<!--(.*?)-->/g, '{/* $1 */}');
+        return `style={${JSON.stringify(styleObject)}}`;
+      })
+      .replace(/<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)([^>]*?)>/g, 
+        (match, tag, attributes) => `<${tag}${attributes} />`);
 
-      // Replace image URLs with imports
-      processedImages.forEach(({ imageId, fileName }) => {
-        const imgRegex = new RegExp(`data-image-id="${imageId}"`, 'g');
-        saveableCode = saveableCode.replace(imgRegex, `data-image-id="${imageId}" style={{backgroundImage: \`url(\${${imageId}})\`, backgroundSize: '${imageSize}', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}`);
-      });
-
-      // Wrap the code in a React component
-      saveableCode = `
+    // Create React component with image imports
+    saveableCode = `
 import React from 'react';
-${processedImages.map(({ imageId, fileName }) => `import ${imageId} from './images/${fileName}';`).join('\n')}
+${processedImages.map(({ fileName, imageId }) => 
+  `import ${imageVariableNames[imageId]} from './images/${fileName}';`
+).join('\n')}
 
-const GeneratedComponent: React.FC = () => {
+${codeType === 'tsx' ? 'interface Props {}\n' : ''}
+
+const GeneratedComponent: React.FC${codeType === 'tsx' ? '<Props>' : ''} = () => {
   return (
-    <React.Fragment>
+    <div className="generated-component">
       ${saveableCode}
-    </React.Fragment>
+    </div>
   );
 };
 
-export default GeneratedComponent;
-`;
-    }
+export default GeneratedComponent;`;
+  }
 
-    zip.file(`index.${fileExtension}`, saveableCode);
+  // Add code to zip
+  zip.file(`index.${fileExtension}`, saveableCode);
+  // Add images to zip
+  processedImages.forEach(({ fileName, originalName }) => {
+    zip.file(`images/${fileName}`, originalName);
+  });
 
-    const content = await zip.generateAsync({ type: 'blob' });
-    saveAs(content, 'weblike.zip');
-  }, [codeType, images, imageSize, addedImages]);
+  // Generate and save zip
+  const content = await zip.generateAsync({ type: 'blob' });
+  saveAs(content, `weblike-export.zip`);
+}, [codeType, images, imageSize, addedImages, imageUrls]);
 
+// ... rest of the code ...
 
   const handleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newColors = [...selectedColors];
@@ -341,8 +348,21 @@ export default GeneratedComponent;
   const [hoverStyle, setHoverStyle] = useState<{ backgroundColor?: string; backgroundImage?: string }>({});
   const removeColor = () => {
     setIsApplyingColor(false);
-    setHoverStyle({ backgroundColor: '' });
-    applyStyleToSelection({ backgroundColor: '' });
+    if (previewRef.current) {
+      // Get all elements with background color or gradient
+      const elements = previewRef.current.getElementsByTagName('*');
+      Array.from(elements).forEach(element => {
+        if (element instanceof HTMLElement) {
+          element.style.backgroundColor = '';
+          element.style.background = '';
+          element.style.backgroundImage = ''; // Remove any gradients
+        }
+      });
+      
+      // Update the preview content
+      setOutput(previewRef.current.innerHTML);
+      setCode(previewRef.current.innerHTML);
+    }
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -365,10 +385,23 @@ export default GeneratedComponent;
 
   const removeImage = () => {
     setIsApplyingImage(false);
-    const applyStyleToSelection = (style: { backgroundImage: string; }) => {
-      console.log("Applying style to selection:", style);
-    };
-    applyStyleToSelection({ backgroundImage: '' });
+    if (previewRef.current) {
+      // Get all elements with data-image-id
+      const elementsWithImage = previewRef.current.querySelectorAll('[data-image-id]');
+      elementsWithImage.forEach(element => {
+        if (element instanceof HTMLElement) {
+          element.style.backgroundImage = 'none';
+          element.removeAttribute('data-image-id');
+          element.style.backgroundSize = '';
+          element.style.backgroundPosition = '';
+          element.style.backgroundRepeat = '';
+        }
+      });
+      
+      // Update the preview content
+      setOutput(previewRef.current.innerHTML);
+      setCode(previewRef.current.innerHTML);
+    }
   };
 
   const handlePreviewInteraction = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -513,13 +546,8 @@ export default GeneratedComponent;
     }
   };
 
-  const handlePublish = () => {
-    setIsModalOpen(true); // Open the modal
-  };
 
-  const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
-  };
+  
 
   const toggleGallery = () => {
     setIsGalleryOpen(!isGalleryOpen);
@@ -607,7 +635,7 @@ export default GeneratedComponent;
   }, [isTextEditing]);
 
   const [isTyping, setIsTyping] = useState(false);
-  const typingSpeedMs = 20; // Adjust this value to change typing speed
+  const typingSpeedMs = 400; // Adjust this value to change typing speed
 
 
   const typeCode = async (codeToType: string) => {
@@ -878,8 +906,8 @@ export default GeneratedComponent;
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center bg-lime-200 mb-4 ">
+    <div className="h-screen bg-gray-900">
+      <div className="flex justify-between items-center text-white bg-gray-900 mb-4 ">
         <div className="flex space-x-2">
           {/* Keep only the Preview button visible */}
           <button
@@ -905,7 +933,7 @@ export default GeneratedComponent;
             className={`relative w-11 h-6 rounded-full ${isEditMode ? 'bg-blue-600' : 'bg-gray-200'} peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800`}
           >
             <div
-              className={`absolute top-[2px] left-[2px] bg-white border-gray-300 border rounded-full h-5 w-5 transition-transform duration-300 ease-in-out ${isEditMode ? 'translate-x-5' : 'translate-x-0'}`}
+              className={`absolute top-[2px] left-[2px] bg-gray-900 border-gray-300 border rounded-full h-5 w-5 transition-transform duration-300 ease-in-out ${isEditMode ? 'translate-x-5' : 'translate-x-0'}`}
             ></div>
           </div>
           <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -921,18 +949,22 @@ export default GeneratedComponent;
         </button>
 
 
-        <button
-          className="px-4 py-2 bg-purple-400 text-white rounded flex items-center"
-          onClick={saveCode}
-        >
-          <Download className="inline-block mr-2" size={18} />
+        <div className="bg-gray-50 p-4 rounded-lg">
+                <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Code Type</h3>
+                <select
+                  value={codeType}
+                  onChange={(e) => setCodeType(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                >
+                  <option value="html">HTML</option>
+                  <option value="jsx">JSX</option>
+                  <option value="tsx">TSX</option>
+                </select>
+              </div>
 
-
-
-        </button>
         <Undo2 />
         <Redo2 color="#121111" />
-        <Logo />
+   
         <button
           className="px-2 py-1 bg-gray-300 text-gray-700 rounded text-sm hover:bg-gray-400 transition-colors"
           onClick={showCodeSection}
@@ -946,7 +978,7 @@ export default GeneratedComponent;
       </div>
 
       <div className="flex h-screen bg-gray-100">
-        <div className={`w-80 bg-white border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
+        <div className={`w-80 bg-gray-900 border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             <h2 className="text-lg font-semibold">Chat</h2>
             <button onClick={toggleChat} className="text-gray-500 hover:text-gray-700">
@@ -1004,9 +1036,10 @@ export default GeneratedComponent;
         </div>
 
 
-       {/* Left Sidebar */}
 
-       <div className={`bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${isLeftSidebarMinimized ? 'w-16' : 'w-64'}`}>
+
+        {/* Left Sidebar */}
+         <div className={`bg-gray-900 border-r border-gray-200 flex flex-col transition-all duration-300 ${isLeftSidebarMinimized ? 'w-16' : 'w-64'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             {!isLeftSidebarMinimized && <h2 className="text-lg font-semibold">Elements</h2>}
             <button onClick={toggleLeftSidebar} className="text-gray-500 hover:text-gray-700">
@@ -1025,32 +1058,7 @@ export default GeneratedComponent;
                   Open Gallery
                 </button>
               </div>
-              <div className="p-4 border-t border-gray-200">
-                <div
-                  onDragEnter={handleDragEnter}
-                  onDragOver={handleDragOver}
-                  onDragLeave={handleDragLeave}
-                  onDrop={handleDrop}
-                  onClick={handleButtonClick}
-                  className={`p-6 border-2 border-dashed rounded-lg text-center cursor-pointer transition-colors ${isDragging ? 'border-indigo-500 bg-indigo-50' : 'border-gray-300 hover:border-indigo-500'
-                    }`}
-                >
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleFileInputChange}
-                    accept="image/*"
-                    style={{ display: 'none' }}
-                  />
-                  <p className="text-gray-600">
-                    {isDragging
-                      ? "Drop the image here..."
-                      : "Drag 'n' drop an image here, or click to select one"
-                    }
-                  </p>
-                </div>
-
-              </div>
+              
             </>
           )}
         </div>
@@ -1058,7 +1066,7 @@ export default GeneratedComponent;
         {/* Main Content */}
         <div className="flex-grow flex flex-col">
           {/* Top Toolbar */}
-          <div className="bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+          <div className="bg-gray-900 border-b border-gray-200 p-4 flex justify-between items-center">
 
             <div className="flex space-x-2">
               <button
@@ -1077,10 +1085,10 @@ export default GeneratedComponent;
               </button>
               <button
                 className="px-3 py-1 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors"
-                onClick={handlePublish}
+                onClick={handleOpenLive}
               >
                 <FiShare2 className="inline-block mr-1" size={14} />
-                Publish
+               Live
               </button>
             </div>
             <button
@@ -1095,7 +1103,7 @@ export default GeneratedComponent;
           {/* Editor Area */}
           <div className="flex-grow flex overflow-hidden">
             <div className="flex-grow p-4 overflow-auto">
-              <div className={`bg-white shadow-lg rounded-lg overflow-hidden ${isMobileView ? 'w-[375px] mx-auto' : 'w-full'}`}>
+              <div className={`bg-gray-900 shadow-lg rounded-lg overflow-hidden ${isMobileView ? 'w-[375px] mx-auto' : 'w-full'}`}>
                 <div className="bg-gray-800 px-4 py-2 flex items-center">
                   <div className="flex space-x-2">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -1152,7 +1160,7 @@ export default GeneratedComponent;
                         {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((corner) => (
                           <div
                             key={corner}
-                            className={`absolute w-3 h-3 bg-white border-2 border-blue-500 rounded-full ${corner.includes('top') ? 'top-0' : 'bottom-0'
+                            className={`absolute w-3 h-3 bg-gray-900 border-2 border-blue-500 rounded-full ${corner.includes('top') ? 'top-0' : 'bottom-0'
                               } ${corner.includes('left') ? 'left-0' : 'right-0'} -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-in-out`}
                           ></div>
                         ))}
@@ -1161,7 +1169,7 @@ export default GeneratedComponent;
                         {['top', 'right', 'bottom', 'left'].map((side) => (
                           <div
                             key={side}
-                            className={`absolute bg-white border-2 border-blue-500 ${side === 'top' || side === 'bottom' ? 'w-4 h-3 -translate-x-1/2' : 'w-3 h-4 -translate-y-1/2'
+                            className={`absolute bg-gray-900 border-2 border-blue-500 ${side === 'top' || side === 'bottom' ? 'w-4 h-3 -translate-x-1/2' : 'w-3 h-4 -translate-y-1/2'
                               } ${side === 'top' ? 'top-0' : side === 'bottom' ? 'bottom-0' : ''} ${side === 'left' ? 'left-0' : side === 'right' ? 'right-0' : ''
                               } transition-all duration-200 ease-in-out`}
                           ></div>
@@ -1228,6 +1236,7 @@ export default GeneratedComponent;
                       value={code}
                       onChange={(e) => setCode(e.target.value)}
                       className="w-full h-full p-2 text-white bg-gray-900 border border-gray-700 rounded"
+                      
                     /><Suspense fallback={<div>Loading...</div>}>
                     <BuilderPage setCode={setCode} />
                   </Suspense>
@@ -1242,8 +1251,9 @@ export default GeneratedComponent;
 
         {/* Right Sidebar */}
         <div className={`bg-gradient-to-b from-indigo-100 to-white border-l border-gray-200 flex flex-col transition-all duration-300 ${isRightSidebarMinimized ? 'w-16' : 'w-60'}`}>
-          <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-white">
-            {!isRightSidebarMinimized && <h2 className="text-lg font-semibold text-indigo-600">Design Lab</h2>}
+          <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-gray-900">
+          <Logo />
+            {!isRightSidebarMinimized && <h2 className="text-lg font-semibold text-black">weblike</h2>}
             <button onClick={toggleRightSidebar} className="text-gray-500 hover:text-indigo-600 transition-colors">
               {isRightSidebarMinimized ? <Minimize2 size={24} /> : <Maximize2 size={24} />}
             </button>
@@ -1261,7 +1271,7 @@ export default GeneratedComponent;
                   { icon: <FiGrid size={20} />, label: "Gallery", onClick: toggleGallery },
                 ].map((action, index) => (
                   <button key={index} onClick={action.onClick} className="flex flex-col items-center group">
-                    <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:bg-indigo-50">
+                    <div className="p-3 bg-gray-900 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:bg-indigo-50">
                       {action.icon}
                     </div>
                     <span className="mt-2 text-xs text-gray-600 group-hover:text-indigo-600">{action.label}</span>
@@ -1272,7 +1282,7 @@ export default GeneratedComponent;
               {/* Settings Sections */}
               <div className="space-y-8">
                 {/* Image Settings */}
-                <div className="bg-white p-6 rounded-xl shadow-md">
+                <div className="bg-gray-900 p-6 rounded-xl shadow-md">
                   <h3 className="text-lg font-semibold text-gray-800 flex items-center mb-4">
                     <FiImage className="mr-2" size={18} />
                     Image
@@ -1331,7 +1341,7 @@ export default GeneratedComponent;
                 </div>
 
                 {/* Color Settings */}
-                <div className="bg-white p-6 rounded-xl shadow-md">
+                <div className="bg-gray-900 p-6 rounded-xl shadow-md">
                   <h3 className="text-lg font-semibold text-gray-800 flex items-center mb-4">
                     <FiDroplet className="mr-2" size={18} />
                     Color
@@ -1359,10 +1369,35 @@ export default GeneratedComponent;
                     </div>
                   </div>
                 </div>
+                <div className="p-4 border-t border-gray-200">
+                <div
+                  onDragEnter={handleDragEnter}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  onClick={handleButtonClick}
+                  className={`p-6 border-2 border-dashed rounded-lg text-center cursor-pointer transition-colors ${isDragging ? 'border-indigo-500 bg-indigo-50' : 'border-gray-300 hover:border-indigo-500'
+                    }`}
+                >
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleFileInputChange}
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                  />
+                  <p className="text-gray-600">
+                    {isDragging
+                      ? "Drop the image here..."
+                      : "Drag 'n' drop an image here, or click to select one"
+                    }
+                  </p>
+                </div>
 
+              </div>
 
                 {/* Animation Settings */}
-                <div className="bg-white p-6 rounded-xl shadow-md">
+                <div className="bg-gray-900 p-6 rounded-xl shadow-md">
                   <h3 className="text-lg font-semibold text-gray-800 flex items-center mb-4">
                     <FiPlay className="mr-2" size={18} />
                     Motion Potion
@@ -1390,10 +1425,10 @@ export default GeneratedComponent;
 
           )}
         </div>
-
+       
         {/* Gallery Modal */}
         {isGalleryOpen && (
-          <div className={`fixed inset-y-0 right-0 bg-white shadow-lg z-50 transition-all duration-300 ${isGalleryMinimized ? 'w-16' : 'w-96'
+          <div className={`fixed inset-y-0 right-0 bg-gray-900 shadow-lg z-50 transition-all duration-300 ${isGalleryMinimized ? 'w-16' : 'w-96'
             }`}>
             <div className="p-4 h-full flex flex-col">
               <div className="flex justify-between items-center mb-4">
@@ -1431,8 +1466,8 @@ export default GeneratedComponent;
                   </div>
                   <div className="flex-grow overflow-y-auto">
                   {galleryTab === 'images' && <Gallery onSelectImage={handleSelectGalleryImage} />}
-                   {galleryTab === 'logos' && <LogoGenerator />}
-                   {galleryTab === 'client' && <Client />}
+                  {galleryTab === 'logos' && <LogoGenerator />}
+                    {galleryTab === 'client' && <Client />}
                   </div>
                   {selectedGalleryImage && galleryTab !== 'client' && (
                     <button
@@ -1450,7 +1485,7 @@ export default GeneratedComponent;
 
         {/* Minimized Gallery Preview */}
         {isGalleryOpen && isGalleryMinimized && selectedGalleryImage && (
-          <div className="fixed bottom-4 right-20 bg-white p-2 rounded-lg shadow-md">
+          <div className="fixed bottom-4 right-20 bg-gray-900 p-2 rounded-lg shadow-md">
          <Image
   src={selectedGalleryImage.url ?? ''}
   alt="Selected gallery image"
@@ -1505,4 +1540,5 @@ export default GeneratedComponent;
 export default CodePreview;
 
 
-
+///latest version
+///on of the best landing yet just checked bg imag working in jsx,tsx,js
