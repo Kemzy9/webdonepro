@@ -8,16 +8,16 @@ import { ThemeProvider } from '@/components/theme-provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://weblike.ai'),
-  title: 'Weblike AI - AI-Powered Landing Page Builder | Create AI web page & landing Pages Instantly',
-  description: 'Create professional and ultra unique landing pages instantly with Weblike AI\'s AI-powered web builder. Transform your ideas into high-converting pages without coding or design skills.',
+  metadataBase: new URL('https://webd.one'),
+  title: 'Webdone Create AI lannding page with AI ',
+  description: 'Create Modern landing page with AI ,Chat With AI to  Make modern and changes ,AI Theme Generator And more ',
   openGraph: {
-    title: 'Weblike AI - Create Custom Landing Pages with AI',
-    description: 'Whether you are a startup or a pro, create sleek, modern landing page with AI. No experience? No problem! Get started in minutes!',
+    title: 'Webdone  - Create Custom Landing Pages with AI',
+    description: 'Create Custom Landing page with AI ,React -Typscript/javascript , Chat Feature ,',
     type: 'website',
-    url: 'https://weblike.ai',
+    url: 'https://webd.one',
     images: [{
-      url: 'https://weblike.ai/twitter-card.png',
+      url: 'https://webd.one/twitter-card.png',
       width: 1200,
       height: 630,
     }],
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@weblikeai',
     creator: '@weblikeai',
-    title: 'Weblike AI - Create Custom Landing Pages with AI',
-    description: 'Whether you are a startup or a pro, create sleek, modern landing page with AI. No experience? No problem! Get started in minutes!',
-    images: ['https://weblike.ai/twitter-card.png'],
+    title: 'Weblike AI - Create REACT Custom Landing Pages with AI ',
+    description: 'Create React Landing page with AI,Chat with AI ,AI walpaper,Theme,, ',
+    images: ['https://webd.one/twitter-card.png'],
   },
   icons: {
     icon: '/favicon.ico',
