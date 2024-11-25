@@ -43,13 +43,7 @@ const GeneratedComponent: React.FC = () => {
                 <div className="text-gray-400">Product of the Year</div>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-4xl">👥</span>
-              <div className="text-left">
-                <div className="text-white font-bold">50,000+</div>
-                <div className="text-gray-400">Active Users</div>
-              </div>
-            </div>
+        
           </div>
         </div>
       </div>
