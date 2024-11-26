@@ -622,9 +622,6 @@ const GeneratedComponent: React.FC = () => {
 
       <Baner />
 
-
-
-
     </div>
   );
 };
