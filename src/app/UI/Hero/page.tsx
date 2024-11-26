@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Baner from '@/app/UI/baner/page'
 import Logo from '@/app/UI/logo/page';
 import React, { useState, useEffect } from 'react';
+import Webdone from '@/app/UI/baner/webdone/page'
+import Baner from '@/app/UI/baner/page'
 const GeneratedComponent: React.FC = () => {
 
 
@@ -604,7 +606,8 @@ const GeneratedComponent: React.FC = () => {
               </div>
             ))}
           </div>
-
+  <Webdone />
+              <Baner />
           <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400">© 2024 webdonePro. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
