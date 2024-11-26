@@ -16,10 +16,10 @@ const Logo = () => {
         name: 'My Business',
         icon: 'business-icon',
         business: {
-            name: 'My Business Name',
+            name: 'webdone',
         },
-        alt: 'Logo of My Business',
-        size: 60,
+        alt: 'web done logo',
+        size: 90,
         quality: 100,
     };
 
