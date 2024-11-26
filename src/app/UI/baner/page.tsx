@@ -10,7 +10,7 @@ const BuildByBanner = () => {
       rel="noopener noreferrer"
       className="group inline-flex items-center gap-1.5 rounded-lg border bg-blue-700 px-3 py-2 text-sm transition-all "
     >
-      <span className="text-white">Full Responsive Website AI maker</span>
+      <span className="text-white">AI Landing page maker</span>
       <svg 
         className="h-4 w-4 text-red-500" 
         fill="currentColor" 
