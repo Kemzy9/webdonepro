@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import Image from 'next/image';
 import Baner from '@/app/UI/baner/page'
+import Logo from '../UI/logo/page';
 import React, { useState, useEffect } from 'react';
 const GeneratedComponent: React.FC = () => {
 
@@ -28,7 +29,7 @@ const GeneratedComponent: React.FC = () => {
             {/* Logo with hover effect */}
             <div className="flex items-center">
               <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
-
+             <Logo />
               </div>
 
               {/* Enhanced navigation with indicators */}
