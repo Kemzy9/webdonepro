@@ -1,21 +1,106 @@
 'use client'
-'use client'
-import React from 'react';
+import Link from 'next/link';
+
 import Image from 'next/image';
 import Baner from '@/app/UI/baner/page'
-
+import React, { useState, useEffect } from 'react';
 const GeneratedComponent: React.FC = () => {
+
+
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Add scroll effect to header
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#0A0A0A]">
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
+        }`}>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
+            {/* Logo with hover effect */}
+            <div className="flex items-center">
+              <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
+
+              </div>
+
+              {/* Enhanced navigation with indicators */}
+              <nav className="hidden md:ml-10 md:flex md:space-x-8">
+                {['Features', 'Solutions', 'Pricing', 'Resources'].map((item) => (
+                  <Link
+                    key={item}
+                    href={`/${item.toLowerCase()}`}
+                    className="relative text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors group"
+                  >
+                    {item}
+                    <span className="absolute inset-x-0 bottom-0 h-0.5 bg-indigo-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Enhanced CTA buttons */}
+            <div className="hidden md:flex md:items-center md:space-x-6">
+              <Link
+                href="/login"
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                Sign in
+              </Link>
+              <Link
+                href="/signup"
+                className="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 transition-all transform hover:scale-105 hover:shadow-lg"
+              >
+                Start free trial →
+              </Link>
+            </div>
+
+            {/* Enhanced mobile menu button */}
+            <div className="flex md:hidden">
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-full text-gray-400 hover:text-gray-500 hover:bg-gray-100 transition-colors"
+              >
+                <span className="sr-only">Toggle menu</span>
+                {menuOpen ? (
+                  <svg className="h-6 w-6 transition-transform transform rotate-180" /* ... rest of the SVG ... */ />
+                ) : (
+                  <svg className="h-6 w-6 transition-transform" /* ... rest of the SVG ... */ />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Enhanced mobile menu with animations */}
+            {/* Mobile menu */}
+      {menuOpen && (
+        <div className="absolute top-16 left-0 right-0 bg-slate-400 text-white z-20">
+          <nav className="flex flex-col items-center py-4">
+            <Link href="/signup" className="block py-2 px-4 text-lg">Sign In</Link>
+            <Link href="/about" className="block py-2 px-4 text-lg">About</Link>
+            <Link href="/blogs" className="block py-2 px-4 text-lg">Blogs</Link>
+          </nav>
+        </div>
+      )}
+
+      </header>
       {/* Hero Section - Adding new hero section */}
       <div className="container mx-auto px-6 pt-32 pb-16 relative">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
-            Build Stunning React landing page 
+            Build Stunning React landing page
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Power</span>
           </h1>
           <p className="text-xl text-gray-300 mb-12">
-            Create professional, responsive React Landing page 
+            Create professional, responsive React Landing page
             No coding required.
           </p>
           <div className="flex justify-center gap-4">
@@ -43,7 +128,7 @@ const GeneratedComponent: React.FC = () => {
                 <div className="text-gray-400">Product of the Year</div>
               </div>
             </div>
-        
+
           </div>
         </div>
       </div>
@@ -294,11 +379,11 @@ const GeneratedComponent: React.FC = () => {
           How
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> It Works</span>
         </h2>
-        
+
         <div className="relative">
           {/* Connection Line */}
           <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 transform -translate-y-1/2 hidden md:block"></div>
-          
+
           <div className="grid md:grid-cols-4 gap-12">
             {[
               {
@@ -351,7 +436,7 @@ const GeneratedComponent: React.FC = () => {
               Advanced Features for
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> Modern Websites</span>
             </h2>
-            
+
             {[
               {
                 title: "AI Content Generation",
@@ -380,7 +465,7 @@ const GeneratedComponent: React.FC = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 blur-2xl"></div>
             <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
@@ -397,7 +482,7 @@ const GeneratedComponent: React.FC = () => {
           Simple, Transparent
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> Pricing</span>
         </h2>
-        
+
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
@@ -440,11 +525,10 @@ const GeneratedComponent: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-                <button className={`w-full py-4 rounded-xl font-bold transition-all duration-300 ${
-                  plan.popular 
+                <button className={`w-full py-4 rounded-xl font-bold transition-all duration-300 ${plan.popular
                     ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:opacity-90'
                     : 'bg-white/10 text-white hover:bg-white/20'
-                }`}>
+                  }`}>
                   Get Started
                 </button>
               </div>
@@ -536,11 +620,11 @@ const GeneratedComponent: React.FC = () => {
       <div className="absolute top-40 right-20 w-96 h-96 bg-fuchsia-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-40 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
 
-<Baner/>
+      <Baner />
 
 
 
-      
+
     </div>
   );
 };
