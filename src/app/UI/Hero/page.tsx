@@ -2,7 +2,7 @@
 import Link from 'next/link';
 
 import Image from 'next/image';
-import Baner from '@/app/UI/baner/page'
+
 import Logo from '@/app/UI/logo/page';
 import React, { useState, useEffect } from 'react';
 import Webdone from '@/app/UI/baner/webdone/page'
