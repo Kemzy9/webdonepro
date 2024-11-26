@@ -31,7 +31,7 @@ const Logo = () => {
             >
                 <Image
                 className='rounded-sm'
-                    src="/logo.png"
+                    src="/webdone.png"
                     alt={logo.alt}
                     width={logo.size}
                     height={logo.size}
