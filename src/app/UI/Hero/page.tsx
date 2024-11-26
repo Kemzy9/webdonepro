@@ -11,11 +11,11 @@ const GeneratedComponent: React.FC = () => {
       <div className="container mx-auto px-6 pt-32 pb-16 relative">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
-            Build Stunning Websites with
+            Build Stunning React landing page 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Power</span>
           </h1>
           <p className="text-xl text-gray-300 mb-12">
-            Create professional, responsive websites in minutes using our AI-powered platform.
+            Create professional, responsive React Landing page 
             No coding required.
           </p>
           <div className="flex justify-center gap-4">
