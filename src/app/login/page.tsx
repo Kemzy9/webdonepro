@@ -4,7 +4,6 @@ import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
 import Image from "next/image"
-import Google from"@/app/google/page"
 import toast from "react-hot-toast"
 import {
     Card,
@@ -134,7 +133,7 @@ export default function LoginPage() {
                             </Link>
                         </div>
                     </CardFooter>
-                    <Google/>
+              
                 </Card>
             </div>
 
