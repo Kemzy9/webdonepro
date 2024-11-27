@@ -43,7 +43,7 @@ Legal Requirements: We may disclose your information if required by law or in re
         </p>
             
       <p>
-        For more details, please contact us at weblike.ai@gmail.com.
+        For more details, please contact us at webdone@gmail.com.
       </p>
     </div>
     <Footer/>
