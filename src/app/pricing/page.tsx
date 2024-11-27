@@ -74,22 +74,21 @@ const PricingUI = () => {
   const plans = [
     {
       title: 'Starter',
-      price: isYearly ? '12/mo' : '16/mo',
+      price: isYearly ? '20/mo' : '16/mo',
       originalPrice: isYearly ? '25/mo' : '29/mo',
       
       description: 'Ideal for beginners or individuals building their first project.',
       features: [
-        { feature: 'Landing Page', tooltip: 'Build  3 landing page /month 1 extra ' },
-        { feature: 'create Logo', tooltip: '20Logos/mo This plan includes AI-powered logo generation. You can create up to 20 unique logos per month.' },
-        { feature: 'Drag and Drop Builder', tooltip: 'Our intuitive drag and drop builder allows you to easily create and customize your landing pages.' },
-        { feature: 'High Quality images', tooltip: '50 High quality image Access a library of high-quality, AI-generated images. You can use up to 50 HD images per month.' },
-        { feature: 'Built-in AI copywriting', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
-        { feature: 'Unique Themes ', tooltip: '20 theme Choose from a selection of 5 professionally designed themes each month to kickstart your projects.' },
+        { feature: '3 Page', tooltip: 'Build  3 page /month 1 extra ' },
+
+      
+
+        { feature: 'AI  Themes /Walpaper', tooltip: 'Need Theme for Background ' },
         { feature: '24/7 customer support', included: false },
        
 
 
-        { feature: 'Access 200 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
+        { feature: 'Access 100 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
       ],
       priceId: isYearly
@@ -98,22 +97,18 @@ const PricingUI = () => {
     },
     {
       title: 'Creator',
-      price: isYearly ? '20/mo' : '27/mo',
+      price: isYearly ? '55/mo' : '95/mo',
       originalPrice: isYearly ? '55/mo' : '59/mo',
       description: 'Perfect for creators looking to experiment and expand their toolkit.',
       isPopular: true,
       features: [
-        { feature: 'Landing Page', tooltip: 'Build  6 landing page /month 2  extra  ' },
-        { feature: 'create Logo', tooltip: '40Logos/mo This plan includes AI-powered logo generation. You can create up to 20 unique logos per month.' },
-        { feature: 'Drag and Drop Builder', tooltip: 'Our intuitive drag and drop builder allows you to easily create and customize your landing pages.' },
-        { feature: 'High Quality images', tooltip: '100 High quality image Access a library of high-quality, AI-generated images. You can use up to 50 HD images per month.' },
-        { feature: 'Built-in AI copywriting', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
-        { feature: 'Unique Themes ', tooltip: '100 theme Choose from a selection of 5 professionally designed themes each month to kickstart your projects.' },
-        { feature: '24/7 customer support', included: false },
-       
-     
+        { feature: '10 Page', tooltip: 'Build  3 page /month 1 extra ' },
 
-        { feature: 'Access 400 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
+      
+
+        { feature: 'AI  Themes /Walpaper', tooltip: 'Need Theme for Background  Use AI ' },
+        { feature: '24/7 customer support', included: false },
+        { feature: 'Access 1000 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
       ],
       priceId: isYearly
@@ -121,37 +116,32 @@ const PricingUI = () => {
         : process.env.NEXT_PUBLIC_LEMON_CREATOR_PRO_MONTHLY_PRICE_ID,
     },
     {
-      title: 'PREMIUM',
-      price: isYearly ? '55/mo' : '65/mo',
+      title: 'Nextjs Framework',
+      price: isYearly ? '164' : '164',
       originalPrice: isYearly ? '119' : '144',
       description: 'Empowering Unique Minds with Cutting-Edge Tools .',
       features: [
-        { feature: 'Landing Page', tooltip: 'Build  12 landing page /month and 5 Extra ' },
-        { feature: 'create Logo', tooltip: '500Logos/mo This plan includes AI-powered logo generation. You can create up to 20 unique logos per month.' },
-        { feature: 'Drag and Drop Builder', tooltip: 'Our intuitive drag and drop builder allows you to easily create and customize your landing pages.' },
-        { feature: 'High Quality images', tooltip: '500 High quality image Access a library of high-quality, AI-generated images. You can use up to 50 HD images per month.' },
-        { feature: 'Built-in AI copywriting', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
-        { feature: 'Unique Themes ', tooltip: '500 theme Choose from a selection of 5 professionally designed themes each month to kickstart your projects.' },
-      
+        { feature: 'Nextjs', tooltip: 'A full setup Of Nextjs ' },
+    
+        { feature: 'Stripe/Lemon Squeezy', tooltip: 'A payment Gateway ' },
+   
+        { feature: 'Mailtrip/Resend', tooltip: 'Email login ' },
+ 
 
-        { feature: '24/7 customer support', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
+
+
+
+        { feature: 'Google Auth/Github Auth', tooltip: 'A payment Gateway ' },
+
+        { feature: 'Future Update ', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
+        { feature: 'Supabase/Mongodb', tooltip: 'A payment Gateway ' },
        
         { 
           feature: 'React JavaScript/TypeScript', 
+          
           tooltip: 'Build faster and smarter with the power of React at your fingertips!' 
       },
-      { 
-          feature: 'AI Blog Writing - 40+ Templates', 
-          tooltip: 'Effortlessly craft engaging blog posts that captivate your audience!' 
-      },
-      { 
-          feature: 'AI Email Writing - 40+ Email Templates', 
-          tooltip: 'Write emails that get noticed and drive results, all with a single click!' 
-      },
-       
-       
 
-        { feature: 'Access 2000 Premium Request/month ', tooltip: 'Receive  2000 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
       ],
       priceId: isYearly
