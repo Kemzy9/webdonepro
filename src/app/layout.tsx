@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://webd.one'),
   title: 'Webdone Create AI lannding page with AI ',
-  description: 'Create Modern landing page with AI ,Chat With AI to  Make modern and changes ,AI Theme Generator And more ',
+  description: 'Create Modern landing page with AI ,Chat With AI to  Make React modern Landing page ,AI Theme Generator And more Features',
   openGraph: {
     title: 'Webdone  - Create Custom Landing Pages with AI',
     description: 'Create Custom Landing page with AI ,React -Typscript/javascript , Chat Feature ,',
