@@ -26,7 +26,7 @@ const Nav = () => {
         <div className="container px-9 py-8 flex justify-between items-center text-white">
           <div className="flex items-center space-x-4">
             <Logo />
-            <span className="ml-2 text-white text-xl font-semibold">Weblike</span>
+            <span className="ml-2 text-white text-xl font-semibold">Webdone</span>
           </div>
           <div className="flex items-center space-x-4 ">
             <a href="/signup" className="underline">Sign In</a>
