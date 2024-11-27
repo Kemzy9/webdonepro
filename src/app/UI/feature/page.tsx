@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-
+import Link from 'next/link';
 const GeneratedComponent: React.FC = () => {
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#0A0A0A]">
@@ -317,12 +317,17 @@ const Future = {
               From concept to deployment, we create cutting-edge websites and applications that define the future of digital experiences.
             </p>
             <div className="flex space-x-4">
+            <Link href="/login">
               <button className="modern-gradient text-black px-8 py-4 rounded-xl font-medium hover:opacity-90 transition-opacity">
                 Start Building
               </button>
+              </Link>
+              <Link href="/login">
               <button className="glass-effect text-white px-8 py-4 rounded-xl font-medium hover:bg-white/10 transition-colors">
                 View Projects
               </button>
+              </Link>
+              
             </div>
           </div>
 
@@ -433,9 +438,11 @@ const Future = {
 
                   {/* Hover Button */}
                   <div className="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Link href="/login">
                     <button className="w-full modern-gradient text-black py-3 rounded-xl font-medium hover:opacity-90 transition-opacity neon-glow">
                       Learn More
                     </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -459,6 +466,7 @@ const Future = {
 
           {/* Interactive Demo Button */}
           <div className="mt-20 text-center">
+          <Link href="/login">
             <button className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white glass-effect rounded-xl overflow-hidden transition-all duration-300 hover:scale-105">
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#00DC82] to-[#0047E1] opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
               <span className="relative flex items-center">
@@ -468,6 +476,7 @@ const Future = {
                 </svg>
               </span>
             </button>
+            </Link >
           </div>
         </div>
 
@@ -550,9 +559,11 @@ const Future = {
                 </li>
               ))}
             </ul>
+            <Link href="/signup">
             <button className="w-full glass-effect text-white py-3 rounded-xl font-medium hover:bg-white/10 transition-colors">
               Get Started
             </button>
+            </Link>
           </div>
 
           {/* Pro Plan */}
@@ -585,9 +596,11 @@ const Future = {
                 </li>
               ))}
             </ul>
+            <Link href="/signup">
             <button className="w-full modern-gradient text-black py-3 rounded-xl font-medium hover:opacity-90 transition-opacity neon-glow">
               Get Started
             </button>
+            </Link >
           </div>
 
           {/* Enterprise Plan */}
@@ -615,9 +628,11 @@ const Future = {
                 </li>
               ))}
             </ul>
+            <Link href="/signup">
             <button className="w-full glass-effect text-white py-3 rounded-xl font-medium hover:bg-white/10 transition-colors">
               Contact Sales
             </button>
+            </Link>
           </div>
         </div>
 
