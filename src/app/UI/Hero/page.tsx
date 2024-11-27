@@ -2,11 +2,10 @@
 import Link from 'next/link';
 
 import Image from 'next/image';
-
+import Pricing from "@/app/pricing/page"
 import Logo from '@/app/UI/logo/page';
 import React, { useState, useEffect } from 'react';
-import Webdone from '@/app/UI/baner/webdone/page'
-import Baner from '@/app/UI/baner/page'
+
 const GeneratedComponent: React.FC = () => {
 
 
@@ -31,7 +30,7 @@ const GeneratedComponent: React.FC = () => {
             {/* Logo with hover effect */}
             <div className="flex items-center">
               <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
-             <Logo />
+                <Logo />
               </div>
 
               {/* Enhanced navigation with indicators */}
@@ -83,16 +82,16 @@ const GeneratedComponent: React.FC = () => {
         </div>
 
         {/* Enhanced mobile menu with animations */}
-            {/* Mobile menu */}
-      {menuOpen && (
-        <div className="absolute top-16 left-0 right-0 bg-slate-400 text-white z-20">
-          <nav className="flex flex-col items-center py-4">
-            <Link href="/signup" className="block py-2 px-4 text-lg">Sign In</Link>
-            <Link href="/about" className="block py-2 px-4 text-lg">About</Link>
-            <Link href="/blogs" className="block py-2 px-4 text-lg">Blogs</Link>
-          </nav>
-        </div>
-      )}
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div className="absolute top-16 left-0 right-0 bg-slate-400 text-white z-20">
+            <nav className="flex flex-col items-center py-4">
+              <Link href="/signup" className="block py-2 px-4 text-lg">Sign In</Link>
+              <Link href="/about" className="block py-2 px-4 text-lg">About</Link>
+              <Link href="/blogs" className="block py-2 px-4 text-lg">Blogs</Link>
+            </nav>
+          </div>
+        )}
 
       </header>
       {/* Hero Section - Adding new hero section */}
@@ -140,10 +139,10 @@ const GeneratedComponent: React.FC = () => {
       <div className="container mx-auto px-6 py-32">
         <div className="text-center mb-24">
           <h2 className="text-5xl font-bold text-white mb-6">
-            Transform Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">Design Workflow</span>
+            Use AI to  Build Landing page,No generic Layout just make What you want <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">With in minutes, No-code needed</span>
           </h2>
           <p className="text-gray-300 text-xl max-w-3xl mx-auto">
-            Experience the next generation of web design with AI-powered tools that adapt to your needs
+            Talk to AI like you would a friend. Create wallpapers, themes, and landing pages in minutes—simple,
           </p>
         </div>
 
@@ -155,11 +154,11 @@ const GeneratedComponent: React.FC = () => {
             },
             {
               title: "Responsive Adaptation",
-              description: "Designs automatically adapt to any screen size with intelligent breakpoint handling"
+              description: "Create automatically adapt to any screen size with intelligent breakpoint handling"
             },
             {
-              title: "Component Library",
-              description: "Access thousands of pre-built components that seamlessly integrate with your design"
+              title: "AI Assistant",
+              description: "Build what You want to make your website good "
             }
           ].map((feature, index) => (
             <div key={index} className="group relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
@@ -180,13 +179,13 @@ const GeneratedComponent: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold text-white mb-8">
-                Advanced Design <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">Intelligence</span>
+                Advanced  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">Intelligence</span>
               </h2>
               <div className="space-y-6">
                 {[
                   {
-                    title: "Predictive Design Suggestions",
-                    description: "AI analyzes your design patterns and suggests improvements in real-time"
+                    title: "Predictive Layout Suggestions",
+                    description: "AI analyzes your patter patterns and suggests improvements in real-time"
                   },
                   {
                     title: "Smart Color Harmonies",
@@ -219,31 +218,31 @@ const GeneratedComponent: React.FC = () => {
             Streamlined <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">Workflow</span>
           </h2>
           <p className="text-gray-300 text-xl">
-            Design faster and smarter with our integrated workflow solutions
+            Build faster and smarter with our integrated workflow solutions
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           {[
             {
-              title: "Version Control",
-              description: "Track changes and manage design versions with intelligent history management",
-              features: ["Automatic backups", "Design comparison", "Branching workflows"]
+              title: "AI in your Control",
+              description: "Make changes and manage pattern with AI Assistant",
+              features: ["Automatic stunning patter", "Unique layout ", "Creative Theme"]
             },
             {
-              title: "Collaboration Tools",
-              description: "Work together seamlessly with real-time collaboration features",
-              features: ["Live editing", "Comment threads", "Role management"]
+              title: "Color ,Style ",
+              description: "want to change color Select the color Click any where ANd color will be changed",
+              features: ["Live editing", "Stylish Color"]
             },
             {
-              title: "Asset Management",
-              description: "Organize and optimize your design assets automatically",
-              features: ["Smart categorization", "Auto-optimization", "Cloud storage"]
+              title: "Theme,Image",
+              description: "Need Theme ,Wallpaper Generate in With AI  ",
+              features: ["Creative Style", "High Quality "]
             },
             {
-              title: "Export & Deploy",
-              description: "Deploy your designs with one click to any platform",
-              features: ["Multiple formats", "Code generation", "Hosting integration"]
+              title: "Export",
+              description: "Export in minutes React javascript/Typescript ",
+              features: ["Multiple formats", "Code generation",]
             }
           ].map((item, index) => (
             <div key={index} className="group relative">
@@ -271,8 +270,8 @@ const GeneratedComponent: React.FC = () => {
           {[
             {
               metric: "10x",
-              label: "Faster Development",
-              description: "Accelerate your design process with AI assistance"
+              label: "Faster Buildingt",
+              description: "Build Faster and Creative  with AI assistance"
             },
             {
               metric: "95%",
@@ -281,8 +280,8 @@ const GeneratedComponent: React.FC = () => {
             },
             {
               metric: "24/7",
-              label: "Design Generation",
-              description: "Continuous design suggestions and improvements"
+              label: "24/7 AI is in you hand",
+              description: "Give your Fraustration to AI will make "
             }
           ].map((stat, index) => (
             <div key={index} className="relative p-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
@@ -315,7 +314,7 @@ const GeneratedComponent: React.FC = () => {
               name: "Mark Chen",
               role: "Startup Founder",
               image: "/testimonial2.jpg",
-              quote: "webdonePro helped us launch our startup website in record time. The AI suggestions were spot-on!"
+              quote: "webdone helped us launch our startup website in record time. The AI suggestions were spot-on!"
             },
             {
               name: "Emma Davis",
@@ -344,7 +343,7 @@ const GeneratedComponent: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 blur-xl"></div>
           <div className="relative">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Ready to Build Your Next Website?
+              Ready to Build Your Nextjs project ?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Join thousands of creators who are already building the future with AI-powered web development.
@@ -391,26 +390,26 @@ const GeneratedComponent: React.FC = () => {
             {[
               {
                 step: "01",
-                title: "Choose Template",
-                description: "Select from our AI-curated collection of premium templates",
+                title: "Give Command  ",
+                description: "Create a website landing page for Saas For AI Photo generation tool ",
                 icon: "🎨"
               },
               {
                 step: "02",
-                title: "Customize Design",
-                description: "Use AI to personalize colors, layouts, and content",
+                title: "Edit/Chat",
+                description: "Use AI to personalize colors, layouts, and content ,Need Change use  AI assistant to make changes",
                 icon: "⚡"
               },
               {
                 step: "03",
-                title: "Add Content",
-                description: "Let AI help generate and optimize your content",
+                title: "If need Nextjs Boilerplate ",
+                description: "Add your landing page in Next js and boom your startup is ready for launch    ,",
                 icon: "✍️"
               },
               {
                 step: "04",
-                title: "Launch Site",
-                description: "Publish your site with one click deployment",
+                title: "Launch it ",
+                description: ",You have made landing page /website ,Nextjs Boilerplate ",
                 icon: "🚀"
               }
             ].map((item, index) => (
@@ -432,113 +431,67 @@ const GeneratedComponent: React.FC = () => {
       </div>
 
       {/* New Features Showcase with Animation */}
-      <div className="container mx-auto px-6 py-32">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <h2 className="text-4xl font-bold text-white">
-              Advanced Features for
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> Modern Websites</span>
-            </h2>
+      <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="space-y-8">
+          <h2 className="text-4xl font-bold text-white">
+            For Next.js Boilerplate Build and launch it
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> With in hours </span>
+          </h2>
 
-            {[
-              {
-                title: "AI Content Generation",
-                description: "Generate SEO-optimized content with our advanced AI",
-                icon: "🤖"
-              },
-              {
-                title: "Smart Analytics",
-                description: "Track performance with AI-powered insights",
-                icon: "📊"
-              },
-              {
-                title: "Auto-Optimization",
-                description: "Automatically optimize for different devices",
-                icon: "⚡"
-              }
-            ].map((feature, index) => (
-              <div key={index} className="flex items-start space-x-4 p-6 rounded-xl hover:bg-white/5 transition-colors">
-                <div className="w-12 h-12 bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl">{feature.icon}</span>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                  <p className="text-gray-400">{feature.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 blur-2xl"></div>
-            <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
-              {/* Add your feature showcase image or interactive demo here */}
-              <div className="aspect-video bg-gradient-to-br from-violet-500/30 to-fuchsia-500/30 rounded-xl"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* New Pricing Section with Hover Effects */}
-      <div className="container mx-auto px-6 py-32">
-        <h2 className="text-4xl font-bold text-center text-white mb-16">
-          Simple, Transparent
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> Pricing</span>
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              name: "Starter",
-              price: "$19",
-              features: ["1 Website", "Basic AI Features", "Community Support", "Basic Analytics"],
-              popular: false
+              title: "AI Content Generation",
+              description: "Generate SEO-optimized content with our advanced AI",
+              icon: "🤖"
             },
             {
-              name: "Professional",
-              price: "$49",
-              features: ["5 Websites", "Advanced AI Features", "Priority Support", "Advanced Analytics", "Custom Domain"],
-              popular: true
+              title: "Next.js",
+              description: "Build your startup in minutes with everything",
+              icon: ""
             },
             {
-              name: "Enterprise",
-              price: "$99",
-              features: ["Unlimited Websites", "Custom AI Training", "24/7 Support", "White Label Solution", "API Access"],
-              popular: false
+              title: "Launch Your start up like Rocket",
+              description: "Launch your startup very fast",
+              icon: "⚡"
             }
-          ].map((plan, index) => (
-            <div key={index} className={`relative group ${plan.popular ? 'scale-105' : ''}`}>
-              <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl blur opacity-0 group-hover:opacity-70 transition-all duration-500"></div>
-              <div className="relative bg-white/10 backdrop-blur-lg p-8 rounded-2xl border border-white/10">
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full px-4 py-1">
-                    <span className="text-white text-sm font-bold">Most Popular</span>
-                  </div>
-                )}
-                <h3 className="text-2xl font-bold text-white mb-4">{plan.name}</h3>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  <span className="text-gray-400">/month</span>
-                </div>
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center text-gray-300">
-                      <span className="mr-2">✓</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <button className={`w-full py-4 rounded-xl font-bold transition-all duration-300 ${plan.popular
-                    ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:opacity-90'
-                    : 'bg-white/10 text-white hover:bg-white/20'
-                  }`}>
-                  Get Started
-                </button>
+          ].map((feature, index) => (
+            <div key={index} className="flex items-start space-x-4 p-6 rounded-xl hover:bg-white/5 transition-colors">
+              <div className="w-12 h-12 bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl">{feature.icon}</span>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                <p className="text-gray-400">{feature.description}</p>
               </div>
             </div>
           ))}
         </div>
+        <div className="space-y-8">
+          <h3 className="text-2xl font-bold text-white">With </h3>
+          <div className="flex flex-wrap gap-4">
+            {[
+              { name: "Next.js", logo: "/Nextjs.png" },
+              { name: "Stripe", logo: "/stripelogo.png" },
+              { name: "LemonSqueezy", logo: "/lemon-squezy-logo.jpeg" },
+              { name: "MongoDB", logo: "/Mongodb.png" },
+              { name: "Resend", logo: "/resend-logo.png" },
+              { name: "Mailtrip", logo: "/mailtrip-logo.png" },
+
+
+              { name: "Google Auth", logo: "/google-logo.jpeg" },
+              { name: "GitHub", logo: "/github-logo.png" }
+            ].map((tech, index) => (
+              <div key={index} className="flex items-center space-x-2">
+                <img src={tech.logo} alt={tech.name} className="h-10 w-10 object-contain" />
+                <span className="text-white">{tech.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+      <Pricing />
+
+
 
       {/* New Newsletter Section with Floating Elements */}
       <div className="container mx-auto px-6 py-32 relative">
@@ -572,9 +525,9 @@ const GeneratedComponent: React.FC = () => {
                 <div className="h-10 w-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center">
                   <span className="text-white text-xl font-bold">W</span>
                 </div>
-                <span className="text-white text-xl font-bold">webdonePro</span>
+                <span className="text-white text-xl font-bold">webdone</span>
               </div>
-              <p className="text-gray-400">Building the future of web development with AI.</p>
+              <p className="text-gray-400">Building the future of landing page with AI.</p>
             </div>
 
             {/* Footer Links */}
@@ -606,8 +559,7 @@ const GeneratedComponent: React.FC = () => {
               </div>
             ))}
           </div>
-  <Webdone />
-              <Baner />
+
           <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400">© 2024 webdone. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
