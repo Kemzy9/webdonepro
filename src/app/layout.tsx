@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@weblikeai',
     creator: '@weblikeai',
-    title: 'Weblike AI - Create REACT Custom Landing Pages with AI ',
-    description: 'Create React Landing page with AI,Chat with AI ,AI walpaper,Theme,, ',
+    title: 'WebdoneCreate REACT Custom Landing Pages with AI For React ',
+    description: 'Create React Landing page with AI,Chat with AI ,Drag-and-drop builder ',
     images: ['https://webd.one/twitter-card.png'],
   },
   icons: {
