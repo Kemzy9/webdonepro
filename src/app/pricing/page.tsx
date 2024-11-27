@@ -1,13 +1,21 @@
 'use client';
-
+import { FaReact } from 'react-icons/fa';
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { CheckCircle, DollarSign, XCircle, HelpCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import Footer from '../UI/footer/page';
+import { CheckCircle, DollarSign, XCircle, HelpCircle, X } from 'lucide-react';
+import { Inter, Outfit } from 'next/font/google';
+
+
+const outfit = Outfit({ subsets: ['latin'] });
+
 
 const PricingUI = () => {
   const [isYearly, setIsYearly] = useState(true);
-
+  const router = useRouter();
   const [userId, setUserId] = useState<string | null>(null);
+  const [loadingPlanId, setLoadingPlanId] = useState<string | null>(null);
 
   const togglePricing = () => {
     setIsYearly((prevState) => !prevState);
@@ -29,7 +37,7 @@ const PricingUI = () => {
 
   const handleBuy = async (priceId: string) => {
     if (!userId) {
-      toast.error('Please log in to make a purchase');
+      router.push('/login');
       return;
     }
 
@@ -37,6 +45,8 @@ const PricingUI = () => {
       toast.error('Invalid product selection');
       return;
     }
+
+    setLoadingPlanId(priceId);
 
     try {
       const response = await fetch('/api/users/create-checkout', {
@@ -57,26 +67,29 @@ const PricingUI = () => {
       }
     } catch (error) {
       toast.error('Failed to initiate purchase. Please try again.');
+      setLoadingPlanId(null);
     }
   };
 
   const plans = [
     {
       title: 'Starter',
-      price: isYearly ? '25' : '29',
+      price: isYearly ? '12/mo' : '16/mo',
+      originalPrice: isYearly ? '25/mo' : '29/mo',
+      
       description: 'Ideal for beginners or individuals building their first project.',
       features: [
-        { feature: 'Landing Page', tooltip: 'Build  3 landing page /month ' },
+        { feature: 'Landing Page', tooltip: 'Build  3 landing page /month 1 extra ' },
         { feature: 'create Logo', tooltip: '20Logos/mo This plan includes AI-powered logo generation. You can create up to 20 unique logos per month.' },
         { feature: 'Drag and Drop Builder', tooltip: 'Our intuitive drag and drop builder allows you to easily create and customize your landing pages.' },
         { feature: 'High Quality images', tooltip: '50 High quality image Access a library of high-quality, AI-generated images. You can use up to 50 HD images per month.' },
         { feature: 'Built-in AI copywriting', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
         { feature: 'Unique Themes ', tooltip: '20 theme Choose from a selection of 5 professionally designed themes each month to kickstart your projects.' },
         { feature: '24/7 customer support', included: false },
-        { feature: 'Dynamic Text Editor', included: false },
-        { feature: 'Image Drag and Drop', included: false },
+       
 
-        { feature: 'Access 100 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
+
+        { feature: 'Access 200 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
       ],
       priceId: isYearly
@@ -85,19 +98,20 @@ const PricingUI = () => {
     },
     {
       title: 'Creator',
-      price: isYearly ? '55' : '59',
+      price: isYearly ? '20/mo' : '27/mo',
+      originalPrice: isYearly ? '55/mo' : '59/mo',
       description: 'Perfect for creators looking to experiment and expand their toolkit.',
       isPopular: true,
       features: [
-        { feature: 'Landing Page', tooltip: 'Build  6 landing page /month ' },
+        { feature: 'Landing Page', tooltip: 'Build  6 landing page /month 2  extra  ' },
         { feature: 'create Logo', tooltip: '40Logos/mo This plan includes AI-powered logo generation. You can create up to 20 unique logos per month.' },
         { feature: 'Drag and Drop Builder', tooltip: 'Our intuitive drag and drop builder allows you to easily create and customize your landing pages.' },
         { feature: 'High Quality images', tooltip: '100 High quality image Access a library of high-quality, AI-generated images. You can use up to 50 HD images per month.' },
         { feature: 'Built-in AI copywriting', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
-        { feature: 'Unique Themes ', tooltip: '50 theme Choose from a selection of 5 professionally designed themes each month to kickstart your projects.' },
+        { feature: 'Unique Themes ', tooltip: '100 theme Choose from a selection of 5 professionally designed themes each month to kickstart your projects.' },
         { feature: '24/7 customer support', included: false },
-        { feature: 'Dynamic Text Editor', included: false },
-        { feature: 'Image Drag and Drop', included: false },
+       
+     
 
         { feature: 'Access 400 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
@@ -108,23 +122,36 @@ const PricingUI = () => {
     },
     {
       title: 'PREMIUM',
-      price: isYearly ? '109' : '119',
-      description: 'Empowering Unique Minds with Cutting-Edge Tools and Suppor.',
+      price: isYearly ? '55/mo' : '65/mo',
+      originalPrice: isYearly ? '119' : '144',
+      description: 'Empowering Unique Minds with Cutting-Edge Tools .',
       features: [
-        { feature: 'Landing Page', tooltip: 'Build  12 landing page /month ' },
-        { feature: 'create Logo', tooltip: '200Logos/mo This plan includes AI-powered logo generation. You can create up to 20 unique logos per month.' },
+        { feature: 'Landing Page', tooltip: 'Build  12 landing page /month and 5 Extra ' },
+        { feature: 'create Logo', tooltip: '500Logos/mo This plan includes AI-powered logo generation. You can create up to 20 unique logos per month.' },
         { feature: 'Drag and Drop Builder', tooltip: 'Our intuitive drag and drop builder allows you to easily create and customize your landing pages.' },
-        { feature: 'High Quality images', tooltip: '200 High quality image Access a library of high-quality, AI-generated images. You can use up to 50 HD images per month.' },
+        { feature: 'High Quality images', tooltip: '500 High quality image Access a library of high-quality, AI-generated images. You can use up to 50 HD images per month.' },
         { feature: 'Built-in AI copywriting', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
-        { feature: 'Unique Themes ', tooltip: '200 theme Choose from a selection of 5 professionally designed themes each month to kickstart your projects.' },
+        { feature: 'Unique Themes ', tooltip: '500 theme Choose from a selection of 5 professionally designed themes each month to kickstart your projects.' },
       
 
         { feature: '24/7 customer support', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
-        { feature: 'Image Drag and Drop', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
-        { feature: 'Dynamic Text Editor', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
+       
+        { 
+          feature: 'React JavaScript/TypeScript', 
+          tooltip: 'Build faster and smarter with the power of React at your fingertips!' 
+      },
+      { 
+          feature: 'AI Blog Writing - 40+ Templates', 
+          tooltip: 'Effortlessly craft engaging blog posts that captivate your audience!' 
+      },
+      { 
+          feature: 'AI Email Writing - 40+ Email Templates', 
+          tooltip: 'Write emails that get noticed and drive results, all with a single click!' 
+      },
+       
        
 
-        { feature: 'Access 2000 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
+        { feature: 'Access 2000 Premium Request/month ', tooltip: 'Receive  2000 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
       ],
       priceId: isYearly
@@ -135,105 +162,126 @@ const PricingUI = () => {
   ];
 
   return (
-    <div>
+    <div className="container mx-auto px-6 py-32 relative bg-gradient-to-b from-gray-900 via-gray-800 to-black">
+      {/* Enhanced Background Effects */}
+      <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-[120px] animate-pulse"></div>
+      
+      {/* Pricing Header */}
+      <div className="text-center mb-16">
+        <h2 className="text-5xl font-bold text-center text-white mb-4 tracking-tight">
+          Choose Your <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">Perfect Plan</span>
+        </h2>
+        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          Step Into the Future of Web Creation with AI
+        </p>
+      </div>
 
-  
-      <div className=" text-gray-900 py-40  px-3 lg:px-20" style={{ backgroundImage: `url('/lighter.png')` }}>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Choose the Plan That Suits You Best</h2>
-          <p className="text-lg text-gray-500">Step Into the Future of Web Creation with AI</p>
-          <p className="text-sm text-gray-400">
-            Build forward-thinking landing pages in minutes with AI-generated custom designs. Let AI handle the heavy lifting.
-          </p>
+      {/* Toggle Button */}
+      <div className="flex justify-center mb-12">
+        <div className="flex space-x-4 bg-gray-800/50 backdrop-blur-xl rounded-full p-1.5 shadow-xl border border-gray-700/50">
+          <button
+            className={`px-6 py-2.5 rounded-full transition-all duration-300 ${
+              isYearly 
+                ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg' 
+                : 'text-gray-400 hover:text-white'
+            }`}
+            onClick={togglePricing}
+          >
+            Yearly (Save 20%)
+          </button>
+          <button
+            className={`px-6 py-2.5 rounded-full transition-all duration-300 ${
+              !isYearly 
+                ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg' 
+                : 'text-gray-400 hover:text-white'
+            }`}
+            onClick={togglePricing}
+          >
+            Monthly
+          </button>
         </div>
+      </div>
 
-        <div className="flex justify-center mb-10">
-          <div className="flex space-x-4 bg-white rounded-full p-1 shadow-lg">
-            <button
-              className={`px-6 py-2 rounded-full transition-all duration-300 ${isYearly ? 'bg-blue-600 text-white font-semibold' : 'text-gray-600 hover:text-gray-900'
-                }`}
-              onClick={togglePricing}
-            >
-              Yearly (Save 20%)
-            </button>
-            <button
-              className={`px-6 py-2 rounded-full transition-all duration-300 ${!isYearly ? 'bg-blue-600 text-white font-semibold' : 'text-gray-600 hover:text-gray-900'
-                }`}
-              onClick={togglePricing}
-            >
-              Monthly
-            </button>
-          </div>
-        </div>
+      {/* Plans Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        {plans.map((plan, idx) => (
+          <div className="relative group" key={idx}>
+            {/* Gradient Border Effect */}
+            <div className={`absolute -inset-0.5 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 
+              ${plan.isPopular 
+                ? 'bg-gradient-to-r from-purple-500 to-pink-500' 
+                : 'bg-gradient-to-r from-blue-500 to-purple-500'}`}
+            ></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {plans.map((plan, idx) => (
-            <div
-              key={idx}
-              className={`relative bg-white border rounded-2xl p-10 shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105 ${plan.isPopular ? 'border-blue-600' : 'border-gray-200'
-                }`}
-            >
+            <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 transition-all duration-300 hover:translate-y-[-4px] hover:shadow-2xl">
               {plan.isPopular && (
-                <div className="absolute top-0 right-0 bg-blue-600 text-white px-4 py-1 text-sm rounded-bl-2xl">
-                  Most Popular
+                <div className="absolute -top-4 right-4">
+                  <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
+                    Most Popular
+                  </span>
                 </div>
               )}
-              <h3 className="text-3xl font-semibold mb-6">{plan.title}</h3>
-              <div className="flex items-baseline space-x-2 mb-6">
-                <DollarSign className="text-blue-600" />
-                <p className="text-2xl font-bold">{plan.price}</p>
-                <span className="text-sm text-gray-500">/mo</span>
+
+              <h3 className="text-2xl font-bold text-white mb-4">{plan.title}</h3>
+              <div className="flex items-baseline mb-6">
+                <span className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
+                  ${plan.price}
+                </span>
+                <span className="text-gray-400 ml-2 line-through text-sm">${plan.originalPrice}</span>
               </div>
-              <p className="text-sm text-gray-500 mb-8">{plan.description}</p>
-              <ul className="space-y-3 mb-8">
+
+              <p className="text-sm text-gray-400 mb-6">{plan.description}</p>
+
+              <ul className="space-y-4 mb-8">
                 {plan.features.map((feature, featureIdx) => (
-                  <li key={featureIdx} className="flex items-center space-x-2 text-gray-700">
+                  <li key={featureIdx} className="flex items-start space-x-3 text-gray-300 group/item">
                     {typeof feature === 'string' ? (
                       <>
-                        <CheckCircle className="text-blue-600 w-5 h-5" />
-                        <span>{feature}</span>
+                        <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 group-hover/item:text-green-300" />
+                        <span className="text-sm">{feature}</span>
                       </>
-                    ) : 'tooltip' in feature ? (
-                      <div className="relative group flex items-center">
-                        <CheckCircle className="text-blue-600 w-5 h-5" />
-                        <span className="ml-2">{feature.feature}</span>
-                        <div className="relative">
-                          <HelpCircle className="w-4 h-4 text-gray-400 ml-1 cursor-help" />
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 hidden group-hover:block w-48 z-10 mb-1">
-                            {feature.tooltip}
-                          </div>
-                        </div>
-                      </div>
                     ) : (
-                      <>
-                        {feature.included ? (
-                          <>
-                            <CheckCircle className="text-blue-600 w-5 h-5" />
-                            <span>{feature.feature}</span>
-                          </>
-                        ) : (
-                          <>
-                            <XCircle className="text-red-600 w-5 h-5" />
-                            <span className="line-through">{feature.feature}</span>
-                          </>
+                      <div className="relative group/tooltip flex items-start">
+                        <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 group-hover/item:text-green-300" />
+                        <span className="text-sm ml-3">{feature.feature}</span>
+                        {feature.tooltip && (
+                          <div className="relative">
+                            <HelpCircle className="w-4 h-4 text-gray-500 ml-2 cursor-help" />
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded-lg py-2 px-3 hidden group-hover/tooltip:block w-48 z-10 mb-2 shadow-xl border border-gray-700">
+                              {feature.tooltip}
+                            </div>
+                          </div>
                         )}
-                      </>
+                      </div>
                     )}
                   </li>
                 ))}
               </ul>
+
               <button
                 onClick={() => handleBuy(plan.priceId!)}
-                className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-full text-white font-semibold w-full transition-all"
+                disabled={loadingPlanId === plan.priceId}
+                className={`w-full py-3 rounded-xl font-medium transition-all duration-300 
+                  ${plan.isPopular 
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg hover:shadow-purple-500/25' 
+                    : 'bg-gray-800 text-white hover:bg-gray-700'}`}
               >
-                {`Choose ${plan.title}`}
+                {loadingPlanId === plan.priceId ? (
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </span>
+                ) : (
+                  `Choose ${plan.title}`
+                )}
               </button>
             </div>
-          ))}
-        </div>
-
+          </div>
+        ))}
       </div>
-      
     </div>
   );
 };
