@@ -58,7 +58,7 @@ Legal Requirements: We may disclose your information if required by law or in re
           For any questions, concerns, or requests regarding this privacy policy, please contact us at:
         </p>
         <p className="mb-4">
-          Email: <a href="mailto:weblike.ai@gmail.com" className="text-blue-500 underline">weblike.ai@gmail.com</a>
+          Email: <a href="mailto:webdone@gmail.com" className="text-blue-500 underline">webdone@gmail.com</a>
         </p>
 
         <p>
