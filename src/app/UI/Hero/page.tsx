@@ -29,9 +29,15 @@ const GeneratedComponent: React.FC = () => {
           <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
             {/* Logo with hover effect */}
             <div className="flex items-center">
-              <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
-                <Logo />
-              </div>
+            <div className="flex items-center space-x-4">
+  <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
+    <Logo />
+  </div>
+  <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-fuchsia-500 hover:to-violet-500 transition-colors">
+    Webdone
+  </div>
+</div>
+
 
               {/* Enhanced navigation with indicators */}
               <nav className="hidden md:ml-10 md:flex md:space-x-8">
