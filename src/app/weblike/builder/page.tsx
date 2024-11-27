@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef, ChangeEvent, MouseEvent, useCallback, Suspense } from 'react';
 
-import { Download, Maximize2, Code, Minimize2, Sparkles, ExternalLink, Redo2, Undo2, Type, Eye,  Smartphone, MousePointerClick,  } from 'lucide-react';
+import { Download, Maximize2, Code, Minimize2, Sparkles, ExternalLink, Redo2, Undo2, Type, Eye, Smartphone, MousePointerClick, } from 'lucide-react';
 
 import StyleControls from '@/app/weblike/weblike/style/StyleControls';
 import Gallery from '@/app/weblike/weblike/gallery/Gallery';
@@ -67,15 +67,15 @@ const CodePreview: React.FC = () => {
 
 
 
-  
- 
+
+
   useEffect(() => {
     if (initialCode) {
       setCode(initialCode);
       setOutput(initialCode);
     }
   }, []);
-  
+
   ;
   const toggleLeftSidebar = () => {
     setIsLeftSidebarMinimized(!isLeftSidebarMinimized);
@@ -118,7 +118,7 @@ const CodePreview: React.FC = () => {
       Object.values(imageUrls).forEach(URL.revokeObjectURL);
     };
   }, [imageUrls]);
- 
+
   // Replace the state variables with refs
   const hoveredElementRef = useRef<Element | null>(null);
   const [selectedElementRef, setSelectedElementRef] = useState<{ current: Element | null }>({ current: null });
@@ -166,18 +166,18 @@ const CodePreview: React.FC = () => {
       </body>
       </html>
     `;
-  
+
     // Create a Blob with the HTML content
     const blob = new Blob([fullHtml], { type: 'text/html' });
     const dataUrl = URL.createObjectURL(blob);
-  
+
     // Open the data URL in a new tab
     window.open(dataUrl, '_blank');
-  
+
     // Clean up the URL object
     setTimeout(() => URL.revokeObjectURL(dataUrl), 100);
   };
-  
+
   // ... existing code ...
 
 
@@ -220,118 +220,124 @@ const CodePreview: React.FC = () => {
     }
   };
 
-
   const saveCode = useCallback(async () => {
     if (!previewRef.current) return;
-  
+
     const zip = new JSZip();
     const fileExtension = codeType === 'html' ? 'html' : codeType === 'jsx' ? 'jsx' : 'tsx';
-  
+
+    // Get the current state of the preview
     let saveableCode = previewRef.current.innerHTML;
-  
-    // Process images and create image imports
+    // Process images
     const imagePromises = Object.entries(images).map(async ([imageId, file]) => {
       const imageContent = await file.arrayBuffer();
       const fileName = `image_${imageId}.${file.name.split('.').pop()}`;
       zip.file(`images/${fileName}`, imageContent);
-      return { imageId, fileName, originalName: file.name };
+      return { imageId, fileName };
     });
-  
     const processedImages = await Promise.all(imagePromises);
-  
+    // Update image paths in the code
+    processedImages.forEach(({ imageId, fileName }) => {
+      const imgRegex = new RegExp(`data-image-id="${imageId}"[^>]*src="[^"]*"`, 'g');
+      saveableCode = saveableCode.replace(imgRegex, `data-image-id="${imageId}" src="images/${fileName}"`);
+    });
+    // Add image elements to the code
+    addedImages.forEach((img, index) => {
+      const imgFileName = `added-image-${index}.png`;
+      zip.file(`images/${imgFileName}`, img.src.split(',')[1], { base64: true });
+
+      const imgElement = `<img src="./images/${imgFileName}" style="position: absolute; left: ${img.position.x}px; top: ${img.position.y}px; width: ${img.size.width}px; height: ${img.size.height}px;" />`;
+      saveableCode += imgElement;
+    });
+
+
+
+
+
     if (codeType === 'html') {
-      // HTML format remains the same
+      // For HTML, update image paths and create a style tag
+      let styleContent = '';
+      processedImages.forEach(({ imageId, fileName }) => {
+        const imgRegex = new RegExp(`data-image-id="${imageId}"`, 'g');
+        saveableCode = saveableCode.replace(imgRegex, `data-image-id="${imageId}" style="background-image: url('./images/${fileName}')"`);
+
+        // Add to style content
+        styleContent += `
+            [data-image-id="${imageId}"] {
+              background-size: ${imageSize};
+              background-position: center;
+              background-repeat: no-repeat;
+            }
+          `;
+      });
+
+      // Add style tag to the head of the HTML
       saveableCode = `
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generated Page</title>
-    <style>
-      ${processedImages.map(({ imageId }) => `
-        [data-image-id="${imageId}"] {
-          background-size: ${imageSize};
-          background-position: center;
-          background-repeat: no-repeat;
-        }
-      `).join('\n')}
-    </style>
-  </head>
-  <body>
-    ${saveableCode}
-  </body>
-  </html>`;
+          <html>
+            <head>
+              <style>${styleContent}</style>
+            </head>
+            <body>
+              ${saveableCode}
+            </body>
+          </html>
+        `;
     } else {
-      // JSX/TSX format with proper image handling
-      const imageVariableNames = processedImages.reduce((acc, { imageId, originalName }) => {
-        const safeName = `image${imageId.replace(/[^a-zA-Z0-9]/g, '')}`;
-        acc[imageId] = safeName;
-        return acc;
-      }, {} as { [key: string]: string });
-  
-      // Transform the code to use proper React/TSX syntax
+      // Convert HTML to JSX/TSX
       saveableCode = saveableCode
-        .replace(/<!--[\s\S]*?-->/g, '')
         .replace(/class=/g, 'className=')
         .replace(/for=/g, 'htmlFor=')
-        .replace(/charset=/g, 'charSet=')
-        .replace(/data-image-id="([^"]+)"/g, (match, imageId) => {
-          const varName = imageVariableNames[imageId];
-          return `style={{ 
-            backgroundImage: \`url(\${${varName}})\`,
-            backgroundSize: '${imageSize}',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}`;
-        })
         .replace(/style="([^"]*)"/g, (match, styles) => {
-          const styleObject = styles.split(';')
-            .filter((style: string) => style.trim())
-            .reduce((acc: Record<string, string>, style: string) => {
-              const [key, value] = style.split(':').map(s => s.trim());
-              if (key && value) {
-                const camelKey = key.replace(/-([a-z])/g, g => g[1].toUpperCase());
-                acc[camelKey] = value;
-              }
-              return acc;
-            }, {});
+          const styleObject = styles.split(';').reduce((acc: Record<string, string>, style: string) => {
+            const [key, value] = style.split(':').map((s: string) => s.trim());
+            if (key && value) {
+              const jsxKey = key.replace(/-./g, (x: string) => x.charAt(1).toUpperCase() + x.slice(2));
+              acc[jsxKey] = value.replace(/"/g, "'");
+            }
+            return acc;
+          }, {});
           return `style={${JSON.stringify(styleObject)}}`;
         })
-        .replace(/<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)([^>]*?)>/g, 
-          (match, tag, attributes) => `<${tag}${attributes} />`);
-  
-      // Create React component with image imports
+        .replace(/(\w+)="(\{[^}]+\})"/g, (match: string, attr: string, value: string) => `${attr}=${value}`)
+        .replace(/<([a-z]+)([^>]*)>/g, (match: string, tag: string, attrs: string) => {
+          const jsxAttrs = attrs.replace(/(\w+)="([^"]+)"/g, (attrMatch: string, attr: string, value: string) => {
+            if (attr === 'style') return attrMatch;
+            return `${attr}="${value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}"`;
+          });
+          return `<${tag}${jsxAttrs}>`;
+        })
+        .replace(/&nbsp;/g, '{" "}')
+        .replace(/<!--(.*?)-->/g, '{/* $1 */}');
+
+      // Replace image URLs with imports
+      processedImages.forEach(({ imageId, fileName }) => {
+        const imgRegex = new RegExp(`data-image-id="${imageId}"`, 'g');
+        saveableCode = saveableCode.replace(imgRegex, `data-image-id="${imageId}" style={{backgroundImage: \`url(\${${imageId}})\`, backgroundSize: '${imageSize}', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}`);
+      });
+
+      // Wrap the code in a React component
       saveableCode = `
-  import React from 'react';
-  ${processedImages.map(({ fileName, imageId }) => 
-    `import ${imageVariableNames[imageId]} from './images/${fileName}';`
-  ).join('\n')}
-  
-  ${codeType === 'tsx' ? 'interface Props {}\n' : ''}
-  
-  const GeneratedComponent: React.FC${codeType === 'tsx' ? '<Props>' : ''} = () => {
-    return (
-      <div className="generated-component">
-        ${saveableCode}
-      </div>
-    );
-  };
-  
-  export default GeneratedComponent;`;
+import React from 'react';
+${processedImages.map(({ imageId, fileName }) => `import ${imageId} from './images/${fileName}';`).join('\n')}
+
+const GeneratedComponent: React.FC = () => {
+  return (
+    <React.Fragment>
+      ${saveableCode}
+    </React.Fragment>
+  );
+};
+
+export default GeneratedComponent;
+`;
     }
-  
-    // Add code to zip
+
     zip.file(`index.${fileExtension}`, saveableCode);
-    // Add images to zip
-    processedImages.forEach(({ fileName, originalName }) => {
-      zip.file(`images/${fileName}`, originalName);
-    });
-  
-    // Generate and save zip
+
     const content = await zip.generateAsync({ type: 'blob' });
-    saveAs(content, `weblike-export.zip`);
-  }, [codeType, images, imageSize, addedImages, imageUrls]);
+    saveAs(content, 'weblike.zip');
+  }, [codeType, images, imageSize, addedImages]);
+
 
   const handleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newColors = [...selectedColors];
@@ -355,7 +361,7 @@ const CodePreview: React.FC = () => {
           element.style.backgroundImage = ''; // Remove any gradients
         }
       });
-      
+
       // Update the preview content
       setOutput(previewRef.current.innerHTML);
       setCode(previewRef.current.innerHTML);
@@ -394,7 +400,7 @@ const CodePreview: React.FC = () => {
           element.style.backgroundRepeat = '';
         }
       });
-      
+
       // Update the preview content
       setOutput(previewRef.current.innerHTML);
       setCode(previewRef.current.innerHTML);
@@ -544,7 +550,7 @@ const CodePreview: React.FC = () => {
   };
 
 
-  
+
 
   const toggleGallery = () => {
     setIsGalleryOpen(!isGalleryOpen);
@@ -903,11 +909,15 @@ const CodePreview: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-90 h-screen">
-     
+    <div className='bg-neutral-900'>
 
-      <div className="flex h-screen bg-gray-100">
-        <div className={`w-80 bg-gray-900 border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
+
+      {/* Add a small button to show code */}
+
+
+
+      <div className="flex h-screen bg-neutral-900">
+        <div className={`w-80 bg-neutral-900 border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             <h2 className="text-lg font-semibold">Chat</h2>
             <button onClick={toggleChat} className="text-gray-500 hover:text-gray-700">
@@ -940,7 +950,7 @@ const CodePreview: React.FC = () => {
                 className="hidden" // Hide the default file input
                 id="imageInput"
               />
-              <label htmlFor="imageInput" className="px-4 py-2 bg-gray-300 text-black rounded-l-md hover:bg-gray-400 transition-colors cursor-pointer">
+              <label htmlFor="imageInput" className="px-4 py-2 bg-neutral-900 text-white rounded-l-md hover:bg-gray-400 transition-colors cursor-pointer">
                 <FiImage /> {/* Use an appropriate icon for the gallery */}
               </label>
 
@@ -968,10 +978,10 @@ const CodePreview: React.FC = () => {
 
 
         {/* Left Sidebar */}
-         <div className={`bg-gray-900 border-r border-gray-200 flex flex-col transition-all duration-300 ${isLeftSidebarMinimized ? 'w-16' : 'w-64'}`}>
+        <div className={`bg-neutral-900 border-r border-gray-200 flex flex-col transition-all duration-300 ${isLeftSidebarMinimized ? 'w-16' : 'w-64'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             {!isLeftSidebarMinimized && <h2 className="text-lg font-semibold">Elements</h2>}
-            <button onClick={toggleLeftSidebar} className="text-gray-500 hover:text-gray-700">
+            <button onClick={toggleLeftSidebar} className="text-white hover:text-white">
               {isLeftSidebarMinimized ? <Sparkles size={24} /> : <Smartphone size={24} />}
             </button>
           </div>
@@ -987,7 +997,7 @@ const CodePreview: React.FC = () => {
                   Open Gallery
                 </button>
               </div>
-              
+
             </>
           )}
         </div>
@@ -995,33 +1005,33 @@ const CodePreview: React.FC = () => {
         {/* Main Content */}
         <div className="flex-grow flex flex-col">
           {/* Top Toolbar */}
-          <div className="bg-gray-900 border-b border-gray-200 p-4 flex justify-between items-center">
+          <div className="bg-neutral-900 border-b border-gray-200 p-4 flex justify-between items-center">
 
             <div className="flex space-x-2">
               <button
-                className="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200 transition-colors"
+                className="px-3 py-1 bg-gray-500 text-gray-700 rounded-md text-sm hover:bg-gray-200 transition-colors"
                 onClick={toggleMobileView}
               >
                 {isMobileView ? <FiMonitor className="inline-block mr-1" size={14} /> : <FiSmartphone className="inline-block mr-1" size={14} />}
                 {isMobileView ? 'Desktop' : 'Mobile'}
               </button>
               <button
-                className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-md text-sm hover:bg-indigo-200 transition-colors"
+                className="px-3 py-1 bg-gray-500 text-gray-700 rounded-md text-sm hover:bg-indigo-200 transition-colors"
                 onClick={saveCode}
               >
                 <FiSave className="inline-block mr-1" size={14} />
                 Save
               </button>
               <button
-                className="px-3 py-1 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors"
+                className="px-3 py-1 bg-gray-500 text-gray600 rounded-md text-sm hover:bg-indigo-700 transition-colors"
                 onClick={handleOpenLive}
               >
                 <FiShare2 className="inline-block mr-1" size={14} />
-               Live
+                Live
               </button>
             </div>
             <button
-              className={`px-3 py-1 ${isTextEditing ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700'} rounded-md text-sm hover:bg-indigo-700 transition-colors`}
+              className={`px-3 py-1 ${isTextEditing ? 'bg-gray-500 text-gray-700' : 'bg-gray-700 text-500'} rounded-md text-sm hover:bg-indigo-700 transition-colors`}
               onClick={toggleTextEditing}
             >
               <Type className="inline-block mr-1" size={14} />
@@ -1032,7 +1042,7 @@ const CodePreview: React.FC = () => {
           {/* Editor Area */}
           <div className="flex-grow flex overflow-hidden">
             <div className="flex-grow p-4 overflow-auto">
-              <div className={`bg-gray-900 shadow-lg rounded-lg overflow-hidden ${isMobileView ? 'w-[375px] mx-auto' : 'w-full'}`}>
+              <div className={`bg-gray-500 shadow-lg rounded-lg overflow-hidden ${isMobileView ? 'w-[375px] mx-auto' : 'w-full'}`}>
                 <div className="bg-gray-800 px-4 py-2 flex items-center">
                   <div className="flex space-x-2">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -1089,7 +1099,7 @@ const CodePreview: React.FC = () => {
                         {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((corner) => (
                           <div
                             key={corner}
-                            className={`absolute w-3 h-3 bg-gray-900 border-2 border-blue-500 rounded-full ${corner.includes('top') ? 'top-0' : 'bottom-0'
+                            className={`absolute w-3 h-3 bg-white border-2 border-blue-500 rounded-full ${corner.includes('top') ? 'top-0' : 'bottom-0'
                               } ${corner.includes('left') ? 'left-0' : 'right-0'} -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-in-out`}
                           ></div>
                         ))}
@@ -1098,7 +1108,7 @@ const CodePreview: React.FC = () => {
                         {['top', 'right', 'bottom', 'left'].map((side) => (
                           <div
                             key={side}
-                            className={`absolute bg-gray-900 border-2 border-blue-500 ${side === 'top' || side === 'bottom' ? 'w-4 h-3 -translate-x-1/2' : 'w-3 h-4 -translate-y-1/2'
+                            className={`absolute bg-gray-500 border-2 border-blue-500 ${side === 'top' || side === 'bottom' ? 'w-4 h-3 -translate-x-1/2' : 'w-3 h-4 -translate-y-1/2'
                               } ${side === 'top' ? 'top-0' : side === 'bottom' ? 'bottom-0' : ''} ${side === 'left' ? 'left-0' : side === 'right' ? 'right-0' : ''
                               } transition-all duration-200 ease-in-out`}
                           ></div>
@@ -1165,10 +1175,10 @@ const CodePreview: React.FC = () => {
                       value={code}
                       onChange={(e) => setCode(e.target.value)}
                       className="w-full h-full p-2 text-white bg-gray-900 border border-gray-700 rounded"
-                      
+
                     /><Suspense fallback={<div>Loading...</div>}>
-                    <BuilderPage setCode={setCode} />
-                  </Suspense>
+                      <BuilderPage setCode={setCode} />
+                    </Suspense>
                   </div>
 
                 </div>
@@ -1179,29 +1189,33 @@ const CodePreview: React.FC = () => {
         </div>
 
         {/* Right Sidebar */}
-        <div className={`bg-gradient-to-b from-indigo-100 to-white border-l border-gray-200 flex flex-col transition-all duration-300 ${isRightSidebarMinimized ? 'w-16' : 'w-60'}`}>
-          <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-gray-900">
-          <Logo />
-          <button
-            className="px-4 py-2 rounded bg-blue-500 text-white"
-            onClick={() => setActiveTab('preview')}
-          >
-            <Eye className="inline-block mr-2" size={18} />
+        <div className={`bg-neutral-900 to-white border-l border-gray-200 flex flex-col transition-all duration-300 ${isRightSidebarMinimized ? 'w-16' : 'w-60'}`}>
+          <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-neutral-900">
+            <Logo />
 
-          </button>
-          <button
-          className="px-2 py-1 bg-gray-300 text-gray-700 rounded text-sm hover:bg-gray-400 transition-colors"
-          onClick={showCodeSection}
-        >
-          <Code className="inline-block mr-1" size={14} />
-
-        </button>
-            {!isRightSidebarMinimized && <h2 className="text-lg font-semibold text-black">weblike</h2>}
+            {!isRightSidebarMinimized && <h2 className="text-lg font-semibold text-black"></h2>}
             <button onClick={toggleRightSidebar} className="text-gray-500 hover:text-indigo-600 transition-colors">
               {isRightSidebarMinimized ? <Minimize2 size={24} /> : <Maximize2 size={24} />}
             </button>
+            <button
+
+              className="px-3 py-1  "
+              onClick={() => setActiveTab('preview')}
+            >
+              <Eye className="inline-block mr-2" size={14} />
+
+            </button>
+            <button
+              className="px-2 py-1"
+              onClick={showCodeSection}
+            >
+              <Code className="inline-block mr-1" size={14} />
+
+            </button>
           </div>
+
           {!isRightSidebarMinimized && (
+
             <div className="flex-grow overflow-y-auto px-2">
 
               {/* Quick Actions */}
@@ -1214,7 +1228,7 @@ const CodePreview: React.FC = () => {
                   { icon: <FiGrid size={20} />, label: "Gallery", onClick: toggleGallery },
                 ].map((action, index) => (
                   <button key={index} onClick={action.onClick} className="flex flex-col items-center group">
-                    <div className="p-3 bg-gray-900 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:bg-indigo-50">
+                    <div className="p-3 bg-gray-500 rounded-full shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:bg-indigo-50">
                       {action.icon}
                     </div>
                     <span className="mt-2 text-xs text-gray-600 group-hover:text-indigo-600">{action.label}</span>
@@ -1225,8 +1239,8 @@ const CodePreview: React.FC = () => {
               {/* Settings Sections */}
               <div className="space-y-8">
                 {/* Image Settings */}
-                <div className="bg-gray-900 p-6 rounded-xl shadow-md">
-                  <h3 className="text-lg font-semibold text-gray-800 flex items-center mb-4">
+                <div className="bg-neutral-900 p-6 rounded-xl shadow-md">
+                  <h3 className="text-lg font-semibold text-white flex items-center mb-4">
                     <FiImage className="mr-2" size={18} />
                     Image
                   </h3>
@@ -1241,8 +1255,8 @@ const CodePreview: React.FC = () => {
                       <option value="large">Expansive</option>
                     </select>
                     <div className="flex space-x-2">
-                      <button onClick={applyImage} className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors">Apply</button>
-                      <button onClick={removeImage} className="flex-1 px-4 py-2 bg-red-600 text-white rounded-md text-sm hover:bg-red-700 transition-colors">Remove</button>
+                      <button onClick={applyImage} className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors">Apply</button>
+                      <button onClick={removeImage} className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-md text-sm hover:bg-red-700 transition-colors">Remove</button>
                     </div>
                     <div className="relative">
                       <input type="file" accept="image/*" onChange={handleImageChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
@@ -1257,24 +1271,24 @@ const CodePreview: React.FC = () => {
                         onChange={handleDesignLabImageChange}
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                       />
-                      <div className="w-full px-4 py-2 bg-gray-100 text-center text-gray-600 rounded-md border-2 border-dashed border-gray-300 hover:bg-gray-200 transition-colors">
+                      <div className="w-full px-4 py-2 bg-gray-500 text-center text-yellow-50 rounded-md border-2 border-dashed border-gray-300 hover:bg-gray-200 transition-colors">
                         Choose Image
                       </div>
                     </div>
 
                     {selectedDesignLabImage && (
                       <div className="mt-4">
-                       <Image 
-  src={selectedDesignLabImage.url} 
-  alt="Selected design lab image" 
-  width={300}
-  height={160}
-  objectFit="cover"
-  className="rounded-md"
-/>
+                        <Image
+                          src={selectedDesignLabImage.url}
+                          alt="Selected design lab image"
+                          width={300}
+                          height={160}
+                          objectFit="cover"
+                          className="rounded-md"
+                        />
                         <button
                           onClick={addSelectedImageToPreview}
-                          className="mt-2 w-full px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors"
+                          className="mt-2 w-full px-4 py-2 bg-gray-500 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors"
                         >
                           Add to Preview
                         </button>
@@ -1284,7 +1298,7 @@ const CodePreview: React.FC = () => {
                 </div>
 
                 {/* Color Settings */}
-                <div className="bg-gray-900 p-6 rounded-xl shadow-md">
+                <div className="bbg-gray-500 p-6 rounded-xl shadow-md">
                   <h3 className="text-lg font-semibold text-gray-800 flex items-center mb-4">
                     <FiDroplet className="mr-2" size={18} />
                     Color
@@ -1306,53 +1320,42 @@ const CodePreview: React.FC = () => {
                     </div>
                     <div className="h-8 rounded-md" style={{ background: `linear-gradient(45deg, ${selectedColors.join(', ')})` }}></div>
                     <div className="grid grid-cols-2 gap-2">
-                      <button onClick={applyColor} className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors">Apply</button>
-                      <button onClick={removeColor} className="px-4 py-2 bg-red-600 text-white rounded-md text-sm hover:bg-red-700 transition-colors">Remove</button>
+                      <button onClick={applyColor} className="px-4 py-2 bg-gray-500 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors">Apply</button>
+                      <button onClick={removeColor} className="px-4 py-2 bg-gray-500 text-white rounded-md text-sm hover:bg-red-700 transition-colors">Remove</button>
                       <button onClick={() => removeAppliedStyle('color')} className="col-span-2 px-4 py-2 bg-gray-600 text-white rounded-md text-sm hover:bg-gray-700 transition-colors">Reset Palette</button>
                     </div>
                   </div>
                 </div>
                 <div className="p-4 border-t border-gray-200">
-                <div
-                  onDragEnter={handleDragEnter}
-                  onDragOver={handleDragOver}
-                  onDragLeave={handleDragLeave}
-                  onDrop={handleDrop}
-                  onClick={handleButtonClick}
-                  className={`p-6 border-2 border-dashed rounded-lg text-center cursor-pointer transition-colors ${isDragging ? 'border-indigo-500 bg-indigo-50' : 'border-gray-300 hover:border-indigo-500'
-                    }`}
-                >
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleFileInputChange}
-                    accept="image/*"
-                    style={{ display: 'none' }}
-                  />
-                  <p className="text-gray-600">
-                    {isDragging
-                      ? "Drop the image here..."
-                      : "Drag 'n' drop an image here, or click to select one"
-                    }
-                  </p>
+                  <div
+                    onDragEnter={handleDragEnter}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    onClick={handleButtonClick}
+                    className={`p-6 border-2 border-dashed rounded-lg text-center cursor-pointer transition-colors ${isDragging ? 'border-indigo-500 bg-indigo-50' : 'border-gray-300 hover:border-indigo-500'
+                      }`}
+                  >
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={handleFileInputChange}
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                    />
+                    <p className="text-gray-600">
+                      {isDragging
+                        ? "Drop the image here..."
+                        : "Drag 'n' drop an image here, or click to select one"
+                      }
+                    </p>
+                  </div>
+
                 </div>
 
-              </div>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Code Type</h3>
-                <select
-                  value={codeType}
-                  onChange={(e) => setCodeType(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                >
-                  <option value="html">HTML</option>
-                  <option value="jsx">JSX</option>
-                  <option value="tsx">TSX</option>
-                </select>
-              </div>
                 {/* Animation Settings */}
-                <div className="bg-gray-900 p-6 rounded-xl shadow-md">
-                  <h3 className="text-lg font-semibold text-gray-800 flex items-center mb-4">
+                <div className="bg-gray-500 p-6 rounded-xl shadow-md">
+                  <h3 className="text-lg font-semibold text-white flex items-center mb-4">
                     <FiPlay className="mr-2" size={18} />
                     Motion Potion
                   </h3>
@@ -1369,8 +1372,8 @@ const CodePreview: React.FC = () => {
                       <option value="rotate">Rotate</option>
                     </select>
                     <div className="flex space-x-2">
-                      <button onClick={applyAnimation} className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors">Cast Spell</button>
-                      <button onClick={removeAllAnimations} className="flex-1 px-4 py-2 bg-red-600 text-white rounded-md text-sm hover:bg-red-700 transition-colors">Dispel All</button>
+                      <button onClick={applyAnimation} className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-md text-sm hover:bg-indigo-700 transition-colors">Cast Spell</button>
+                      <button onClick={removeAllAnimations} className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-md text-sm hover:bg-red-700 transition-colors">Dispel All</button>
                     </div>
                   </div>
                 </div>
@@ -1379,10 +1382,10 @@ const CodePreview: React.FC = () => {
 
           )}
         </div>
-       
+
         {/* Gallery Modal */}
         {isGalleryOpen && (
-          <div className={`fixed inset-y-0 right-0 bg-gray-900 shadow-lg z-50 transition-all duration-300 ${isGalleryMinimized ? 'w-16' : 'w-96'
+          <div className={`fixed inset-y-0 right-0 bg-neutral-600 shadow-lg z-50 transition-all duration-300 ${isGalleryMinimized ? 'w-16' : 'w-96'
             }`}>
             <div className="p-4 h-full flex flex-col">
               <div className="flex justify-between items-center mb-4">
@@ -1401,32 +1404,32 @@ const CodePreview: React.FC = () => {
                   <div className="flex space-x-2 mb-4">
                     <button
                       onClick={() => setGalleryTab('images')}
-                      className={`px-3 py-1 rounded ${galleryTab === 'images' ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+                      className={`px-3 py-1 rounded ${galleryTab === 'images' ? 'bg-gray-500 text-white' : 'bg-gray-200 text-gray-700'}`}
                     >
                       Theme
                     </button>
                     <button
                       onClick={() => setGalleryTab('logos')}
-                      className={`px-3 py-1 rounded ${galleryTab === 'logos' ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+                      className={`px-3 py-1 rounded ${galleryTab === 'logos' ? 'bg-gray-500 text-white' : 'bg-gray-200 text-gray-700'}`}
                     >
                       Logos
                     </button>
                     <button
                       onClick={() => setGalleryTab('client')}
-                      className={`px-3 py-1 rounded ${galleryTab === 'client' ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+                      className={`px-3 py-1 rounded ${galleryTab === 'client' ? 'bg-indigo-600 text-white' : 'bg-gray-500 text-gray-700'}`}
                     >
                       Image
                     </button>
                   </div>
                   <div className="flex-grow overflow-y-auto">
-                  {galleryTab === 'images' && <Gallery onSelectImage={handleSelectGalleryImage} />}
-                  {galleryTab === 'logos' && <LogoGenerator />}
+                    {galleryTab === 'images' && <Gallery onSelectImage={handleSelectGalleryImage} />}
+                    {galleryTab === 'logos' && <LogoGenerator />}
                     {galleryTab === 'client' && <Client />}
                   </div>
                   {selectedGalleryImage && galleryTab !== 'client' && (
                     <button
                       onClick={applySelectedImage}
-                      className="mt-4 w-full px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-200"
+                      className="mt-4 w-full px-4 py-2 bg-gray-500 text-white rounded hover:bg-indigo-700 transition duration-200"
                     >
                       Apply Selected {galleryTab === 'logos' ? 'Logo' : 'Image'}
                     </button>
@@ -1439,18 +1442,18 @@ const CodePreview: React.FC = () => {
 
         {/* Minimized Gallery Preview */}
         {isGalleryOpen && isGalleryMinimized && selectedGalleryImage && (
-          <div className="fixed bottom-4 right-20 bg-gray-900 p-2 rounded-lg shadow-md">
-         <Image
-  src={selectedGalleryImage.url ?? ''}
-  alt="Selected gallery image"
-  width={48}
-  height={48}
-  objectFit="cover"
-  className="rounded"
-/>
+          <div className="fixed bottom-4 right-20 bg-white p-2 rounded-lg shadow-md">
+            <Image
+              src={selectedGalleryImage.url ?? ''}
+              alt="Selected gallery image"
+              width={48}
+              height={48}
+              objectFit="cover"
+              className="rounded"
+            />
             <button
               onClick={applySelectedImage}
-              className="mt-2 w-full px-2 py-1 bg-indigo-600 text-white text-xs rounded hover:bg-indigo-700 transition duration-200"
+              className="mt-2 w-full px-2 py-1 bg-gray-500 text-white text-xs rounded hover:bg-indigo-700 transition duration-200"
             >
               Apply
             </button>
@@ -1459,7 +1462,7 @@ const CodePreview: React.FC = () => {
 
 
         {/* Publish Modal */}
-   
+
 
 
 
@@ -1492,5 +1495,6 @@ const CodePreview: React.FC = () => {
 };
 
 export default CodePreview;
-      
-///latest version
+
+
+///latest version yes yes yes
