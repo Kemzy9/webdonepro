@@ -438,7 +438,7 @@ const GeneratedComponent: React.FC = () => {
         <div className="space-y-8">
           <h2 className="text-4xl font-bold text-white">
           Next.js Boilerplate: Build and Launch Faster
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> With in hours </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">  </span>
           </h2>
 
    {[
@@ -482,7 +482,7 @@ const GeneratedComponent: React.FC = () => {
 
 
               { name: "Google Auth", logo: "/google-logo.jpeg" },
-              { name: "GitHub", logo: "/github-logo.png" }
+    
             ].map((tech, index) => (
               <div key={index} className="flex items-center space-x-2">
                 <img src={tech.logo} alt={tech.name} className="h-10 w-10 object-contain" />
