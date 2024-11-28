@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '@/app/UI/footer/page';
+
 import Nav from "@/app/UI/Nav/page";
 
 const TermsAndConditions: React.FC = () => {
@@ -9,7 +9,7 @@ const TermsAndConditions: React.FC = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Terms & Conditions</h1>
       <p className="mb-4">
-        Welcome to The webllix. By accessing or using our service, you agree to comply with and be bound by the following terms and conditions:
+        Welcome to The webdone. By accessing or using our service, you agree to comply with and be bound by the following terms and conditions:
       </p>
       <h2 className="text-2xl font-semibold mb-2">1. Use of Service</h2>
       <p className="mb-4">
@@ -43,10 +43,10 @@ Legal Requirements: We may disclose your information if required by law or in re
         </p>
             
       <p>
-        For more details, please contact us at webdone@gmail.com.
+        For more details, please contact us at weblike.ai@gmail.com.
       </p>
     </div>
-    <Footer/>
+  
     </div>
   );
 };
