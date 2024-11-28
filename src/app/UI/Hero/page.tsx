@@ -549,7 +549,7 @@ const GeneratedComponent: React.FC = () => {
           <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
             <h3 className="text-xl font-semibold text-white mb-2">What kind of Customer Support do you provide ?</h3>
             <p className="text-gray-300">
-              We Provide 24/7 Customer Support via email
+              We Provide 24/7 Customer Support via email in case if you get error
             </p>
           </div>
           <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
