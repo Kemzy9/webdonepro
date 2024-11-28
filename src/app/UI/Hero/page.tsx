@@ -7,6 +7,8 @@ import Logo from '@/app/UI/logo/page';
 import React, { useState, useEffect } from 'react';
 
 const GeneratedComponent: React.FC = () => {
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
 
 
 
@@ -40,18 +42,7 @@ const GeneratedComponent: React.FC = () => {
 
 
               {/* Enhanced navigation with indicators */}
-              <nav className="hidden md:ml-10 md:flex md:space-x-8">
-                {['Features', 'Solutions', 'Pricing', 'Resources'].map((item) => (
-                  <Link
-                    key={item}
-                    href={`/${item.toLowerCase()}`}
-                    className="relative text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors group"
-                  >
-                    {item}
-                    <span className="absolute inset-x-0 bottom-0 h-0.5 bg-indigo-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                  </Link>
-                ))}
-              </nav>
+             
             </div>
 
             {/* Enhanced CTA buttons */}
@@ -66,7 +57,7 @@ const GeneratedComponent: React.FC = () => {
                 href="/signup"
                 className="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 transition-all transform hover:scale-105 hover:shadow-lg"
               >
-                Start free trial →
+                Start Building →
               </Link>
 
             </div>
@@ -105,20 +96,18 @@ const GeneratedComponent: React.FC = () => {
       <div className="container mx-auto px-6 pt-32 pb-16 relative">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
-            Build Stunning React landing page for Saas
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> Launch It faster</span>
+            Build Stunning React landing page
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Power</span>
           </h1>
           <p className="text-xl text-gray-300 mb-12">
-            Create professional, responsive React Landing page for Saas,and launch it minutes with  Next.js Boiler plate 
-         
+            Create professional, responsive React Landing page
+            No coding required.
           </p>
           <div className="flex justify-center gap-4">
             <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl text-white font-bold hover:opacity-90 transition-opacity">
-   Start Building
+              Start Building
             </button>
-            <button className="px-8 py-4 bg-white/10 rounded-xl text-white font-bold hover:bg-white/20 transition-colors">
-              Watch Demo
-            </button>
+         
 
           </div>
           <div className="w-full max-w-5xl mx-auto perspective" style={{ perspective: '1000px' }}>
@@ -198,13 +187,13 @@ const GeneratedComponent: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold text-white mb-8">
-                Advanced  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">Intelligence</span>
+                Drag and  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">drop</span>
               </h2>
               <div className="space-y-6">
                 {[
                   {
-                    title: "Predictive Layout Suggestions",
-                    description: "AI analyzes your patter patterns and suggests improvements in real-time"
+                    title: "Chat with AI make changes in minutes",
+                    description: "AI analyzes your patter  and suggests improvements in real-time"
                   },
                   {
                     title: "Smart Color Harmonies",
@@ -350,7 +339,7 @@ const GeneratedComponent: React.FC = () => {
               name: "Emma Davis",
               role: "Freelance Designer",
               image: "/testimonial3.jpg",
-              quote: "As a designer, Im impressed by the quality of AI-generated layouts."
+              quote: "As a designer, Im impressed by the quality of AI-generated layouts. They're modern and highly customizable."
             }
           ].map((testimonial, index) => (
             <div key={index} className="glass-effect p-8 rounded-2xl">
@@ -379,9 +368,9 @@ const GeneratedComponent: React.FC = () => {
               Join thousands of creators who are already building Their First Saas,Startup.
             </p>
             <Link href="/login">
-            <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl text-white font-bold hover:opacity-90 transition-opacity">
-              Start Building 
-            </button>
+              <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl text-white font-bold hover:opacity-90 transition-opacity">
+                Start Building
+              </button>
             </Link>
           </div>
         </div>
@@ -466,8 +455,8 @@ const GeneratedComponent: React.FC = () => {
       <div className="grid md:grid-cols-2 gap-16 items-center">
         <div className="space-y-8">
           <h2 className="text-4xl font-bold text-white">
-          Build and Launch with Next.js  Project in 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">  minutes </span>
+            For Next.js Boilerplate Build and launch it
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> With in hours </span>
           </h2>
 
           {[
@@ -511,7 +500,7 @@ const GeneratedComponent: React.FC = () => {
 
 
               { name: "Google Auth", logo: "/google-logo.jpeg" },
-     
+              { name: "GitHub", logo: "/github-logo.png" }
             ].map((tech, index) => (
               <div key={index} className="flex items-center space-x-2">
                 <img src={tech.logo} alt={tech.name} className="h-10 w-10 object-contain" />
@@ -527,19 +516,19 @@ const GeneratedComponent: React.FC = () => {
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-6">If Need Nextjs  Launch in Minutes</h2>
             <p className="text-gray-300 mb-8">
-          Setup with All required you need Whether you working on project or Startup 
+              Setup with All required you need Whether you working on project or Startup
             </p>
             <div className="w-full max-w-5xl mx-auto perspective" style={{ perspective: '1000px' }}>
-            <video
-              src="/Nextjsbloilerplate.mp4"
-              width="100%"
-              height="auto"
-              autoPlay
-              loop
-              muted
-              className="w-full h-auto object-cover rounded-lg shadow-2xl"
-            />
-          </div>
+              <video
+                src="/Nextjsbloilerplate.mp4"
+                width="100%"
+                height="auto"
+                autoPlay
+                loop
+                muted
+                className="w-full h-auto object-cover rounded-lg shadow-2xl"
+              />
+            </div>
 
           </div>
         </div>
@@ -550,45 +539,45 @@ const GeneratedComponent: React.FC = () => {
 
       {/* New Newsletter Section with Floating Elements */}
       <div className="container mx-auto px-6 py-32 relative">
-  <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 blur-3xl"></div>
 
-</div>
+      </div>
 
-<div className="container mx-auto px-6 py-16">
-  <h2 className="text-3xl font-bold text-white text-center mb-8">Frequently Asked Questions</h2>
-  <div className="max-w-4xl mx-auto space-y-6">
-    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
-      <h3 className="text-xl font-semibold text-white mb-2">Does it Support React tsx/jsx?</h3>
-      <p className="text-gray-300">
-Yes its support React tsx/jsx.
-      </p>
-    </div>
-    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
-      <h3 className="text-xl font-semibold text-white mb-2">What is  AI Theme /Walpaper?</h3>
-      <p className="text-gray-300">
-AI Theme and Walpaper is  Background setup for Website/Landing page which make more beautifull.
-      </p>
-    </div>
-    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
-      <h3 className="text-xl font-semibold text-white mb-2">What Programming Language used in  Next js ?</h3>
-      <p className="text-gray-300">
-Next.js Has built in typscript.
-      </p>
-    </div>
-    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
-      <h3 className="text-xl font-semibold text-white mb-2">What kind of Customer Support do you provide ?</h3>
-      <p className="text-gray-300">
-We Provide 24/7 Customer Support via email 
-      </p>
-    </div>
-    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
-      <h3 className="text-xl font-semibold text-white mb-2">What we get  in Next.js Boiler plate ?</h3>
-      <p className="text-gray-300">
-Every Things You need Launch Your Startup or Poject ,
-      </p>
-    </div>
-  </div>
-</div>
+      <div className="container mx-auto px-6 py-16">
+        <h2 className="text-3xl font-bold text-white text-center mb-8">Frequently Asked Questions</h2>
+        <div className="max-w-4xl mx-auto space-y-6">
+          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+            <h3 className="text-xl font-semibold text-white mb-2">Does it Support React tsx/jsx?</h3>
+            <p className="text-gray-300">
+              Yes its support React tsx/jsx.
+            </p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+            <h3 className="text-xl font-semibold text-white mb-2">What is  AI Theme /Walpaper?</h3>
+            <p className="text-gray-300">
+              AI Theme and Walpaper is  Background setup for Website/Landing page which make more beautifull.
+            </p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+            <h3 className="text-xl font-semibold text-white mb-2">What Programming Language used in  Next js ?</h3>
+            <p className="text-gray-300">
+              Next.js Has built in typscript.
+            </p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+            <h3 className="text-xl font-semibold text-white mb-2">What kind of Customer Support do you provide ?</h3>
+            <p className="text-gray-300">
+              We Provide 24/7 Customer Support via email
+            </p>
+          </div>
+          <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+            <h3 className="text-xl font-semibold text-white mb-2">What we get  in Next.js Boiler plate ?</h3>
+            <p className="text-gray-300">
+              Every Things You need Launch Your Startup or Poject ,
+            </p>
+          </div>
+        </div>
+      </div>
 
 
       {/* Footer */}
@@ -609,15 +598,26 @@ Every Things You need Launch Your Startup or Poject ,
             {[
               {
                 title: "Product",
-                links: ["Features", "Pricing", "Templates", "Showcase"]
+                links: [
+                  { name: "Pricing", href: "/pricing" },
+                  { name: "AI Landing Page Maker", href: "/ai-landing-page-maker" }
+
+
+                ]
               },
               {
                 title: "Company",
-                links: ["About", "Careers", "Blog", "Press"]
+                links: [
+                  { name: "About", href: "/about" },
+
+                ]
               },
               {
                 title: "Resources",
-                links: ["Documentation", "Help Center", "Community", "Contact"]
+                links: [
+                  { name: "Documentation", href: "/documentation" },
+
+                ]
               }
             ].map((section, index) => (
               <div key={index}>
@@ -625,22 +625,26 @@ Every Things You need Launch Your Startup or Poject ,
                 <ul className="space-y-2">
                   {section.links.map((link, i) => (
                     <li key={i}>
-                      <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                        {link}
+                      <a
+                        href={link.href}
+                        className="text-gray-400 hover:text-white transition-colors"
+                      >
+                        {link.name}
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
+
           </div>
 
           <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400">© 2024 webdone. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="/PrivacyPolicy" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
-                <a href="/TermsAndConditions" className="text-gray-400 hover:text-white transition-colors">TermsAndConditions</a>
-
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
         </div>
