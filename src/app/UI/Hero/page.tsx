@@ -114,7 +114,7 @@ const GeneratedComponent: React.FC = () => {
           </p>
           <div className="flex justify-center gap-4">
             <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl text-white font-bold hover:opacity-90 transition-opacity">
-              Get Started Free
+   Start Building
             </button>
             <button className="px-8 py-4 bg-white/10 rounded-xl text-white font-bold hover:bg-white/20 transition-colors">
               Watch Demo
@@ -158,7 +158,7 @@ const GeneratedComponent: React.FC = () => {
       <div className="container mx-auto px-6 py-32">
         <div className="text-center mb-24">
           <h2 className="text-5xl font-bold text-white mb-6">
-            Use AI to  Build Landing page,No generic Layout just make What you want <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">With in minutes, No-code needed</span>
+            Use AI to  Build Your First Saas ,No generic Layout just make What you want <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">With in minutes, No-code needed</span>
           </h2>
           <p className="text-gray-300 text-xl max-w-3xl mx-auto">
             Talk to AI like your friend Create stunning pattern , AI themes, to make your saas more atractive,
