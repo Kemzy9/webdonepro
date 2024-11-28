@@ -608,7 +608,7 @@ const GeneratedComponent: React.FC = () => {
               {
                 title: "Company",
                 links: [
-                  { name: "About", href: "/about" },
+                  { name: "About", href: "/About" },
 
                 ]
               },
