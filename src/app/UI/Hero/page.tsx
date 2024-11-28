@@ -376,25 +376,7 @@ const GeneratedComponent: React.FC = () => {
         </div>
       </div>
 
-      {/* New Statistics Section with 3D Cards */}
-      <div className="container mx-auto px-6 py-32">
-        <div className="grid md:grid-cols-4 gap-8">
-          {[
-            { number: "98%", label: "Customer Satisfaction", icon: "❤️" },
-            { number: "24/7", label: "Support Available", icon: "🎯" },
-            { number: "100+", label: "AI Templates", icon: "🎨" },
-            { number: "50k+", label: "Websites Created", icon: "🚀" }
-          ].map((stat, index) => (
-            <div key={index} className="perspective-card group">
-              <div className="relative p-8 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 hover:transform hover:-rotate-y-12 transition-all duration-300">
-                <span className="text-4xl mb-4 block">{stat.icon}</span>
-                <h3 className="text-3xl font-bold text-white mb-2">{stat.number}</h3>
-                <p className="text-gray-400">{stat.label}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+ 
 
       {/* New How It Works Section */}
       <div className="container mx-auto px-6 py-32">
