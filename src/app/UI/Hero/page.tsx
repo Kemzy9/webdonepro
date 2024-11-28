@@ -29,14 +29,14 @@ const GeneratedComponent: React.FC = () => {
           <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
             {/* Logo with hover effect */}
             <div className="flex items-center">
-            <div className="flex items-center space-x-4">
-  <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
-    <Logo />
-  </div>
-  <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-fuchsia-500 hover:to-violet-500 transition-colors">
-    Webdone
-  </div>
-</div>
+              <div className="flex items-center space-x-4">
+                <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
+                  <Logo />
+                </div>
+                <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-fuchsia-500 hover:to-violet-500 transition-colors">
+                  Webdone
+                </div>
+              </div>
 
 
               {/* Enhanced navigation with indicators */}
@@ -68,6 +68,7 @@ const GeneratedComponent: React.FC = () => {
               >
                 Start free trial →
               </Link>
+
             </div>
 
             {/* Enhanced mobile menu button */}
@@ -118,6 +119,18 @@ const GeneratedComponent: React.FC = () => {
             <button className="px-8 py-4 bg-white/10 rounded-xl text-white font-bold hover:bg-white/20 transition-colors">
               Watch Demo
             </button>
+
+          </div>
+          <div className="w-full max-w-5xl mx-auto perspective" style={{ perspective: '1000px' }}>
+            <video
+              src="/A-builder.mp4"
+              width="100%"
+              height="auto"
+              autoPlay
+              loop
+              muted
+              className="w-full h-auto object-cover rounded-lg shadow-2xl"
+            />
           </div>
 
           {/* Social Proof */}
@@ -209,9 +222,20 @@ const GeneratedComponent: React.FC = () => {
                 ))}
               </div>
             </div>
-            <div className="relative h-[600px] bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 backdrop-blur-sm"></div>
-              {/* Add interactive demo or image here */}
+            <div className="relative max-w-5xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-2xl overflow-hidden">
+
+              <div className="w-full max-w-5xl mx-auto perspective" style={{ perspective: '1000px' }}>
+                <video
+                  src="/AI-Walpaper.mp4"
+                  width="100%"
+                  height="auto"
+                  autoPlay
+                  loop
+                  muted
+                  className="w-full h-auto object-cover rounded-lg shadow-2xl"
+                />
+              </div>
+
             </div>
           </div>
         </div>
@@ -495,32 +519,75 @@ const GeneratedComponent: React.FC = () => {
           </div>
         </div>
       </div>
+      <div className="container mx-auto px-6 py-32 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 blur-3xl"></div>
+        <div className="relative bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/10">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-6">If Need Nextjs  Launch in Minutes</h2>
+            <p className="text-gray-300 mb-8">
+          Setup with All required you need Whether you working on project or Startup 
+            </p>
+            <div className="w-full max-w-5xl mx-auto perspective" style={{ perspective: '1000px' }}>
+            <video
+              src="/Nextjsbloilerplate.mp4"
+              width="100%"
+              height="auto"
+              autoPlay
+              loop
+              muted
+              className="w-full h-auto object-cover rounded-lg shadow-2xl"
+            />
+          </div>
+
+          </div>
+        </div>
+      </div>
       <Pricing />
 
 
 
       {/* New Newsletter Section with Floating Elements */}
       <div className="container mx-auto px-6 py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 blur-3xl"></div>
-        <div className="relative bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/10">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-white mb-6">Stay Updated</h2>
-            <p className="text-gray-300 mb-8">
-              Get the latest updates on AI website building and special offers.
-            </p>
-            <div className="flex gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 bg-white/5 rounded-xl border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-violet-500"
-              />
-              <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl text-white font-bold hover:opacity-90 transition-opacity">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 blur-3xl"></div>
+
+</div>
+
+<div className="container mx-auto px-6 py-16">
+  <h2 className="text-3xl font-bold text-white text-center mb-8">Frequently Asked Questions</h2>
+  <div className="max-w-4xl mx-auto space-y-6">
+    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+      <h3 className="text-xl font-semibold text-white mb-2">Does it Support React tsx/jsx?</h3>
+      <p className="text-gray-300">
+Yes its support React tsx/jsx.
+      </p>
+    </div>
+    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+      <h3 className="text-xl font-semibold text-white mb-2">What is  AI Theme /Walpaper?</h3>
+      <p className="text-gray-300">
+AI Theme and Walpaper is  Background setup for Website/Landing page which make more beautifull.
+      </p>
+    </div>
+    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+      <h3 className="text-xl font-semibold text-white mb-2">What Programming Language used in  Next js ?</h3>
+      <p className="text-gray-300">
+Next.js Has built in typscript.
+      </p>
+    </div>
+    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+      <h3 className="text-xl font-semibold text-white mb-2">What kind of Customer Support do you provide ?</h3>
+      <p className="text-gray-300">
+We Provide 24/7 Customer Support via email 
+      </p>
+    </div>
+    <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl border border-white/10">
+      <h3 className="text-xl font-semibold text-white mb-2">What we get  in Next.js Boiler plate ?</h3>
+      <p className="text-gray-300">
+Every Things You need Launch Your Startup or Poject ,
+      </p>
+    </div>
+  </div>
+</div>
+
 
       {/* Footer */}
       <footer className="border-t border-white/10 mt-32">
@@ -533,7 +600,7 @@ const GeneratedComponent: React.FC = () => {
                 </div>
                 <span className="text-white text-xl font-bold">webdone</span>
               </div>
-              <p className="text-gray-400">Building the future of landing page with AI.</p>
+              <p className="text-gray-400">Build Your project Launch it Fast.</p>
             </div>
 
             {/* Footer Links */}
