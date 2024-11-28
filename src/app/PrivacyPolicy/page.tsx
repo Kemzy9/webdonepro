@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '@/app/UI/footer/page';
+
 import Nav from "@/app/UI/Nav/page";
 
 const PrivacyPolicy: React.FC = () => {
@@ -65,7 +65,7 @@ Legal Requirements: We may disclose your information if required by law or in re
           Thank you for trusting us with your information. Your privacy is our priority.
         </p>
       </div>
-      <Footer />
+    
     </div>
   );
 };
