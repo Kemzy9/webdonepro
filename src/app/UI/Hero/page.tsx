@@ -350,7 +350,7 @@ const GeneratedComponent: React.FC = () => {
               name: "Emma Davis",
               role: "Freelance Designer",
               image: "/testimonial3.jpg",
-              quote: "As a designer, Im impressed by the quality of AI-generated layouts. They're modern and highly customizable."
+              quote: "As a designer, Im impressed by the quality of AI-generated layouts."
             }
           ].map((testimonial, index) => (
             <div key={index} className="glass-effect p-8 rounded-2xl">
@@ -511,7 +511,7 @@ const GeneratedComponent: React.FC = () => {
 
 
               { name: "Google Auth", logo: "/google-logo.jpeg" },
-              { name: "GitHub", logo: "/github-logo.png" }
+     
             ].map((tech, index) => (
               <div key={index} className="flex items-center space-x-2">
                 <img src={tech.logo} alt={tech.name} className="h-10 w-10 object-contain" />
