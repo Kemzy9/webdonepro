@@ -466,8 +466,8 @@ const GeneratedComponent: React.FC = () => {
       <div className="grid md:grid-cols-2 gap-16 items-center">
         <div className="space-y-8">
           <h2 className="text-4xl font-bold text-white">
-            For Next.js Boilerplate Build and launch it
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> With in hours </span>
+          Build and Launch with Next.js  Project in 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">  minutes </span>
           </h2>
 
           {[
