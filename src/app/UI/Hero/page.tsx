@@ -639,6 +639,7 @@ Every Things You need Launch Your Startup or Poject ,
             <p className="text-gray-400">© 2024 webdone. All rights reserved.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/PrivacyPolicy" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
+                <a href="/TermsAndConditions" className="text-gray-400 hover:text-white transition-colors">TermsAndConditions</a>
 
             </div>
           </div>
