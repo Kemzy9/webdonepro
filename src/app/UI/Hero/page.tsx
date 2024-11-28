@@ -161,7 +161,7 @@ const GeneratedComponent: React.FC = () => {
             Use AI to  Build Landing page,No generic Layout just make What you want <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">With in minutes, No-code needed</span>
           </h2>
           <p className="text-gray-300 text-xl max-w-3xl mx-auto">
-            Talk to AI like you would a friend. Create wallpapers, themes, and landing pages in minutes—simple,
+            Talk to AI like your friend Create stunning pattern , AI themes, to make your saas more atractive,
           </p>
         </div>
 
@@ -300,7 +300,7 @@ const GeneratedComponent: React.FC = () => {
           {[
             {
               metric: "10x",
-              label: "Faster Buildingt",
+              label: "Faster Building",
               description: "Build Faster and Creative  with AI assistance"
             },
             {
@@ -311,7 +311,7 @@ const GeneratedComponent: React.FC = () => {
             {
               metric: "24/7",
               label: "24/7 AI is in you hand",
-              description: "Give your Fraustration to AI will make "
+              description: "Give your Fraustration to  AI  "
             }
           ].map((stat, index) => (
             <div key={index} className="relative p-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
@@ -376,11 +376,13 @@ const GeneratedComponent: React.FC = () => {
               Ready to Build Your Nextjs project ?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join thousands of creators who are already building the future with AI-powered web development.
+              Join thousands of creators who are already building Their First Saas,Startup.
             </p>
+            <Link href="/login">
             <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl text-white font-bold hover:opacity-90 transition-opacity">
-              Start Building Free
+              Start Building 
             </button>
+            </Link>
           </div>
         </div>
       </div>
