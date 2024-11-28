@@ -441,24 +441,22 @@ const GeneratedComponent: React.FC = () => {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> With in hours </span>
           </h2>
 
-          {[
-           [
-  {
-    title: "Build with Next.js",
-    description: "Launch your startup quickly with a fully functional Next.js boilerplate.",
-    icon: "🤖"
-  },
-  {
-    title: "Next.js Advantages",
-    description: "Build your startup in minutes with all the tools you need for success preject .",
-    icon: "🚀"
-  },
-  {
-    title: "React landing page maker ",
-    description: "Use AI landig page make to build landing page for your project ",
-    icon: "⚡"
-  }
-];
+   {[
+            {
+              title: "Build with Next.js",
+              description: "Launch your startup quickly with a fully functional Next.js boilerplate.I",
+              icon: "🤖"
+            },
+            {
+              title: "Next.js Advantages",
+              description: "Build your startup in minutes with all the tools you need for success preject ",
+              icon: ""
+            },
+            {
+              title: "React landing page maker",
+              description: "Use AI landig page make to build landing page for your project ",
+              icon: "⚡"
+            }
           ].map((feature, index) => (
             <div key={index} className="flex items-start space-x-4 p-6 rounded-xl hover:bg-white/5 transition-colors">
               <div className="w-12 h-12 bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
