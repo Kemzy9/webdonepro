@@ -112,7 +112,7 @@ const GeneratedComponent: React.FC = () => {
           </div>
           <div className="w-full max-w-5xl mx-auto perspective" style={{ perspective: '1000px' }}>
             <video
-              src="/A-builder.mp4"
+              src="/A-builde.mp4"
               width="100%"
               height="auto"
               autoPlay
