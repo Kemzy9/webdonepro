@@ -96,12 +96,11 @@ const GeneratedComponent: React.FC = () => {
       <div className="container mx-auto px-6 pt-32 pb-16 relative">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
-            Build Stunning React landing page
+ Launch Your Startup in Minutes with 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Power</span>
           </h1>
           <p className="text-xl text-gray-300 mb-12">
-            Create professional, responsive React Landing page
-            No coding required.
+        AI-Powered Pages and Next.js
           </p>
           <div className="flex justify-center gap-4">
             <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl text-white font-bold hover:opacity-90 transition-opacity">
