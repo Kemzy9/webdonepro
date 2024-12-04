@@ -96,7 +96,7 @@ const GeneratedComponent: React.FC = () => {
       <div className="container mx-auto px-6 pt-32 pb-16 relative">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
- Launch Your Startup in Minutes with     AI-Powered Pages and Next.js
+ Launch Your Startup in Minutes with    
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Power</span>
           </h1>
           <p className="text-xl text-gray-300 mb-12">
@@ -146,7 +146,7 @@ const GeneratedComponent: React.FC = () => {
       <div className="container mx-auto px-6 py-32">
         <div className="text-center mb-24">
           <h2 className="text-5xl font-bold text-white mb-6">
-            Use AI to  Build Your First Saas ,No generic Layout just make What you want <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">With in minutes, No-code needed</span>
+          Build Your SaaS Effortlessly – <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Landing Pages + Full Next.js Setup
           </h2>
           <p className="text-gray-300 text-xl max-w-3xl mx-auto">
             Talk to AI like your friend Create stunning pattern , AI themes, to make your saas more atractive,
