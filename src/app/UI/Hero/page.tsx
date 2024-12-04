@@ -97,10 +97,10 @@ const GeneratedComponent: React.FC = () => {
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
 Launch Your Startup in Minutes 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Power</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">    AI Builder + Next.js Boilerplate!</span>
           </h1>
           <p className="text-xl text-gray-300 mb-12">
-     AI Builder + Next.js Boilerplate!
+    Build React landing page With AI  No generic layout All is AI Build ,launch Your product fast with nextjs full setup
           </p>
           <div className="flex justify-center gap-4">
             <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl text-white font-bold hover:opacity-90 transition-opacity">
