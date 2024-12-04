@@ -146,7 +146,7 @@ const GeneratedComponent: React.FC = () => {
       <div className="container mx-auto px-6 py-32">
         <div className="text-center mb-24">
           <h2 className="text-5xl font-bold text-white mb-6">
-          Build Your SaaS Effortlessly – <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Landing Pages + Full Next.js Setup
+          Build Your SaaS Effortlessly – <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Landing Pages + Full Next.js Setup</span>
           </h2>
           <p className="text-gray-300 text-xl max-w-3xl mx-auto">
             Talk to AI like your friend Create stunning pattern , AI themes, to make your saas more atractive,
