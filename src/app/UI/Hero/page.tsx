@@ -96,7 +96,7 @@ const GeneratedComponent: React.FC = () => {
       <div className="container mx-auto px-6 pt-32 pb-16 relative">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
- Launch Your Startup in Minutes with 
+ Launch Your Startup in Minutes with     AI-Powered Pages and Next.js
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> AI Power</span>
           </h1>
           <p className="text-xl text-gray-300 mb-12">
