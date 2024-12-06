@@ -118,7 +118,7 @@ const PricingUI = () => {
     {
       title: 'Nextjs Boilerplate (Liftime) ',
       price: isYearly ? '164' : '164',
-      originalPrice: isYearly ? '119' : '144',
+      originalPrice: isYearly ? '265' : '144',
       description: 'Empowering Unique Minds with Cutting-Edge Tools .',
       features: [
         { feature: 'Nextjs', tooltip: 'A full setup Of Nextjs ' },
