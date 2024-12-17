@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.webd.one
+
+# Sitemaps
+Sitemap: https://www.webd.one/sitemap.xml
