@@ -6,7 +6,7 @@ import Pricing from "@/app/pricing/page"
 import Logo from '@/app/UI/logo/page';
 import React, { useState, useEffect } from 'react';
 
-const GeneratedComponent: React.FC = () => {
+const Section: React.FC = () => {
     const [activeDropdown, setActiveDropdown] = useState(null);
 
     const technologies = [
@@ -587,4 +587,4 @@ const Future = {
     );
 };
 
-export default GeneratedComponent;
+export default Section;
