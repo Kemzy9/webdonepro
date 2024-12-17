@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Code, Layers, Tablet } from "lucide-react";
 
-const ModernWebDesignServices = () => {
+const Feature = () => {
   // Allow activeService to be either a number or null
   const [activeService, setActiveService] = useState<number | null>(null);
 
@@ -143,4 +143,4 @@ const ModernWebDesignServices = () => {
   );
 };
 
-export default ModernWebDesignServices;
+export default Feature;
