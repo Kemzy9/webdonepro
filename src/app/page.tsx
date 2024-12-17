@@ -1,23 +1,29 @@
 import Image from 'next/image'
 
 import React from "react";
+import Head from "@/app/UI/head/page"
+import Hero from "@/app/UI/Hero/page"
+import Section from "@/app/UI/section/paeg"
 
-import Hero from "@/app/UI/Hero/page";
-
-import Feature from '@/app/UI/feature/page'
-
-import Baner from '@/app/UI/baner/page'
-
+import Feature from "@/app/UI/feature/page"
+import Features from "@/app/UI/Features/page"
 
 export default function Home() {
   return (
     <main className="">
-
-
-
     
-<Hero/>
-            
+    <Hero />
+    <Head />
+    <Feature />
+    <Features />
+    <Section />
+
+
+
+
+
+
+
 
 
     </main>
