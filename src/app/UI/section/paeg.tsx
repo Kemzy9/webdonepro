@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link';
-
+import Faq from '@/app/UI/faq/page'
 import Image from 'next/image';
 import Pricing from "@/app/pricing/page"
 import Logo from '@/app/UI/logo/page';
@@ -359,7 +359,7 @@ const Future = {
                         <div className="absolute -z-10 bottom-10 left-10 w-72 h-72 bg-blue-500 rounded-full blur-[120px] opacity-20"></div>
                     </div>
                 </div>
-
+                <Faq />
                 <div className="container mx-auto px-6 pt-20">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Left Side - Text Content */}
@@ -387,7 +387,7 @@ const Future = {
                                 </Link>
                             </div>
                         </div>
-
+                      
                         {/* Right Side - Image Section */}
                         <div className="lg:col-span-1 my-12 md:order-2 relative">
                             <div className="max-w-6xl mx-auto px-4 relative">
@@ -397,7 +397,7 @@ const Future = {
                                     style={{ zIndex: 0, pointerEvents: 'none' }}
                                 ></div>
 
-                                <div className="relative h-[600px] flex justify-center items-center" style={{ zIndex: 1 }}>
+                                <div className="relative  h-auto w-auto flex justify-center items-center" style={{ zIndex: 1 }}>
                                     {[
                                         {
                                             src: "/Hero-section-beautypage.png",
@@ -409,13 +409,14 @@ const Future = {
                                             opacity: "opacity-70"
                                         },
                                         {
-                                            src: "/Hero-section-beautypage.png",
+                                            src: "/Beuty-ecommercelanding-page.png",
                                             alt: "Banking Website Example",
                                             size: "w-[400px] h-[320px]",
                                             zIndex: "z-30",
                                             rotate: "-rotate-6",
                                             translate: "translate-x-16 translate-y-10",
                                             opacity: "opacity-60"
+                                  
                                         },
                                         {
                                             src: "/Hero-section-beautypage.png",
@@ -427,7 +428,7 @@ const Future = {
                                             opacity: "opacity-40"
                                         },
                                         {
-                                            src: "/Saas-AI-Landing page.png",
+                                            src: "/Realstatelanding-page.html.png",
                                             alt: "Creative Website Example",
                                             size: "w-[200px] h-[160px]",
                                             zIndex: "z-10",
