@@ -90,7 +90,7 @@ const ServicesSection = () => {
 
             </section>
 
-            <section className="py-32 relative diagonal-box bg-gradient-to-r from-purple-900 to-pink-900">
+            <section className="py-32 relative diagonal-box bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-white">
                 <div className="max-w-7xl mx-auto px-6 diagonal-content">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div>
