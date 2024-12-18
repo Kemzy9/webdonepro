@@ -17,7 +17,7 @@ const Section: React.FC = () => {
         { name: "Resend", logo: "/resend-logo.png" },
         { name: "Mailtrip", logo: "/mailtrip-logo.png" },
         { name: "Google Auth", logo: "/google-logo.jpeg" },
-      ];
+    ];
 
 
 
@@ -245,8 +245,59 @@ const Section: React.FC = () => {
                     </div>
                 </div>
 
-                
 
+                <div className="grid md:grid-cols-2 gap-16 items-center px-8 md:px-16 lg:px-24 py-16 bg-gradient-to-b from-gray-900 via-black to-gray-900 rounded-full">
+                    {/* Left Side - Text */}
+
+                    <div className="space-y-8">
+                        <h3 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
+                            Powered By Industry Leaders
+                        </h3>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                            {technologies.map((tech, index) => (
+                                <div
+                                    key={index}
+                                    className="relative group p-4 rounded-lg bg-gradient-to-br from-gray-800/50 to-gray-700/50 backdrop-blur-md shadow-lg hover:scale-105 transition transform duration-300"
+                                >
+                                    <div className="flex justify-center items-center h-16 w-16 mx-auto">
+                                        <Image
+                                            src={tech.logo}
+                                            alt={tech.name}
+                                            width={64}
+                                            height={64}
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                    <span className="absolute inset-x-0 bottom-2 text-sm text-gray-300 text-center group-hover:text-white">
+                                        {tech.name}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right Side - Images */}
+                    <div className="relative">
+                        <div className="floating-card rounded-2xl p-8">
+                            <div className="code-block p-6 text-sm text-gray-300">
+                                <pre>
+                                    <code>
+                                        {`// Your vision, our code
+const Future = {
+  design: "Stunning",
+  performance: "Lightning",
+  features: ["AI", "Web3", "Mobile"],
+  deploy: () => "Success! 🚀"
+};`}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        {/* Decorative Elements */}
+                        <div className="absolute -z-10 top-10 right-10 w-72 h-72 modern-gradient rounded-full blur-[120px] opacity-20"></div>
+                        <div className="absolute -z-10 bottom-10 left-10 w-72 h-72 bg-blue-500 rounded-full blur-[120px] opacity-20"></div>
+                    </div>
+                </div>
 
                 {/* New How It Works Section */}
                 <div className="container mx-auto px-6 py-32">
@@ -307,58 +358,7 @@ const Section: React.FC = () => {
 
 
 
-                <div className="grid md:grid-cols-2 gap-16 items-center px-8 md:px-16 lg:px-24 py-16 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                    {/* Left Side - Text */}
-
-                    <div className="space-y-8">
-      <h3 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
-        Powered By Industry Leaders
-      </h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-        {technologies.map((tech, index) => (
-          <div 
-            key={index} 
-            className="relative group p-4 rounded-lg bg-gradient-to-br from-gray-800/50 to-gray-700/50 backdrop-blur-md shadow-lg hover:scale-105 transition transform duration-300"
-          >
-            <div className="flex justify-center items-center h-16 w-16 mx-auto">
-              <Image
-                src={tech.logo}
-                alt={tech.name}
-                width={64}
-                height={64}
-                className="object-contain"
-              />
-            </div>
-            <span className="absolute inset-x-0 bottom-2 text-sm text-gray-300 text-center group-hover:text-white">
-              {tech.name}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-
-                    {/* Right Side - Images */}
-                    <div className="relative">
-                        <div className="floating-card rounded-2xl p-8">
-                            <div className="code-block p-6 text-sm text-gray-300">
-                                <pre>
-                                    <code>
-                                        {`// Your vision, our code
-const Future = {
-  design: "Stunning",
-  performance: "Lightning",
-  features: ["AI", "Web3", "Mobile"],
-  deploy: () => "Success! 🚀"
-};`}
-                                    </code>
-                                </pre>
-                            </div>
-                        </div>
-                        {/* Decorative Elements */}
-                        <div className="absolute -z-10 top-10 right-10 w-72 h-72 modern-gradient rounded-full blur-[120px] opacity-20"></div>
-                        <div className="absolute -z-10 bottom-10 left-10 w-72 h-72 bg-blue-500 rounded-full blur-[120px] opacity-20"></div>
-                    </div>
-                </div>
+              
                 <Faq />
                 <div className="container mx-auto px-6 pt-20">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -387,7 +387,7 @@ const Future = {
                                 </Link>
                             </div>
                         </div>
-                      
+
                         {/* Right Side - Image Section */}
                         <div className="lg:col-span-1 my-12 md:order-2 relative">
                             <div className="max-w-6xl mx-auto px-4 relative">
@@ -416,7 +416,7 @@ const Future = {
                                             rotate: "-rotate-6",
                                             translate: "translate-x-16 translate-y-10",
                                             opacity: "opacity-60"
-                                  
+
                                         },
                                         {
                                             src: "/Hero-section-beautypage.png",
@@ -528,7 +528,7 @@ const Future = {
                                 {
                                     title: "Resources",
                                     links: [
-                                        { name: "Documentation", href: "/documentation" },
+                                        { name: "Documentation", href: "/documents" },
 
                                     ]
                                 }
