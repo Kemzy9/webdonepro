@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef, ChangeEvent, MouseEvent, useCallback, Suspense } from 'react';
 
 import { Download, Maximize2, Code, Minimize2, Sparkles, ExternalLink, Redo2, Undo2, Type, Eye, Smartphone, MousePointerClick, } from 'lucide-react';
-
+import axios from 'axios';
 import StyleControls from '@/app/weblike/weblike/style/StyleControls';
 import Gallery from '@/app/weblike/weblike/gallery/Gallery';
 import Client from '@/app/weblike/weblike/client/page';
@@ -63,7 +63,9 @@ const CodePreview: React.FC = () => {
   const [isRightSidebarMinimized, setIsRightSidebarMinimized] = useState(false);
   const [selectedColors, setSelectedColors] = useState<string[]>(['#000000', '#000000', '#000000']);
   const [activeColorIndex, setActiveColorIndex] = useState<number>(0);
-
+  const [isChatSessionActive, setIsChatSessionActive] = useState<boolean>(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
 
 
 
@@ -222,38 +224,22 @@ const CodePreview: React.FC = () => {
 
   const saveCode = useCallback(async () => {
     if (!previewRef.current) return;
-
+  
     const zip = new JSZip();
     const fileExtension = codeType === 'html' ? 'html' : codeType === 'jsx' ? 'jsx' : 'tsx';
-
-    // Get the current state of the preview
+  
     let saveableCode = previewRef.current.innerHTML;
-    // Process images
+  
+    // Process images and create image imports
     const imagePromises = Object.entries(images).map(async ([imageId, file]) => {
       const imageContent = await file.arrayBuffer();
       const fileName = `image_${imageId}.${file.name.split('.').pop()}`;
       zip.file(`images/${fileName}`, imageContent);
       return { imageId, fileName };
     });
+  
     const processedImages = await Promise.all(imagePromises);
-    // Update image paths in the code
-    processedImages.forEach(({ imageId, fileName }) => {
-      const imgRegex = new RegExp(`data-image-id="${imageId}"[^>]*src="[^"]*"`, 'g');
-      saveableCode = saveableCode.replace(imgRegex, `data-image-id="${imageId}" src="images/${fileName}"`);
-    });
-    // Add image elements to the code
-    addedImages.forEach((img, index) => {
-      const imgFileName = `added-image-${index}.png`;
-      zip.file(`images/${imgFileName}`, img.src.split(',')[1], { base64: true });
-
-      const imgElement = `<img src="./images/${imgFileName}" style="position: absolute; left: ${img.position.x}px; top: ${img.position.y}px; width: ${img.size.width}px; height: ${img.size.height}px;" />`;
-      saveableCode += imgElement;
-    });
-
-
-
-
-
+  
     if (codeType === 'html') {
       // For HTML, update image paths and create a style tag
       let styleContent = '';
@@ -283,60 +269,85 @@ const CodePreview: React.FC = () => {
           </html>
         `;
     } else {
-      // Convert HTML to JSX/TSX
+      // JSX/TSX format with proper image handling
+      const imageVariableNames = processedImages.reduce((acc, { imageId }) => {
+        const safeName = `image${imageId.replace(/[^a-zA-Z0-9]/g, '')}`;
+        acc[imageId] = safeName;
+        return acc;
+      }, {} as { [key: string]: string });
+  
+      // Transform the code to use proper React/TSX syntax
       saveableCode = saveableCode
+        .replace(/<!--[\s\S]*?-->/g, '')
         .replace(/class=/g, 'className=')
         .replace(/for=/g, 'htmlFor=')
+        .replace(/charset=/g, 'charSet=')
+        .replace(/data-image-id="([^"]+)"/g, (match, imageId) => {
+          const varName = imageVariableNames[imageId];
+          return `data-temp-image="${imageId}" data-var-name="${varName}"`;
+        })
         .replace(/style="([^"]*)"/g, (match, styles) => {
-          const styleObject = styles.split(';').reduce((acc: Record<string, string>, style: string) => {
-            const [key, value] = style.split(':').map((s: string) => s.trim());
-            if (key && value) {
-              const jsxKey = key.replace(/-./g, (x: string) => x.charAt(1).toUpperCase() + x.slice(2));
-              acc[jsxKey] = value.replace(/"/g, "'");
-            }
-            return acc;
-          }, {});
+          const styleObject = styles.split(';')
+            .filter((style: string) => style.trim())
+            .reduce((acc: Record<string, string>, style: string) => {
+              const [key, value] = style.split(':').map(s => s.trim());
+              if (key && value) {
+                const camelKey = key.replace(/-([a-z])/g, g => g[1].toUpperCase());
+                acc[camelKey] = value;
+              }
+              return acc;
+            }, {});
           return `style={${JSON.stringify(styleObject)}}`;
-        })
-        .replace(/(\w+)="(\{[^}]+\})"/g, (match: string, attr: string, value: string) => `${attr}=${value}`)
-        .replace(/<([a-z]+)([^>]*)>/g, (match: string, tag: string, attrs: string) => {
-          const jsxAttrs = attrs.replace(/(\w+)="([^"]+)"/g, (attrMatch: string, attr: string, value: string) => {
-            if (attr === 'style') return attrMatch;
-            return `${attr}="${value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}"`;
-          });
-          return `<${tag}${jsxAttrs}>`;
-        })
-        .replace(/&nbsp;/g, '{" "}')
-        .replace(/<!--(.*?)-->/g, '{/* $1 */}');
-
-      // Replace image URLs with imports
-      processedImages.forEach(({ imageId, fileName }) => {
-        const imgRegex = new RegExp(`data-image-id="${imageId}"`, 'g');
-        saveableCode = saveableCode.replace(imgRegex, `data-image-id="${imageId}" style={{backgroundImage: \`url(\${${imageId}})\`, backgroundSize: '${imageSize}', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}`);
-      });
-
-      // Wrap the code in a React component
-      saveableCode = `
-import React from 'react';
-${processedImages.map(({ imageId, fileName }) => `import ${imageId} from './images/${fileName}';`).join('\n')}
-
-const GeneratedComponent: React.FC = () => {
-  return (
-    <React.Fragment>
+        });
+  
+      // Now replace the temporary image attributes with proper style objects
+      saveableCode = saveableCode.replace(/data-temp-image="([^"]+)"\s+data-var-name="([^"]+)"/g, 
+        (match, imageId, varName) => {
+          return `style={{ backgroundImage: \`url(\${${imageId}})\` }}`;
+        }
+      );
+  
+      // Self-closing tags
+      saveableCode = saveableCode.replace(/<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)([^>]*?)>/g, 
+        (match, tag, attributes) => `<${tag}${attributes} />`);
+  
+      // Create React component with image imports
+      saveableCode = `import React from 'react';
+  ${processedImages.map(({ fileName, imageId }) => 
+    `import ${imageVariableNames[imageId]} from './images/${fileName}';`
+  ).join('\n')}
+  
+  ${codeType === 'tsx' ? 'interface Props {}\n' : ''}
+  
+  const GeneratedComponent: React.FC${codeType === 'tsx' ? '<Props>' : ''} = () => {
+    return (
+    <div>
       ${saveableCode}
-    </React.Fragment>
-  );
-};
+      </div>
 
-export default GeneratedComponent;
-`;
+    );
+  };
+  
+  export default GeneratedComponent;`;
     }
-
+  
+    // Add code to zip
     zip.file(`index.${fileExtension}`, saveableCode);
-
+    
+    // Add images to zip
+    for (const { fileName, imageId } of processedImages) {
+      const imageFile = images[imageId];
+      if (imageFile) {
+        const imageContent = await imageFile.arrayBuffer();
+        zip.file(`images/${fileName}`, imageContent);
+      }
+    }
+  
+    // Generate and save zip
     const content = await zip.generateAsync({ type: 'blob' });
-    saveAs(content, 'weblike.zip');
-  }, [codeType, images, imageSize, addedImages]);
+    saveAs(content, `weblike-export.zip`);
+  }, [codeType, images, imageSize, addedImages, imageUrls]);
+// ... rest of the code ...
 
 
   const handleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -592,6 +603,18 @@ export default GeneratedComponent;
     }
   };
 
+  useEffect(() => {
+    const getUserDetails = async () => {
+      try {
+        const res = await axios.get("/api/users/me");
+        setUserId(res.data.data._id);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    getUserDetails();
+  }, []);
 
   const updateImagePosition = (id: string, position: { x: number, y: number }) => {
     setAddedImages(prev => prev.map(img =>
@@ -638,7 +661,7 @@ export default GeneratedComponent;
   }, [isTextEditing]);
 
   const [isTyping, setIsTyping] = useState(false);
-  const typingSpeedMs = 400; // Adjust this value to change typing speed
+  const typingSpeedMs = 10; // Adjust this value to change typing speed
 
 
   const typeCode = async (codeToType: string) => {
@@ -678,8 +701,13 @@ export default GeneratedComponent;
     setIsTyping(false);
   };
 
+  
   const handleSendMessage = async () => {
     if (!inputMessage.trim() && !selectedImage) return;
+    if (!userId || !sessionId) {
+      alert('Session not initialized properly');
+      return;
+    }
 
     // New check for selected element
     if (!selectedElementRef.current) {
@@ -687,7 +715,7 @@ export default GeneratedComponent;
         ...prevMessages,
         { role: 'assistant', content: 'Please select an element first.' }
       ]);
-      return; // Exit the function if no element is selected
+      return;
     }
 
     setLoading(true);
@@ -700,13 +728,15 @@ export default GeneratedComponent;
       const formData = new FormData();
       formData.append('prompt', inputMessage);
       formData.append('selectedCode', selectedCode);
+      formData.append('sessionId', sessionId);
+      formData.append('userId', userId);
       formData.append('isContinuation', 'true');
 
       if (selectedImage) {
         formData.append('image', selectedImage);
       }
 
-      const response = await fetch('/api/users/opengpt4', {
+      const response = await fetch('/api/users/claudesonnet', {
         method: 'POST',
         body: formData,
       });
@@ -744,7 +774,6 @@ export default GeneratedComponent;
             codeBlockContent += char;
           } else {
             aiMessage.content += char;
-            // Update chat messages in real-time
             setChatMessages(prevMessages => {
               const updatedMessages = [...prevMessages];
               updatedMessages[updatedMessages.length - 1] = { ...aiMessage };
@@ -754,12 +783,10 @@ export default GeneratedComponent;
         }
       }
 
-      // Apply the typing effect to the full code response
       if (fullCodeResponse) {
         await typeCode(fullCodeResponse);
       }
 
-      // Clear input and selected image
       setInputMessage('');
       setSelectedImage(null);
       setSelectedElementRef({ current: null });
@@ -774,11 +801,41 @@ export default GeneratedComponent;
       setLoading(false);
     }
   };
-
+  // Add this function to generate a session ID
+  const generateSessionId = () => {
+    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  };
 
   const toggleChat = () => {
+    if (!isChatOpen) {
+      // Starting a new chat session
+      if (!sessionId) {
+        const newSessionId = generateSessionId();
+        setSessionId(newSessionId);
+        setIsChatSessionActive(true);
+      }
+    } else {
+      // Prompt user before closing chat
+      if (chatMessages.length > 0) {
+        const shouldClose = window.confirm('Closing the chat will end your current session. Are you sure?');
+        if (shouldClose) {
+          endChatSession();
+        } else {
+          return; // Don't close if user cancels
+        }
+      } else {
+        endChatSession();
+      }
+    }
     setIsChatOpen(!isChatOpen);
   };
+
+  const endChatSession = () => {
+    setSessionId(null);
+    setIsChatSessionActive(false);
+    setChatMessages([]);
+  };
+
 
   const applyStyleToSelection = (style: { [key: string]: string }) => {
     const selection = window.getSelection();
@@ -917,9 +974,16 @@ export default GeneratedComponent;
 
 
       <div className="flex h-screen bg-neutral-900">
-        <div className={`w-80 bg-neutral-900 border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
+      <div className={`w-80 bg-white border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-            <h2 className="text-lg font-semibold">Chat</h2>
+            <div className="flex items-center">
+              <h2 className="text-lg font-semibold">Chat</h2>
+              {isChatSessionActive && (
+                <span className="ml-2 px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
+                  Active
+                </span>
+              )}
+            </div>
             <button onClick={toggleChat} className="text-gray-500 hover:text-gray-700">
               <FiX size={24} />
             </button>
@@ -950,7 +1014,7 @@ export default GeneratedComponent;
                 className="hidden" // Hide the default file input
                 id="imageInput"
               />
-              <label htmlFor="imageInput" className="px-4 py-2 bg-neutral-900 text-white rounded-l-md hover:bg-gray-400 transition-colors cursor-pointer">
+              <label htmlFor="imageInput" className="px-4 py-2 bg-gray-300 text-black rounded-l-md hover:bg-gray-400 transition-colors cursor-pointer">
                 <FiImage /> {/* Use an appropriate icon for the gallery */}
               </label>
 
@@ -1352,7 +1416,18 @@ export default GeneratedComponent;
                   </div>
 
                 </div>
+                <div className="bg-gray-500 p-4 rounded-lg">
+          <h3 className="text-sm font-semibold text-white uppercase mb-2">Code Type</h3>
+          <select
+            value={codeType}
+            onChange={(e) => setCodeType(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md text-sm"
+          >
 
+            <option value="jsx">Javascript</option>
+            <option value="tsx">Typescript</option>
+          </select>
+        </div>
                 {/* Animation Settings */}
                 <div className="bg-gray-500 p-6 rounded-xl shadow-md">
                   <h3 className="text-lg font-semibold text-white flex items-center mb-4">
