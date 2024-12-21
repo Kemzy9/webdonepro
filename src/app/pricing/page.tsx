@@ -116,9 +116,9 @@ const PricingUI = () => {
         : process.env.NEXT_PUBLIC_LEMON_CREATOR_PRO_MONTHLY_PRICE_ID,
     },
     {
-      title: 'Nextjs Boilerplate (Liftime) ',
+      title: 'Nextjs Framework',
       price: isYearly ? '164' : '164',
-      originalPrice: isYearly ? '265' : '265',
+      originalPrice: isYearly ? '119' : '144',
       description: 'Empowering Unique Minds with Cutting-Edge Tools .',
       features: [
         { feature: 'Nextjs', tooltip: 'A full setup Of Nextjs ' },
