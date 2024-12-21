@@ -74,20 +74,14 @@ const PricingUI = () => {
   const plans = [
     {
       title: 'Starter',
-      price: isYearly ? '20/mo' : '16/mo',
-      originalPrice: isYearly ? '25/mo' : '29/mo',
+      price: isYearly ? '16/mo' : '20/mo',
+      originalPrice: isYearly ? '20/mo' : '25/mo',
       
       description: 'Ideal for beginners or individuals building their first project.',
       features: [
         { feature: '3 Page', tooltip: 'Build  3 page /month 1 extra ' },
-
-      
-
         { feature: 'AI  Themes /Walpaper', tooltip: 'Need Theme for Background ' },
         { feature: '24/7 customer support', included: false },
-       
-
-
         { feature: 'Access 100 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
       ],
@@ -96,9 +90,9 @@ const PricingUI = () => {
         : process.env.NEXT_PUBLIC_LEMON_SQUEEZY_STANDARD_MONTHLY_PRICE_ID,
     },
     {
-      title: 'Creator',
-      price: isYearly ? '55/mo' : '95/mo',
-      originalPrice: isYearly ? '55/mo' : '59/mo',
+      title: 'Pro',
+      price: isYearly ? '39/mo' : '49/mo',
+      originalPrice: isYearly ? '49/mo' : '55/mo',
       description: 'Perfect for creators looking to experiment and expand their toolkit.',
       isPopular: true,
       features: [
