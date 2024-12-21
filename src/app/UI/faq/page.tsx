@@ -10,7 +10,7 @@ const FAQPage = () => {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
-      
+
       setTrail(prevTrail => {
         const newTrail = [...prevTrail, { x: e.clientX, y: e.clientY, id: Date.now() }];
         if (newTrail.length > 20) {
@@ -26,25 +26,32 @@ const FAQPage = () => {
 
   const faqs = [
     {
-      question: "What web development services do you offer?",
-      answer: "We offer comprehensive web development services including custom website development, e-commerce solutions, web applications, CMS development, API integration, and responsive design implementation."
+      question: "What kind of landing pages can be created with Webdone?",
+      answer: "Webdone can create any type of landing page you need, whether it's for e-commerce, SaaS, or something else entirely."
     },
     {
-      question: "How long does it typically take to complete a website project?",
-      answer: "Project timelines vary based on complexity. A simple website might take 4-6 weeks, while complex web applications can take 3-6 months. We'll provide a detailed timeline during project scoping."
+      "question": "How long does it typically take to complete a Landing page ?",
+      "answer": "Project timelines vary based on complexity. A simple landing page can be built in 5 to 10 minutes. More complex designs, requiring AI assistant , typically take 20 to 30 minutes. "
     },
+
     {
       question: "What technologies do you use for development?",
-      answer: "We use modern tech stacks including React.js, Next.js, Node.js, TypeScript, and other cutting-edge technologies. Our choice of technology is based on project requirements and performance needs."
+      answer: "We use modern tech stacks including React,Tailwindcss ,  TypeScript,javascript, and other cutting-edge technologies. Our choice of technology is based on project requirements and performance needs."
     },
     {
-      question: "How is your company structured?",
-      answer: "Our company follows an agile structure with dedicated teams for frontend, backend, design, and QA. Each project is assigned a project manager who ensures smooth communication and delivery."
+      "question": "What can I get with the Next.js boilerplate?",
+      "answer": "The Next.js boilerplate includes everything you need to launch your startup, like Stripe integration, Lemon Squeezy, MongoDB, Resend, Google Auth, and more."
+    },
+
+    {
+      "question": "What are AI Themes/Wallpapers?",
+      "answer": "AI wallpapers are a magical way to enhance your background. They use AI to create stunning themes, making your landing page even more beautiful and engaging."
     },
     {
-      question: "Do you provide maintenance and support after launch?",
-      answer: "Yes, we offer various maintenance packages including regular updates, security patches, performance monitoring, and technical support to ensure your website runs smoothly."
+      "question": "What does the drag-and-drop feature provide?",
+      "answer": "It lets you easily change colors, text, background images, and more."
     },
+
     {
       question: "What makes your development approach unique?",
       answer: "We focus on scalable, performance-optimized solutions with clean code practices. Our development process includes thorough testing, documentation, and regular client communication."
@@ -59,15 +66,15 @@ const FAQPage = () => {
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-600/30 rounded-full blur-3xl animate-float-slow"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-float-medium"></div>
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-600/25 rounded-full blur-3xl animate-float-fast"></div>
-        
+
         {/* Animated Geometric Shapes */}
         <div className="absolute top-20 right-32 w-20 h-20 border-2 border-purple-400/30 rotate-45 animate-spin-slow"></div>
         <div className="absolute bottom-40 left-20 w-16 h-16 border-2 border-blue-400/30 rotate-12 animate-bounce-slow"></div>
-        
+
         {/* Glowing Lines */}
         <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent animate-pulse-slow"></div>
         <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent animate-pulse-slow delay-1000"></div>
-        
+
         {/* Particle Effects */}
         <div className="absolute top-0 left-0 w-2 h-2 bg-white/20 rounded-full animate-particle1"></div>
         <div className="absolute top-0 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-particle2"></div>
@@ -75,7 +82,7 @@ const FAQPage = () => {
       </div>
 
       {/* Cursor Effects */}
-      <div 
+      <div
         className="fixed w-8 h-8 rounded-full pointer-events-none mix-blend-screen"
         style={{
           background: 'radial-gradient(circle, rgba(255,0,255,0.8) 0%, rgba(255,0,255,0) 70%)',
@@ -85,7 +92,7 @@ const FAQPage = () => {
           zIndex: 50
         }}
       />
-      
+
       {trail.map((point, index) => (
         <div
           key={point.id}
