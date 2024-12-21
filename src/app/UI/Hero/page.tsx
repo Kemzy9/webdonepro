@@ -322,7 +322,7 @@ const Hero: React.FC = () => {
                     {/* Video with Enhanced Styling */}
                     <video
                         ref={videoRef}
-                        src="/A-builder.mp4"
+                        src="/Ddemo-video-Ai-Landing-page.mp4"
                         width="100%"
                         height="auto"
                         autoPlay
