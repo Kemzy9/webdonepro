@@ -82,7 +82,7 @@ const Hero: React.FC = () => {
                                     <Logo />
                                 </div>
                                 <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-fuchsia-500 hover:to-violet-500 transition-colors">
-                                    Webdone
+                                Webdone
                                 </div>
                             </div>
 
@@ -157,11 +157,24 @@ const Hero: React.FC = () => {
                         <span className="text-red-500 text-sm">No generic layout</span>
                     </div>
 
-                    <div className="flex justify-center md:justify-start gap-4">
-                        <button className="px-8 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl text-white font-bold hover:opacity-90 transition-opacity">
-                            Start Building
-                        </button>
-                    </div>
+                    <a href="/login">
+  <button
+    className="
+      px-10 py-4 
+      bg-indigo-500
+      text-white 
+      rounded-full 
+      hover:bg-cyan-500
+      transition-colors
+      group
+    "
+  >
+    Start Your Project
+    <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">
+      →
+    </span>
+  </button>
+</a>
 
                 </div>
 
@@ -322,7 +335,7 @@ const Hero: React.FC = () => {
                     {/* Video with Enhanced Styling */}
                     <video
                         ref={videoRef}
-                        src="/Ddemo-video-Ai-Landing-page.mp4"
+                        src="/A-builder.mp4"
                         width="100%"
                         height="auto"
                         autoPlay
