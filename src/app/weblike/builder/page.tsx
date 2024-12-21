@@ -974,10 +974,10 @@ const CodePreview: React.FC = () => {
 
 
       <div className="flex h-screen bg-neutral-900">
-      <div className={`w-80 bg-white border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
+      <div className={`w-80 bg-neutral-900 border-r border-gray-200 flex flex-col ${isChatOpen ? '' : 'hidden'}`}>
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             <div className="flex items-center">
-              <h2 className="text-lg font-semibold">Chat</h2>
+              <h2 className="text-lg font-semibold text-white">Chat</h2>
               {isChatSessionActive && (
                 <span className="ml-2 px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
                   Active
@@ -1014,7 +1014,7 @@ const CodePreview: React.FC = () => {
                 className="hidden" // Hide the default file input
                 id="imageInput"
               />
-              <label htmlFor="imageInput" className="px-4 py-2 bg-gray-300 text-black rounded-l-md hover:bg-gray-400 transition-colors cursor-pointer">
+              <label htmlFor="imageInput" className="px-4 py-2 bg-gray-900 text-black rounded-l-md hover:bg-gray-400 transition-colors cursor-pointer">
                 <FiImage /> {/* Use an appropriate icon for the gallery */}
               </label>
 
@@ -1023,7 +1023,7 @@ const CodePreview: React.FC = () => {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                className="flex-grow p-2 border border-gray-300 rounded-r-md"
+                className="flex-grow p-2 border bg-neutral-900 border-gray-300 rounded-r-md text-white"
                 placeholder="Type your message..."
               />
 
