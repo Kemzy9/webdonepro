@@ -98,7 +98,7 @@ export default function ProfilePage() {
     return (
         <div className="h-screen w-screen flex">
             {/* Sidebar */}
-            <div className="fixed left-0 top-0 h-full w-16 bg-white shadow-lg flex flex-col items-center py-4 space-y-8">
+            <div className="fixed left-0 top-0 h-full w-16 bg-neutral-900 shadow-lg flex flex-col items-center py-4 space-y-8">
                
              
        
