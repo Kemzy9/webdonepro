@@ -38,7 +38,7 @@ const Section: React.FC = () => {
                             AI That Gets Your Style – <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> </span>
                         </h2>t.js Setup
                         <p className="text-gray-300 text-xl max-w-3xl mx-auto">
-                            Create React landing pages that match your vibe. No generic layouts, just your vision brought to life.
+                            Create React landing pages that match your vibe. No generic layouts, just your concept brought to life.
                         </p>
                     </div>
 
@@ -251,7 +251,7 @@ const Section: React.FC = () => {
 
                     <div className="space-y-8">
                         <h3 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
-                            Powered By Industry Leaders
+                           Build with Next.js
                         </h3>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                             {technologies.map((tech, index) => (
@@ -316,8 +316,8 @@ const Future = {
                             {[
                                 {
                                     step: "01",
-                                    title: "Give Command  ",
-                                    description: "Create a website landing page for Saas For AI Photo generation tool ",
+                                    title: " Command  ",
+                                    description: "Create a  landing page for Saas For AI Photo generation tool ",
                                     icon: "🎨"
                                 },
                                 {
@@ -360,6 +360,7 @@ const Future = {
 
               
                 <Faq />
+                <Pricing />
                 <div className="container mx-auto px-6 pt-20">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Left Side - Text Content */}
@@ -387,7 +388,7 @@ const Future = {
                                 </Link>
                             </div>
                         </div>
-
+                   
                         {/* Right Side - Image Section */}
                         <div className="lg:col-span-1 my-12 md:order-2 relative">
                             <div className="max-w-6xl mx-auto px-4 relative">
