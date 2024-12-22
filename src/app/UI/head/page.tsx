@@ -8,32 +8,33 @@ import {
   FaLayerGroup 
 } from "react-icons/fa";
 
-const WebDesignServices = () => {
+const Head = () => {
   const services = [
-    {
-      icon: FaCode,
-      title: "Custom Development",
-      description: "Pixel-perfect, performant web solutions",
-      color: "from-blue-500 to-indigo-600"
-    },
+ 
     {
       icon: FaPalette,
       title: "Creative Design",
-      description: "Unique, memorable visual experiences",
-      color: "from-purple-500 to-pink-600"
+      description: "Make landing page with AI look amazing with designs people won’t forget.",
+      color: "from-purple-500 to-pink-600",
+    },
+    {
+      icon: FaCode,
+      title: "SEO",
+      description: "Build your site to be fast, sharp, and ready to rank on Google.",
+      color: "from-blue-500 to-indigo-600",
     },
     {
       icon: FaMobileAlt,
       title: "Responsive Craft",
-      description: "Seamless across all devices",
-      color: "from-green-400 to-teal-500"
+      description: "Your site will look great and work perfectly on every screen.",
+      color: "from-green-400 to-teal-500",
     },
     {
       icon: FaRocket,
       title: "Performance Optimization",
-      description: "Lightning-fast, efficient web experiences",
-      color: "from-orange-500 to-red-600"
-    }
+      description: "Make your site super fast and smooth to use.",
+      color: "from-orange-500 to-red-600",
+    },
   ];
 
   return (
@@ -45,11 +46,12 @@ const WebDesignServices = () => {
             WEB
           </div>
           <h2 className="text-6xl font-bold relative z-10">
-            <span className="block text-gray-300">Crafting</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-              Digital Experiences
-            </span>
-          </h2>
+  <span className="block text-gray-400">Shaping the Future</span>
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400">
+    With AI Creations
+  </span>
+</h2>
+
         </div>
 
         {/* Geometric Services Grid */}
@@ -83,12 +85,7 @@ const WebDesignServices = () => {
                   </p>
                 </div>
 
-                {/* Hover Reveal */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                  <button className="w-full bg-white/10 backdrop-blur-md py-3 rounded-xl text-white hover:bg-white/20 transition-colors">
-                    Learn More
-                  </button>
-                </div>
+             
               </div>
             );
           })}
@@ -104,6 +101,7 @@ const WebDesignServices = () => {
                 Extraordinary
               </span>
             </h3>
+            <a href="/login">
             <button className="
               px-10 py-4 
               bg-gradient-to-r from-blue-500 to-purple-600 
@@ -116,6 +114,7 @@ const WebDesignServices = () => {
               Start Your Project
               <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
             </button>
+            </a>
           </div>
         </div>
       </div>
@@ -123,4 +122,4 @@ const WebDesignServices = () => {
   );
 };
 
-export default WebDesignServices;
+export default Head;
