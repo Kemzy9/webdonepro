@@ -10,7 +10,7 @@ const Feature = () => {
   const services = [
     {
       icon: Code,
-      title: "Precision Engineering",
+      title: "AI Builder",
       subtitle: "Advanced Web Development",
       description: "Crafting scalable digital solutions with cutting-edge technologies and performance-first approach.",
       color: "text-blue-500",
