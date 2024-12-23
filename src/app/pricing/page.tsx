@@ -82,7 +82,7 @@ const PricingUI = () => {
         { feature: '3 Page', tooltip: 'Build  3 page /month 1 extra ' },
         { feature: 'AI  Themes /Walpaper', tooltip: 'Need Theme for Background ' },
         { feature: '24/7 customer support', included: false },
-        { feature: 'Access 100 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
+        { feature: 'Access 200 Premium Request/month ', tooltip: 'Receive  200 AI model (Claude Sonnet) requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
       ],
       priceId: isYearly
@@ -102,7 +102,7 @@ const PricingUI = () => {
 
         { feature: 'AI  Themes /Walpaper', tooltip: 'Need Theme for Background  Use AI ' },
         { feature: '24/7 customer support', included: false },
-        { feature: 'Access 1000 Premium Request/month ', tooltip: 'Receive  100 AI model requests, add more additional feature Build landing page based your choice and  your needs.  ' },
+        { feature: 'Access 1000 Premium Request/month ', tooltip: 'Receive  1000 AI model (Claude Sonnet) requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
       ],
       priceId: isYearly
@@ -110,33 +110,40 @@ const PricingUI = () => {
         : process.env.NEXT_PUBLIC_LEMON_CREATOR_PRO_MONTHLY_PRICE_ID,
     },
     {
-      title: 'Nextjs Framework',
-      price: isYearly ? '164' : '164',
-      originalPrice: isYearly ? '119' : '144',
+      title: 'Nextjs Framework + Starter',
+      price: isYearly ? '189' : '189',
+      originalPrice: isYearly ? '285' : '285',
       description: 'Empowering Unique Minds with Cutting-Edge Tools .',
       features: [
-        { feature: 'Nextjs', tooltip: 'A full setup Of Nextjs ' },
-    
-        { feature: 'Stripe/Lemon Squeezy', tooltip: 'A payment Gateway ' },
-   
-        { feature: 'Mailtrip/Resend', tooltip: 'Email login ' },
- 
-
-
-
-
-        { feature: 'Google Auth/Github Auth', tooltip: 'A payment Gateway ' },
-
-        { feature: 'Future Update ', tooltip: 'Leverage AI to generate compelling copy for your landing pages, saving you time and effort.' },
-        { feature: 'Supabase/Mongodb', tooltip: 'A payment Gateway ' },
-       
         { 
-          feature: 'React JavaScript/TypeScript', 
-          
-          tooltip: 'Build faster and smarter with the power of React at your fingertips!' 
-      },
-
-        'Export Code',
+          feature: 'Complete Next.js Setup', 
+          tooltip: 'Ready-to-use Next.js project with all the best practices and optimizations already set up for you' 
+        },
+        { 
+          feature: 'Payment Processing', 
+          tooltip: 'Accept payments easily with pre-configured Stripe and Lemon Squeezy - no complex setup needed!' 
+        },
+        { 
+          feature: 'Email System', 
+          tooltip: 'Built-in email functionality using Mailtrip and Resend - perfect for user notifications and marketing' 
+        },
+        { 
+          feature: 'Easy Authentication', 
+          tooltip: 'Let your users sign in with their Google or GitHub accounts - secure and hassle-free' 
+        },
+        { 
+          feature: 'Lifetime Updates', 
+          tooltip: 'Get all future improvements and new features at no extra cost - your framework keeps getting better' 
+        },
+        { 
+          feature: 'Database Choice', 
+          tooltip: 'Choose between Supabase or MongoDB - both configured and ready for your data needs' 
+        },
+        { 
+          feature: 'Modern Development', 
+          tooltip: 'Full TypeScript and React support with modern practices - write better code, faster' 
+        },
+        'Export Code'
       ],
       priceId: isYearly
         ? process.env.NEXT_PUBLIC_LEMON_SQUEEZY_PREMIUM_YEARLY_PRICE_ID
@@ -146,128 +153,195 @@ const PricingUI = () => {
   ];
 
   return (
-    <div className="container mx-auto px-6 py-32 relative bg-gradient-to-b from-gray-900 via-gray-800 to-black">
-      {/* Enhanced Background Effects */}
-      <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-[120px] animate-pulse"></div>
-      
-      {/* Pricing Header */}
-      <div className="text-center mb-16">
-        <h2 className="text-5xl font-bold text-center text-white mb-4 tracking-tight">
-          Choose Your <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">Perfect Plan</span>
-        </h2>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          Step Into the Future of Web Creation with AI
-        </p>
+    <div className="min-h-screen bg-[#0A0F1C] relative overflow-hidden">
+      {/* Enhanced Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Gradient Orbs */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] rounded-full bg-gradient-to-b from-violet-600/20 via-transparent to-transparent blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] rounded-full bg-gradient-to-t from-blue-600/20 via-transparent to-transparent blur-3xl animate-pulse" />
+        
+        {/* Floating Elements */}
+        <div className="absolute top-1/4 left-10 w-72 h-72 bg-violet-500/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl animate-float-delayed" />
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px]" />
+        
+        {/* Glowing Dots */}
+        <div className="absolute left-20 top-20 w-2 h-2 bg-violet-400 rounded-full animate-glow" />
+        <div className="absolute right-40 top-1/2 w-2 h-2 bg-blue-400 rounded-full animate-glow-delayed" />
+        <div className="absolute left-1/2 bottom-40 w-2 h-2 bg-purple-400 rounded-full animate-glow" />
       </div>
 
-      {/* Toggle Button */}
-      <div className="flex justify-center mb-12">
-        <div className="flex space-x-4 bg-gray-800/50 backdrop-blur-xl rounded-full p-1.5 shadow-xl border border-gray-700/50">
-          <button
-            className={`px-6 py-2.5 rounded-full transition-all duration-300 ${
-              isYearly 
-                ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg' 
-                : 'text-gray-400 hover:text-white'
-            }`}
-            onClick={togglePricing}
-          >
-            Yearly (Save 20%)
-          </button>
-          <button
-            className={`px-6 py-2.5 rounded-full transition-all duration-300 ${
-              !isYearly 
-                ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg' 
-                : 'text-gray-400 hover:text-white'
-            }`}
-            onClick={togglePricing}
-          >
-            Monthly
-          </button>
-        </div>
-      </div>
+      <div className="container mx-auto px-4 py-32 relative z-10">
+        {/* Premium Header */}
+        <div className="text-center space-y-6 mb-24">
+          <span className="px-4 py-2 bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-full text-violet-300 text-sm font-medium inline-block mb-4">
+            Flexible Pricing for Everyone
+          </span>
+          <h1 className="text-6xl font-bold tracking-tight bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent">
+            Choose Your Perfect Plan
+          </h1>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Get started with our AI-powered web development tools and take your projects to the next level
+          </p>
 
-      {/* Plans Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {plans.map((plan, idx) => (
-          <div className="relative group" key={idx}>
-            {/* Gradient Border Effect */}
-            <div className={`absolute -inset-0.5 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 
-              ${plan.isPopular 
-                ? 'bg-gradient-to-r from-purple-500 to-pink-500' 
-                : 'bg-gradient-to-r from-blue-500 to-purple-500'}`}
-            ></div>
-
-            <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 transition-all duration-300 hover:translate-y-[-4px] hover:shadow-2xl">
-              {plan.isPopular && (
-                <div className="absolute -top-4 right-4">
-                  <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
-                    Most Popular
+          {/* Premium Toggle */}
+          <div className="flex justify-center mt-12">
+            <div className="relative">
+              <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 blur-sm opacity-75" />
+              <div className="relative bg-gray-900 rounded-xl p-1 flex">
+                <button
+                  onClick={togglePricing}
+                  className={`px-8 py-3 rounded-lg transition-all duration-300 ${
+                    isYearly ? 'bg-gradient-to-r from-violet-500 to-purple-500 shadow-lg shadow-violet-500/25' : ''
+                  }`}
+                >
+                  <span className={isYearly ? 'text-white' : 'text-gray-400'}>
+                    Annual
+                    {isYearly && <span className="ml-2 text-xs bg-white/20 px-2 py-0.5 rounded-full">Save 20%</span>}
                   </span>
-                </div>
-              )}
-
-              <h3 className="text-2xl font-bold text-white mb-4">{plan.title}</h3>
-              <div className="flex items-baseline mb-6">
-                <span className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
-                  ${plan.price}
-                </span>
-                <span className="text-gray-400 ml-2 line-through text-sm">${plan.originalPrice}</span>
+                </button>
+                <button
+                  onClick={togglePricing}
+                  className={`px-8 py-3 rounded-lg transition-all duration-300 ${
+                    !isYearly ? 'bg-gradient-to-r from-blue-500 to-purple-500 shadow-xl' : 'hover:bg-gray-800'
+                  }`}
+                >
+                  <span className={!isYearly ? 'text-white' : 'text-gray-400'}>Monthly</span>
+                </button>
               </div>
-
-              <p className="text-sm text-gray-400 mb-6">{plan.description}</p>
-
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, featureIdx) => (
-                  <li key={featureIdx} className="flex items-start space-x-3 text-gray-300 group/item">
-                    {typeof feature === 'string' ? (
-                      <>
-                        <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 group-hover/item:text-green-300" />
-                        <span className="text-sm">{feature}</span>
-                      </>
-                    ) : (
-                      <div className="relative group/tooltip flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 group-hover/item:text-green-300" />
-                        <span className="text-sm ml-3">{feature.feature}</span>
-                        {feature.tooltip && (
-                          <div className="relative">
-                            <HelpCircle className="w-4 h-4 text-gray-500 ml-2 cursor-help" />
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded-lg py-2 px-3 hidden group-hover/tooltip:block w-48 z-10 mb-2 shadow-xl border border-gray-700">
-                              {feature.tooltip}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                onClick={() => handleBuy(plan.priceId!)}
-                disabled={loadingPlanId === plan.priceId}
-                className={`w-full py-3 rounded-xl font-medium transition-all duration-300 
-                  ${plan.isPopular 
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg hover:shadow-purple-500/25' 
-                    : 'bg-gray-800 text-white hover:bg-gray-700'}`}
-              >
-                {loadingPlanId === plan.priceId ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Processing...
-                  </span>
-                ) : (
-                  `Choose ${plan.title}`
-                )}
-              </button>
             </div>
           </div>
-        ))}
+        </div>
+
+        {/* Premium Plans Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {plans.map((plan, idx) => (
+            <div key={idx} className={`relative group ${plan.isPopular ? 'md:-mt-8' : ''}`}>
+              {/* Premium card effect */}
+              <div className="absolute -inset-[2px] rounded-3xl bg-gradient-to-b from-violet-500 to-purple-500 opacity-60 blur group-hover:opacity-100 transition-all duration-500" />
+              
+              <div className="relative h-full bg-gray-900/90 backdrop-blur-xl rounded-2xl p-8 shadow-2xl">
+                {plan.isPopular && (
+                  <div className="absolute -top-5 left-0 right-0 flex justify-center">
+                    <div className="relative">
+                      <div className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-violet-500 to-purple-500 blur-sm" />
+                      <span className="relative px-6 py-2 bg-gray-900 rounded-full text-violet-300 text-sm font-medium">
+                        Most Popular
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Premium pricing header */}
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-white mb-4">{plan.title}</h3>
+                  <div className="flex items-baseline space-x-2 mb-6">
+                    <span className="text-5xl font-bold bg-gradient-to-br from-violet-400 to-purple-400 bg-clip-text text-transparent">
+                      ${plan.price}
+                    </span>
+                    {plan.originalPrice && (
+                      <span className="text-gray-500 line-through text-lg">${plan.originalPrice}</span>
+                    )}
+                  </div>
+                  <p className="text-gray-400">{plan.description}</p>
+                </div>
+
+                {/* Premium feature list */}
+                <ul className="space-y-4 mb-8">
+                  {plan.features.map((feature, featureIdx) => (
+                    <li key={featureIdx} className="flex items-start space-x-3 text-gray-300 group/item">
+                      {typeof feature === 'string' ? (
+                        <>
+                          <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 group-hover/item:text-green-300" />
+                          <span className="text-sm">{feature}</span>
+                        </>
+                      ) : (
+                        <div className="relative group/tooltip flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 group-hover/item:text-green-300" />
+                          <span className="text-sm ml-3">{feature.feature}</span>
+                          {feature.tooltip && (
+                            <div className="relative">
+                              <HelpCircle className="w-4 h-4 text-gray-500 ml-2 cursor-help" />
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded-lg py-2 px-3 hidden group-hover/tooltip:block w-48 z-10 mb-2 shadow-xl border border-gray-700">
+                                {feature.tooltip}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Premium CTA button */}
+                <div className="mt-auto">
+                  <button
+                    onClick={() => handleBuy(plan.priceId!)}
+                    disabled={loadingPlanId === plan.priceId}
+                    className={`
+                      relative w-full py-4 rounded-xl font-medium text-white 
+                      transition-all duration-300 transform hover:-translate-y-1
+                      ${plan.isPopular 
+                        ? 'bg-gradient-to-r from-violet-500 to-purple-500 hover:shadow-lg hover:shadow-violet-500/25' 
+                        : 'bg-gray-800 hover:bg-gray-700'
+                      }
+                    `}
+                  >
+                    {loadingPlanId === plan.priceId ? (
+                      <span className="flex items-center justify-center space-x-2">
+                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        <span>Processing...</span>
+                      </span>
+                    ) : (
+                      `Get started with ${plan.title}`
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Premium trust badges */}
+        <div className="mt-24 text-center">
+          <div className="flex justify-center items-center space-x-8 text-gray-400">
+            <span>✓ 30-day money-back guarantee</span>
+            <span>✓ Cancel anytime</span>
+            <span>✓ Secure payment</span>
+          </div>
+        </div>
       </div>
     </div>
   );
+};
+
+// Add these animations to your global CSS or tailwind.config.js
+const tailwindConfig = {
+  theme: {
+    extend: {
+      animation: {
+        'float': 'float 8s ease-in-out infinite',
+        'float-delayed': 'float 8s ease-in-out 4s infinite',
+        'glow': 'glow 4s ease-in-out infinite',
+        'glow-delayed': 'glow 4s ease-in-out 2s infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        glow: {
+          '0%, 100%': { opacity: 0.3, transform: 'scale(1)' },
+          '50%': { opacity: 1, transform: 'scale(1.5)' },
+        },
+      },
+    },
+  },
 };
 
 export default PricingUI;
