@@ -52,16 +52,16 @@ const EmailSetup = () => {
             <p className="text-gray-300">Here&apos;s a simple example to send your first email:</p>
             <div className="bg-black/30 p-4 rounded-lg">
               <code className="text-purple-400 text-sm">
-                {`import { Resend } from 'resend';
+                {`import { Resend } from &apos;resend&apos;;
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Send your first email 🎉
 await resend.emails.send({
-  from: 'you@yourdomain.com',
-  to: 'user@email.com',
-  subject: 'Welcome aboard! 🚀',
-  html: '<h1>Welcome to our awesome app!</h1>'
+  from: &apos;you@yourdomain.com&apos;,
+  to: &apos;user@email.com&apos;,
+  subject: &apos;Welcome aboard! 🚀&apos;,
+  html: &apos;<h1>Welcome to our awesome app!</h1>&apos;
 });`}
               </code>
             </div>
@@ -124,7 +124,7 @@ await resend.emails.send({
             <li>• Check out the <a href="https://resend.com/docs" className="text-blue-400 hover:underline">Resend docs</a></li>
             <li>• Join our Discord community</li>
             <li>• Email not showing up? Check your spam folder!</li>
-            <li>• Remember to use a valid "from" address</li>
+            <li>• Remember to use a valid &quot;from&quot; address</li>
           </ul>
         </section>
       </div>
