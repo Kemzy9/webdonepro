@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
+import type { MessageStreamEvent } from '@anthropic-ai/sdk/resources/messages';
 import * as dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
@@ -98,10 +99,14 @@ export async function POST(req: NextRequest) {
           await fs.promises.writeFile(tempPath, new Uint8Array(buffer));
 
           const base64Image = await fs.promises.readFile(tempPath, { encoding: 'base64' });
-          const mimeType = file.type || 'image/jpeg';
+          // Restrict mime type to allowed values
+          const mimeType = file.type as "image/jpeg" | "image/png" | "image/gif" | "image/webp";
+          if (!['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.type)) {
+            throw new Error('Unsupported image type');
+          }
 
           messages.push({
-            role: 'user',
+            role: 'user' as const,
             content: [
               {
                 type: 'text',
@@ -136,22 +141,24 @@ export async function POST(req: NextRequest) {
         let isInCodeBlock = false;
 
         for await (const part of response) {
-          const content = part.delta?.text || '';
-          
-          if (content.includes('```')) {
-            isInCodeBlock = !isInCodeBlock;
-            if (isInCodeBlock) {
-              codeContent += '```';
+          if ('type' in part && part.type === 'content_block_delta') {
+            const content = part.delta?.text || '';
+            
+            if (content.includes('```')) {
+              isInCodeBlock = !isInCodeBlock;
+              if (isInCodeBlock) {
+                codeContent += '```';
+              } else {
+                codeContent += '```\n';
+                controller.enqueue(encoder.encode(`html:${codeContent}\n`));
+                codeContent = '';
+              }
+            } else if (isInCodeBlock) {
+              codeContent += content;
             } else {
-              codeContent += '```\n';
-              controller.enqueue(encoder.encode(`html:${codeContent}\n`));
-              codeContent = '';
+              textContent += content;
+              controller.enqueue(encoder.encode(`${content}\n`));
             }
-          } else if (isInCodeBlock) {
-            codeContent += content;
-          } else {
-            textContent += content;
-            controller.enqueue(encoder.encode(`${content}\n`));
           }
         }
 
@@ -164,7 +171,13 @@ export async function POST(req: NextRequest) {
         }
 
         // Update conversation history for this session
-        const updatedMessages = [...messages, { role: 'assistant', content: textContent + codeContent }];
+        const updatedMessages: MessageParam[] = [
+          ...messages, 
+          { 
+            role: 'assistant' as const, 
+            content: textContent + codeContent 
+          }
+        ];
         updateConversationHistory(sessionId, updatedMessages);
 
       } catch (error) {
@@ -202,6 +215,3 @@ export async function DELETE(req: NextRequest) {
     });
   }
 }
-
-
-///this si claude cursor  sysytem use fro respons elarger 
