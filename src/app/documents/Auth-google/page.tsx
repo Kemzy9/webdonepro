@@ -32,7 +32,7 @@ const AuthGuide = () => {
           </div>
 
           <div className="space-y-4 text-gray-300">
-            <p className="text-lg">Hey there! Let's get Google login working in just 3 simple steps:</p>
+            <p className="text-lg">Hey there! Let&apos;s get Google login working in just 3 simple steps:</p>
             
             <div className="bg-black/30 p-4 rounded-lg space-y-3">
               <p>1️⃣ First, head over to the <a href="https://console.cloud.google.com" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Google Cloud Console</a> and create a new project.</p>
@@ -75,7 +75,7 @@ const AuthGuide = () => {
             <div className="bg-black/30 p-4 rounded-lg space-y-3">
               <p>1️⃣ Go to your <a href="https://github.com/settings/developers" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">GitHub Developer Settings</a> and create a new OAuth app.</p>
               
-              <p>2️⃣ After creating your app, you'll get:</p>
+              <p>2️⃣ After creating your app, you&apos;ll get:</p>
               <ul className="list-disc list-inside ml-4 space-y-1">
                 <li>A Client ID</li>
                 <li>A Client Secret (click to generate)</li>
@@ -102,7 +102,7 @@ const AuthGuide = () => {
         <section className="p-6 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50">
           <h2 className="text-2xl font-semibold mb-4">🚀 Ready to implement?</h2>
           <div className="space-y-4">
-            <p className="text-gray-300">Here's a quick code snippet to add the login buttons:</p>
+            <p className="text-gray-300">Here&apos;s a quick code snippet to add the login buttons:</p>
             <div className="bg-black/30 p-4 rounded-lg">
               <code className="text-purple-400 text-sm">
                 {`import { signIn } from 'next-auth/react'
@@ -124,9 +124,9 @@ const AuthGuide = () => {
         <section className="p-6 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50">
           <h2 className="text-2xl font-semibold mb-4">😅 Running into issues?</h2>
           <ul className="space-y-3 text-gray-300">
-            <li>• Double-check your callback URLs - they're usually the culprit!</li>
+            <li>• Double-check your callback URLs - they&apos;re usually the culprit!</li>
             <li>• Make sure your .env variables are exactly as shown above</li>
-            <li>• Try using incognito mode if you're testing multiple accounts</li>
+            <li>• Try using incognito mode if you&apos;re testing multiple accounts</li>
             <li>• Still stuck? Drop us a message in Discord!</li>
           </ul>
         </section>
