@@ -7,9 +7,7 @@ import Footer from '../UI/footer/page';
 import { CheckCircle, DollarSign, XCircle, HelpCircle, X } from 'lucide-react';
 import { Inter, Outfit } from 'next/font/google';
 
-
 const outfit = Outfit({ subsets: ['latin'] });
-
 
 const PricingUI = () => {
   const [isYearly, setIsYearly] = useState(true);
@@ -23,16 +21,28 @@ const PricingUI = () => {
     seconds: 0
   });
   const [offerEnded, setOfferEnded] = useState(false);
+  const [endDate, setEndDate] = useState(new Date());
+  const [isClient, setIsClient] = useState(false);
 
-  const [endDate] = useState(() => {
-    const stored = localStorage.getItem('offerEndDate');
-    if (stored) return new Date(stored);
+  // Add this to handle client-side hydration
+  useEffect(() => {
+    setIsClient(true);
     
-    const date = new Date();
-    date.setDate(date.getDate() + 10);
-    localStorage.setItem('offerEndDate', date.toISOString());
-    return date;
-  });
+    // Handle localStorage here
+    try {
+      const stored = window.localStorage.getItem('offerEndDate');
+      if (stored) {
+        setEndDate(new Date(stored));
+      } else {
+        const date = new Date();
+        date.setDate(date.getDate() + 10);
+        window.localStorage.setItem('offerEndDate', date.toISOString());
+        setEndDate(date);
+      }
+    } catch (error) {
+      console.error('localStorage is not available:', error);
+    }
+  }, []);
 
   const togglePricing = () => {
     setIsYearly((prevState) => !prevState);
@@ -207,7 +217,7 @@ const PricingUI = () => {
   ];
 
   const OfferBanner = () => {
-    if (offerEnded) return null;
+    if (!isClient || offerEnded) return null;  // Add isClient check here
 
     return (
       <div className="max-w-3xl mx-auto mt-8 mb-16">
@@ -259,6 +269,7 @@ const PricingUI = () => {
     );
   };
 
+  // Modify the return statement to include isClient check for date-dependent content
   return (
     <div className="min-h-screen bg-[#0A0F1C] relative overflow-hidden">
       {/* Enhanced Background Elements */}
@@ -290,7 +301,7 @@ const PricingUI = () => {
             Choose Your Perfect Plan
           </h1>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Get started with our AI-powered web development tools and take your projects to the next level
+            Get started with AI-Agents web development tools and take your projects to the next level
           </p>
 
           {/* Premium Toggle */}
@@ -322,7 +333,7 @@ const PricingUI = () => {
           </div>
         </div>
 
-        <OfferBanner />
+        {isClient && <OfferBanner />}  {/* Only render when client-side */}
 
         {/* Premium Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
