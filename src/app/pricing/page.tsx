@@ -16,6 +16,23 @@ const PricingUI = () => {
   const router = useRouter();
   const [userId, setUserId] = useState<string | null>(null);
   const [loadingPlanId, setLoadingPlanId] = useState<string | null>(null);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 10,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+  const [offerEnded, setOfferEnded] = useState(false);
+
+  const [endDate] = useState(() => {
+    const stored = localStorage.getItem('offerEndDate');
+    if (stored) return new Date(stored);
+    
+    const date = new Date();
+    date.setDate(date.getDate() + 10);
+    localStorage.setItem('offerEndDate', date.toISOString());
+    return date;
+  });
 
   const togglePricing = () => {
     setIsYearly((prevState) => !prevState);
@@ -34,6 +51,43 @@ const PricingUI = () => {
 
     getUserDetails();
   }, []);
+
+  const calculateTimeLeft = () => {
+    const now = new Date();
+    const difference = endDate.getTime() - now.getTime();
+
+    if (difference <= 0) {
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
+    }
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60)
+    };
+  };
+
+  useEffect(() => {
+    setTimeLeft(calculateTimeLeft());
+
+    const timer = setInterval(() => {
+      const newTimeLeft = calculateTimeLeft();
+      setTimeLeft(newTimeLeft);
+      
+      if (Object.values(newTimeLeft).every(value => value === 0)) {
+        setOfferEnded(true);
+        clearInterval(timer);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [endDate]);
 
   const handleBuy = async (priceId: string) => {
     if (!userId) {
@@ -75,7 +129,7 @@ const PricingUI = () => {
     {
       title: 'Starter',
       price: isYearly ? '16/mo' : '20/mo',
-      originalPrice: isYearly ? '20/mo' : '25/mo',
+      originalPrice: isYearly ? '25/mo' : '29/mo',
       
       description: 'Ideal for beginners or individuals building their first project.',
       features: [
@@ -152,6 +206,59 @@ const PricingUI = () => {
 
   ];
 
+  const OfferBanner = () => {
+    if (offerEnded) return null;
+
+    return (
+      <div className="max-w-3xl mx-auto mt-8 mb-16">
+        <div className="relative group">
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-500 via-green-500 to-red-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-x"></div>
+          <div className="relative bg-gray-900 ring-1 ring-gray-800 rounded-lg p-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+              <div className="text-center sm:text-left">
+                <div className="inline-block animate-bounce bg-red-500/10 text-red-400 px-3 py-1 rounded-full text-sm font-medium mb-2">
+                  🎄 Limited Time Offer
+                </div>
+                <h3 className="text-xl font-bold text-white">
+                  Special Holiday Discount: Save 20% Extra
+                </h3>
+                <p className="text-gray-400 text-sm mt-1">
+                  Use code{' '}
+                  <span 
+                    className="font-mono bg-gray-800 px-2 py-1 rounded text-green-400 cursor-pointer hover:bg-gray-700 transition-colors"
+                    onClick={() => {
+                      navigator.clipboard.writeText('HOLIDAY2023');
+                      toast.success('Promo code copied!');
+                    }}
+                  >
+                    HOLIDAY2023
+                  </span>
+                </p>
+              </div>
+              <div className="flex gap-3">
+                {Object.entries(timeLeft).map(([key, value]) => (
+                  <div key={key} className="text-center">
+                    <div className="bg-gray-800/50 rounded px-3 py-2 min-w-[60px] transform hover:scale-105 transition-transform">
+                      <div className="text-2xl font-bold bg-gradient-to-r from-red-400 to-green-400 bg-clip-text text-transparent animate-pulse">
+                        {value.toString().padStart(2, '0')}
+                      </div>
+                      <div className="text-xs text-gray-400 capitalize">
+                        {key}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="mt-4 text-center text-xs text-gray-500">
+              Offer ends on {endDate.toLocaleDateString()} at {endDate.toLocaleTimeString()}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-[#0A0F1C] relative overflow-hidden">
       {/* Enhanced Background Elements */}
@@ -214,6 +321,8 @@ const PricingUI = () => {
             </div>
           </div>
         </div>
+
+        <OfferBanner />
 
         {/* Premium Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
