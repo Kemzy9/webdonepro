@@ -29,13 +29,13 @@ const EmailSetup = () => {
           </div>
 
           <div className="space-y-4 text-gray-300">
-            <p className="text-lg">Hey there! Let's get your email notifications up and running in no time 🚀</p>
+            <p className="text-lg">Hey there! Let&apos;s get your email notifications up and running in no time 🚀</p>
             
             <div className="bg-black/30 p-4 rounded-lg space-y-3">
               <p>1️⃣ First things first, install Resend:</p>
               <code className="text-blue-400 block">npm install resend</code>
               
-              <p>2️⃣ Grab your API key from <a href="https://resend.com" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Resend's dashboard</a></p>
+              <p>2️⃣ Grab your API key from <a href="https://resend.com" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Resend&apos;s dashboard</a></p>
               
               <p>3️⃣ Add it to your .env file:</p>
               <code className="text-purple-400 block mt-2">
@@ -47,9 +47,9 @@ const EmailSetup = () => {
 
         {/* Basic Implementation */}
         <section className="p-6 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50">
-          <h2 className="text-2xl font-semibold mb-4">✨ Let's Send Some Emails!</h2>
+          <h2 className="text-2xl font-semibold mb-4">✨ Let&apos;s Send Some Emails!</h2>
           <div className="space-y-4">
-            <p className="text-gray-300">Here's a simple example to send your first email:</p>
+            <p className="text-gray-300">Here&apos;s a simple example to send your first email:</p>
             <div className="bg-black/30 p-4 rounded-lg">
               <code className="text-purple-400 text-sm">
                 {`import { Resend } from 'resend';
@@ -70,7 +70,7 @@ await resend.emails.send({
 
         {/* Cool Features */}
         <section className="p-6 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50">
-          <h2 className="text-2xl font-semibold mb-4">🎨 Cool Features You'll Love</h2>
+          <h2 className="text-2xl font-semibold mb-4">🎨 Cool Features You&apos;ll Love</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-black/30 p-4 rounded-lg">
               <h3 className="text-lg font-medium text-blue-400 mb-2">📱 React Email</h3>
@@ -108,11 +108,11 @@ await resend.emails.send({
           <div className="space-y-4 text-gray-300">
             <div className="bg-blue-500/10 p-4 rounded-lg">
               <p className="font-medium mb-2">🔥 Using a custom domain?</p>
-              <p>Verify your domain in Resend's dashboard for better deliverability!</p>
+              <p>Verify your domain in Resend&apos;s dashboard for better deliverability!</p>
             </div>
             <div className="bg-purple-500/10 p-4 rounded-lg">
               <p className="font-medium mb-2">⚡ Need testing?</p>
-              <p>Use Resend's preview feature to test your emails before sending!</p>
+              <p>Use Resend&apos;s preview feature to test your emails before sending!</p>
             </div>
           </div>
         </section>
