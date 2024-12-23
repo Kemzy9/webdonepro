@@ -107,9 +107,20 @@ const Introducingwebdone = () => {
 
       {/* Header */}
       <header className="px-6 py-4 backdrop-blur-sm bg-black/20 border-b border-gray-700/50 flex justify-between items-center sticky top-0 z-50">
-        <Logo /> <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-          webdone Docs
-        </h1>
+        <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4">
+            <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
+              <Logo />
+            </div>
+            <div className="text-2xl font-semibold tracking-tight text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-white to-gray-300 transition-all duration-300 font-['Inter']">
+              Web<span className="text-indigo-400">done</span>
+            </div>
+          </div>
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+            Docs
+          </h1>
+        </div>
+
         <div className="flex items-center gap-4">
           <div className="relative group">
             <input
