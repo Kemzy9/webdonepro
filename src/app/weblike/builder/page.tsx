@@ -736,7 +736,7 @@ const CodePreview: React.FC = () => {
         formData.append('image', selectedImage);
       }
 
-      const response = await fetch('/api/users/claudesonnet', {
+      const response = await fetch('/api/users/weblike', {
         method: 'POST',
         body: formData,
       });
