@@ -7,8 +7,7 @@ import MongoDBSetup from "./mongodb-setup/page";
 import QuickStart from "./quickstart/page";
 import AuthGoogle from "./Auth-google/page";
 import EmailSetup from "./email-setup/page";
-import Assistant from "./Assistant/page";
-import Walpaper from "./walpaper/page";
+
 
 
 const Introducingwebdone = () => {
@@ -27,10 +26,7 @@ const Introducingwebdone = () => {
         return <  AuthGoogle />;
       case "email-setup":
         return <  EmailSetup />;
-      case "  assistant":
-        return <  Assistant />;
-        case "  walpaper":
-          return <  Walpaper />;
+    
 
 
       default:
