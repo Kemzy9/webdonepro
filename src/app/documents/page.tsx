@@ -1,10 +1,15 @@
- 'use client'
+'use client'
 import React, { useState } from "react";
 import Logo from '@/app/UI/logo/page'
 // Import all documentation content components
 import StripeSetup from "./stripe-setup/page";
 import MongoDBSetup from "./mongodb-setup/page";
 import QuickStart from "./quickstart/page";
+import AuthGoogle from "./Auth-google/page";
+import EmailSetup from "./email-setup/page";
+import Assistant from "./Assistant/page";
+import Walpaper from "./walpaper/page";
+
 
 const Introducingwebdone = () => {
   const [activeSection, setActiveSection] = useState("intro");
@@ -18,6 +23,16 @@ const Introducingwebdone = () => {
         return <MongoDBSetup />;
       case "quickstart":
         return <QuickStart />;
+      case "google-auth":
+        return <  AuthGoogle />;
+      case "email-setup":
+        return <  EmailSetup />;
+      case "  assistant":
+        return <  Assistant />;
+        case "  walpaper":
+          return <  Walpaper />;
+
+
       default:
         return (
           <div className="max-w-4xl ">
@@ -28,7 +43,7 @@ const Introducingwebdone = () => {
               Welcome to webdone
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Meet your new AI-powered development companion. webdone is designed to revolutionize 
+              Meet your new AI-powered development companion. webdone is designed to revolutionize
               how engineering teams collaborate and build software.
             </p>
 
@@ -93,10 +108,10 @@ const Introducingwebdone = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-gray-100 relative">
       {/* Decorative background pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxIDAgNiAyLjY5IDYgNnMtMi42OSA2LTYgNi02LTIuNjktNi02IDIuNjktNiA2LTZ6IiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvZz48L3N2Zz4=')] opacity-10"></div>
-      
+
       {/* Header */}
       <header className="px-6 py-4 backdrop-blur-sm bg-black/20 border-b border-gray-700/50 flex justify-between items-center sticky top-0 z-50">
-      <Logo /> <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+        <Logo /> <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
           webdone Docs
         </h1>
         <div className="flex items-center gap-4">
@@ -128,25 +143,25 @@ const Introducingwebdone = () => {
                 <span className="mr-2">🚀</span> Get Started
               </h3>
               <ul className="space-y-2 pl-6">
-                <li 
+                <li
                   className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'intro' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
                   onClick={() => setActiveSection('intro')}
                 >
                   Introducing webdone
                 </li>
-                <li 
+                <li
                   className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'quickstart' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
                   onClick={() => setActiveSection('quickstart')}
                 >
                   Quickstart Guide
                 </li>
-                <li 
+                <li
                   className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'mongodb' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
                   onClick={() => setActiveSection('mongodb')}
                 >
                   MongoDB Integration
                 </li>
-                <li 
+                <li
                   className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'stripe' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
                   onClick={() => setActiveSection('stripe')}
                 >
@@ -154,38 +169,49 @@ const Introducingwebdone = () => {
                 </li>
               </ul>
             </div>
-            
+
             <div>
               <h3 className="text-purple-400 font-medium mb-3 flex items-center">
                 <span className="mr-2">🔧</span> Core Setup
               </h3>
               <ul className="space-y-2 pl-6">
-                <li 
+                <li
                   className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'google-auth' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
                   onClick={() => setActiveSection('google-auth')}
                 >
                   Google Authentication
                 </li>
-                <li 
+                <li
                   className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'email-setup' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
                   onClick={() => setActiveSection('email-setup')}
                 >
                   Email Notifications
                 </li>
-                <li 
-                  className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'docker-setup' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
-                  onClick={() => setActiveSection('docker-setup')}
-                >
-                  Docker Setup
-                </li>
-                <li 
-                  className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'ui-components' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
-                  onClick={() => setActiveSection('ui-components')}
-                >
-                  UI Components
-                </li>
+
+               
               </ul>
             </div>
+            <h3 className="text-purple-400 font-medium mb-3 flex items-center">
+                <span className="mr-2">🔧</span> AI seetup
+              </h3>
+              <li
+                  className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'docker-setup' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
+                  onClick={() => setActiveSection('assistant')}
+                >
+                  AI-Asisstant
+                </li>
+                <li
+                  className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'ui-components' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
+                  onClick={() => setActiveSection(' walpaper')}
+                >
+                  AI Theme
+                </li>
+                <li
+                  className={`text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer ${activeSection === 'ui-components' ? 'text-white font-medium relative before:absolute before:w-1 before:h-full before:bg-blue-500 before:-left-3 before:rounded-r' : ''}`}
+                  onClick={() => setActiveSection('assistant')}
+                >
+                  Drag and Drop
+                </li>
           </div>
         </nav>
 
