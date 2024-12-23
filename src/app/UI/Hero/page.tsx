@@ -81,8 +81,8 @@ const Hero: React.FC = () => {
                                 <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
                                     <Logo />
                                 </div>
-                                <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-fuchsia-500 hover:to-violet-500 transition-colors">
-                                Webdone
+                                <div className="text-2xl font-semibold tracking-tight text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-white to-gray-300 transition-all duration-300 font-['Inter']">
+                                    Web<span className="text-indigo-400">done</span>
                                 </div>
                             </div>
 
@@ -139,143 +139,134 @@ const Hero: React.FC = () => {
 
             </header>
             {/* Hero Section - Adding new hero section */}
-            <div className="container mx-auto px-6 pt-32 pb-16 relative flex flex-col md:flex-row">
-                {/* Text Section */}
-                <div className="text-center max-w-4xl mx-auto md:text-left md:w-1/2  p-8 rounded-lg shadow-lg">
-                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">   AI</span>
-                        Turns Your Concepts into Custom Landing Pages
-
-                    </h1>
-                    <p className="text-xl text-gray-300 mb-12">
-                        No boring templates here. Just AI-powered magic crafting unique pages that feel human and look stunning ,launch Your product fast with nextjs full setup
-                    </p>
-                    <div className="flex flex-col items-center mt-4">
-                        <svg className="w-6 h-6 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        <span className="text-red-500 text-sm">No generic layout</span>
+            <div className="container mx-auto px-6 pt-32 pb-16 relative">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-7xl mx-auto">
+                    {/* Text Section */}
+                    <div className="text-center md:text-left md:w-1/2 p-8">
+                      
+                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight font-['Satoshi']">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-br from-violet-300 via-violet-400 to-fuchsia-400">AI</span>
+                            <span className="tracking-tight"> Turns Your Concepts into Custom Landing Pages</span>
+                        </h1>
+                        <p className="text-lg md:text-xl text-gray-300 mb-10 font-['Inter'] leading-relaxed">
+                            No boring templates here. Just AI-Landing-Editor magic crafting unique pages that feel human and look stunning, launch Your product fast with nextjs full setup
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center gap-6 justify-center md:justify-start">
+                            <a href="/login">
+                                <button className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full hover:from-indigo-600 hover:to-violet-600 transition-all duration-300 font-medium font-['Inter'] shadow-lg shadow-indigo-500/25 group">
+                                    Start Your Project
+                                    <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform duration-300">
+                                        →
+                                    </span>
+                                </button>
+                            </a>
+                            <div className="flex items-center gap-2">
+                                <svg className="w-5 h-5 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                <span className="text-red-500 text-sm">No generic layout</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <a href="/login">
-  <button
-    className="
-      px-10 py-4 
-      bg-indigo-500
-      text-white 
-      rounded-full 
-      hover:bg-cyan-500
-      transition-colors
-      group
-    "
-  >
-    Start Your Project
-    <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform">
-      →
-    </span>
-  </button>
-</a>
-
-                </div>
-
-                {/* Image Section */}
-                <div className="lg:col-span-3 my-12 md:w-1/2">
-                    <div className="max-w-6xl mx-auto px-4 relative flex justify-center">
-                        <div className="flex space-x-4">
-                            {[
-                                {
-                                    src: "/Beautyshop-landing-page.png",
-                                    alt: "Banking Website Example",
-                                    size: "w-80 h-96",
-                                    category: "Finance",
-                                    gradient: "from-blue-400 to-purple-500",
-                                },
-                                {
-                                    src: "/TravelLandingpage.png",
-                                    alt: "Modern Website Example",
-                                    size: "w-48 h-64",
-                                    category: "Modern",
-                                    gradient: "from-violet-400 to-indigo-500",
-                                },
-                                {
-                                    src: "/Beautyshop-landing-page.png",
-                                    alt: "Creative Website Example",
-                                    size: "w-32 h-48",
-                                    category: "Creative",
-                                    gradient: "from-emerald-400 to-teal-500",
-                                }
-                            ].map((image, index) => (
-                                <div
-                                    key={index}
-                                    className={`
-                                        relative ${image.size}
-                                        transform-gpu
-                                        transition-all duration-300 ease-out
-                                        hover:z-10
-                                        cursor-none
-                                    `}
-                                    onMouseMove={(e) => handleMouseMove(e, index)}
-                                    onMouseLeave={handleMouseLeave}
-                                    style={{
-                                        transform: `perspective(1000px) 
-                                                  rotateX(${rotation.x}deg) 
-                                                  rotateY(${rotation.y}deg)`,
-                                        transformStyle: 'preserve-3d'
-                                    }}
-                                >
-                                    <div className="relative w-full h-full rounded-2xl overflow-hidden transition-all duration-300 ease-out shadow-xl"
+                    {/* Image Section */}
+                    <div className="md:w-1/2">
+                        <div className="relative flex justify-center md:justify-end">
+                            <div className="flex space-x-2 md:space-x-4">
+                                {[
+                                    {
+                                        src: "/Beautyshop-landing-page.png",
+                                        alt: "Banking Website Example",
+                                        size: "w-80 h-96",
+                                        category: "Finance",
+                                        gradient: "from-blue-400 to-purple-500",
+                                    },
+                                    {
+                                        src: "/TravelLandingpage.png",
+                                        alt: "Modern Website Example",
+                                        size: "w-48 h-64",
+                                        category: "Modern",
+                                        gradient: "from-violet-400 to-indigo-500",
+                                    },
+                                    {
+                                        src: "/Beautyshop-landing-page.png",
+                                        alt: "Creative Website Example",
+                                        size: "w-32 h-48",
+                                        category: "Creative",
+                                        gradient: "from-emerald-400 to-teal-500",
+                                    }
+                                ].map((image, index) => (
+                                    <div
+                                        key={index}
+                                        className={`
+                                            relative ${image.size}
+                                            transform-gpu
+                                            transition-all duration-300 ease-out
+                                            hover:z-10
+                                            cursor-none
+                                        `}
+                                        onMouseMove={(e) => handleMouseMove(e, index)}
+                                        onMouseLeave={handleMouseLeave}
                                         style={{
-                                            transformStyle: 'preserve-3d',
-                                            transform: 'translateZ(50px)',
-                                        }}>
-                                        <div className="absolute inset-0 backdrop-blur-sm bg-white/30 shadow-xl 
-                                            group-hover:bg-white/40 transition-all duration-300"></div>
-
-                                        <div className={`absolute inset-0 border-2 rounded-2xl bg-gradient-to-r ${image.gradient} 
-                                            opacity-20 group-hover:opacity-40 transition-opacity duration-300`}></div>
-
-                                        <div className="w-full h-full cursor-none"
-                                            onContextMenu={(e) => e.preventDefault()}
+                                            transform: `perspective(1000px) 
+                                                      rotateX(${rotation.x}deg) 
+                                                      rotateY(${rotation.y}deg)`,
+                                            transformStyle: 'preserve-3d'
+                                        }}
+                                    >
+                                        <div className="relative w-full h-full rounded-2xl overflow-hidden transition-all duration-300 ease-out shadow-xl"
                                             style={{
-                                                WebkitUserSelect: 'none',
-                                                userSelect: 'none',
-                                                perspective: '1000px'
-                                            }}
-                                        >
-                                            <Image
-                                                src={image.src}
-                                                alt={image.alt}
-                                                width={256}
-                                                height={384}
-                                                className="w-full h-full object-cover transition-transform duration-300 ease-out"
-                                                priority
-                                                draggable="false"
-                                                onDragStart={(e) => e.preventDefault()}
-                                            />
-                                        </div>
+                                                transformStyle: 'preserve-3d',
+                                                transform: 'translateZ(50px)',
+                                            }}>
+                                            <div className="absolute inset-0 backdrop-blur-sm bg-white/30 shadow-xl 
+                                                group-hover:bg-white/40 transition-all duration-300"></div>
 
-                                        <div className="absolute inset-0 bg-gradient-to-b from-transparent 
-                                            via-black/20 to-black/60 opacity-60 transition-opacity duration-300"></div>
+                                            <div className={`absolute inset-0 border-2 rounded-2xl bg-gradient-to-r ${image.gradient} 
+                                                opacity-20 group-hover:opacity-40 transition-opacity duration-300`}></div>
 
-                                        <div className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold
-                                            bg-white/20 backdrop-blur-md text-white border border-white/30
-                                            transform -translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
-                                            {image.category}
-                                        </div>
+                                            <div className="w-full h-full cursor-none"
+                                                onContextMenu={(e) => e.preventDefault()}
+                                                style={{
+                                                    WebkitUserSelect: 'none',
+                                                    userSelect: 'none',
+                                                    perspective: '1000px'
+                                                }}
+                                            >
+                                                <Image
+                                                    src={image.src}
+                                                    alt={image.alt}
+                                                    width={256}
+                                                    height={384}
+                                                    className="w-full h-full object-cover transition-transform duration-300 ease-out"
+                                                    priority
+                                                    draggable="false"
+                                                    onDragStart={(e) => e.preventDefault()}
+                                                />
+                                            </div>
 
-                                        <div className="absolute bottom-4 right-4 flex space-x-1 opacity-0 
-                                            group-hover:opacity-100 transition-opacity duration-300">
-                                            {[...Array(3)].map((_, i) => (
-                                                <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/50"></div>
-                                            ))}
+                                            <div className="absolute inset-0 bg-gradient-to-b from-transparent 
+                                                via-black/20 to-black/60 opacity-60 transition-opacity duration-300"></div>
+
+                                            <div className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold
+                                                bg-white/20 backdrop-blur-md text-white border border-white/30
+                                                transform -translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+                                                {image.category}
+                                            </div>
+
+                                            <div className="absolute bottom-4 right-4 flex space-x-1 opacity-0 
+                                                group-hover:opacity-100 transition-opacity duration-300">
+                                                {[...Array(3)].map((_, i) => (
+                                                    <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/50"></div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div className="w-full max-w-5xl mx-auto relative perspective" style={{ perspective: '1000px' }}>
@@ -335,7 +326,7 @@ const Hero: React.FC = () => {
                     {/* Video with Enhanced Styling */}
                     <video
                         ref={videoRef}
-                        src="/Ddemo-video-Ai-Landing-page.mp4"
+                        src="/A-builder.mp4"
                         width="100%"
                         height="auto"
                         autoPlay
