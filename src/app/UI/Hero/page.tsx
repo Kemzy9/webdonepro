@@ -11,6 +11,36 @@ const Hero: React.FC = () => {
     const [scrolled, setScrolled] = useState(false);
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
     const videoRef = useRef<HTMLVideoElement>(null)
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [progress, setProgress] = useState(0);
+
+    const togglePlay = () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
+    const handleTimeUpdate = () => {
+        if (videoRef.current) {
+            const progress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+            setProgress(progress);
+        }
+    };
+
+    const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (videoRef.current) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const seekPercentage = (x / rect.width) * 100;
+            const seekTime = (videoRef.current.duration / 100) * seekPercentage;
+            videoRef.current.currentTime = seekTime;
+        }
+    };
 
     // Add scroll effect to header
     useEffect(() => {
@@ -153,7 +183,7 @@ const Hero: React.FC = () => {
                         <div className="flex flex-col sm:flex-row items-center gap-6 justify-center md:justify-start">
                             <a href="/login">
                                 <button className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full hover:from-indigo-600 hover:to-violet-600 transition-all duration-300 font-medium font-['Inter'] shadow-lg shadow-indigo-500/25 group">
-                                    Let's Create Something Amazing!
+                                    Let&apos;s Create Something Amazing!
                                     <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform duration-300">
                                         ✨
                                     </span>
@@ -325,13 +355,14 @@ const Hero: React.FC = () => {
                     {/* Video with Enhanced Styling */}
                     <video
                         ref={videoRef}
-                        src="/React-AI-landing-page-builder.mp4"
+                        src="/A-builder.mp4"
                         width="100%"
                         height="auto"
                         autoPlay
                         loop
                         muted
                         playsInline
+                        onTimeUpdate={handleTimeUpdate}
                         className="w-full h-auto object-cover rounded-2xl shadow-2xl relative z-20 
             transition-all duration-300 hover:shadow-violet-500/50"
                     />
@@ -347,6 +378,17 @@ const Hero: React.FC = () => {
             transition-all 
             duration-500 
             group-hover:opacity-80"></div>
+
+                    {/* Custom Video Controls */}
+                    <div className="absolute bottom-4 left-4 right-4 z-40 flex items-center justify-between px-4 py-2 bg-black/50 rounded-lg">
+                        <button onClick={togglePlay} className="text-white">
+                            {isPlaying ? 'Pause' : 'Play'}
+                        </button>
+                        <div className="relative w-full h-1 bg-gray-300 rounded-full mx-4 cursor-pointer" onClick={handleSeek}>
+                            <div className="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style={{ width: `${progress}%` }}></div>
+                        </div>
+                        <span className="text-white">{Math.round(progress)}%</span>
+                    </div>
                 </div>
             </div>
 
