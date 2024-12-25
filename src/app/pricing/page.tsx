@@ -430,7 +430,7 @@ const PricingUI = () => {
         {/* Premium trust badges */}
         <div className="mt-24 text-center">
           <div className="flex justify-center items-center space-x-8 text-gray-400">
-            <span>✓ 30-day money-back guarantee</span>
+          
             <span>✓ Cancel anytime</span>
             <span>✓ Secure payment</span>
           </div>
