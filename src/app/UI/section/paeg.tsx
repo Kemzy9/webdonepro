@@ -103,7 +103,7 @@ const Section: React.FC = () => {
 
                                 <div className="w-full max-w-5xl mx-auto perspective" style={{ perspective: '1000px' }}>
                                     <video
-                                        src="/AI-Walpaper.mp4"
+                                        src="/Nextj-boiler-plate.mp4"
                                         width={300} // New width
                                         height={450} // New height
                                         autoPlay
