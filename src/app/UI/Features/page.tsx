@@ -28,9 +28,7 @@ const ServicesSection = () => {
                                     <span className="text-sm text-gray-300 mb-2 block">FEATURED</span>
                                     <h3 className="text-3xl font-bold mb-4">Maldives Private Resort</h3>
                                     <p className="text-gray-300 mb-6">Experience luxury in overwater villas</p>
-                                    <button className="px-6 py-3 bg-white/10 backdrop-blur-md rounded-lg hover:bg-white/20 transition-all">
-                                        Explore Location →
-                                    </button>
+                               
                                 </div>
                             </div>
                         </div>
@@ -44,7 +42,7 @@ const ServicesSection = () => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
                                 <div className="absolute bottom-0 p-6">
                                     <h3 className="text-xl font-bold mb-2">Beauty Ecommerce</h3>
-                                    <p className="text-gray-300">Explore the latest beauty products</p>
+                                    <p className="text-gray-300"> latest beauty products</p>
                                 </div>
                             </div>
 
@@ -57,8 +55,8 @@ const ServicesSection = () => {
 
                                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
                                 <div className="absolute bottom-0 p-6">
-                                    <h3 className="text-xl font-bold mb-2">AI Beauty Shop</h3>
-                                    <p className="text-gray-300">Personalized beauty recommendations</p>
+                                    <h3 className="text-xl font-bold mb-2">Saas </h3>
+                                    <p className="text-gray-300">launch your saas Fast</p>
                                 </div>
                             </div>
 
@@ -70,8 +68,8 @@ const ServicesSection = () => {
                                     className="w-auto h-auto  object-cover" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
                                 <div className="absolute bottom-0 p-6">
-                                    <h3 className="text-xl font-bold mb-2">AI Beauty Shop</h3>
-                                    <p className="text-gray-300">Discover beauty with AI</p>
+                                    <h3 className="text-xl font-bold mb-2">Realstate</h3>
+                                    <p className="text-gray-300">A Real State landing page </p>
                                 </div>
                             </div>
                         </div>
