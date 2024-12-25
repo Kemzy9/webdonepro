@@ -251,7 +251,7 @@ const Section: React.FC = () => {
 
                     <div className="space-y-8">
                         <h3 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
-                           Build with Next.js
+                            Build with Next.js
                         </h3>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                             {technologies.map((tech, index) => (
@@ -358,7 +358,7 @@ const Future = {
 
 
 
-              
+
                 <Faq />
                 <Pricing />
                 <div className="container mx-auto px-6 pt-20">
@@ -388,109 +388,8 @@ const Future = {
                                 </Link>
                             </div>
                         </div>
-                   
+
                         {/* Right Side - Image Section */}
-                        <div className="lg:col-span-1 my-12 md:order-2 relative">
-                            <div className="max-w-6xl mx-auto px-4 relative">
-                                {/* Background effect */}
-                                <div
-                                    className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-50 blur-3xl"
-                                    style={{ zIndex: 0, pointerEvents: 'none' }}
-                                ></div>
-
-                                <div className="relative  h-auto w-auto flex justify-center items-center" style={{ zIndex: 1 }}>
-                                    {[
-                                        {
-                                            src: "/Hero-section-beautypage.png",
-                                            alt: "Modern Website Example",
-                                            size: "w-[500px] h-[400px]",
-                                            zIndex: "z-40",
-                                            rotate: "rotate-0",
-                                            translate: "translate-x-0 translate-y-0",
-                                            opacity: "opacity-70"
-                                        },
-                                        {
-                                            src: "/Beuty-ecommercelanding-page.png",
-                                            alt: "Banking Website Example",
-                                            size: "w-[400px] h-[320px]",
-                                            zIndex: "z-30",
-                                            rotate: "-rotate-6",
-                                            translate: "translate-x-16 translate-y-10",
-                                            opacity: "opacity-60"
-
-                                        },
-                                        {
-                                            src: "/Hero-section-beautypage.png",
-                                            alt: "Beauty Website Example",
-                                            size: "w-[300px] h-[240px]",
-                                            zIndex: "z-20",
-                                            rotate: "-rotate-12",
-                                            translate: "translate-x-32 translate-y-20",
-                                            opacity: "opacity-40"
-                                        },
-                                        {
-                                            src: "/Realstatelanding-page.html.png",
-                                            alt: "Creative Website Example",
-                                            size: "w-[200px] h-[160px]",
-                                            zIndex: "z-10",
-                                            rotate: "-rotate-18",
-                                            translate: "translate-x-48 translate-y-32",
-                                            opacity: "opacity-70"
-                                        }
-                                    ].map((image, index) => (
-                                        <div
-                                            key={index}
-                                            className={`
-                    absolute 
-                    ${image.size} 
-                    ${image.zIndex} 
-                    ${image.rotate} 
-                    ${image.translate}
-                    ${image.opacity}
-                    transition-all duration-500 ease-in-out
-                    hover:z-50 hover:rotate-0 hover:translate-x-0 hover:translate-y-0 hover:opacity-100
-                    rounded-2xl overflow-hidden
-                    shadow-2xl
-                    cursor-pointer
-                    group
-                  `}
-                                        >
-                                            <div className="relative w-full h-full">
-                                                {/* Glassmorphism effect */}
-                                                <div className="absolute inset-0 backdrop-blur-sm bg-white/30 shadow-xl 
-                                  group-hover:bg-white/40 transition-all duration-500"></div>
-
-                                                <Image
-                                                    src={image.src}
-                                                    alt={image.alt}
-                                                    fill
-                                                    className="absolute inset-0 w-full h-full object-cover 
-                                 transition-transform duration-500 
-                                 ease-in-out group-hover:scale-110"
-                                                    priority
-                                                    draggable="false"
-                                                    onDragStart={(e) => e.preventDefault()}
-                                                />
-
-                                                {/* Gradient Overlay */}
-                                                <div className="absolute inset-0 bg-gradient-to-b from-transparent 
-                                  via-black/20 to-black/60 opacity-80 
-                                  group-hover:opacity-90 
-                                  transition-opacity duration-500"></div>
-
-                                                {/* Category Badge */}
-                                                <div className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold
-                                  bg-white/20 backdrop-blur-md text-white border border-white/30
-                                  transform -translate-y-12 group-hover:translate-y-0 
-                                  transition-transform duration-500">
-                                                    {image.alt.split(" ")[0]}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 {/* Footer */}
@@ -554,7 +453,11 @@ const Future = {
                         </div>
 
                         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                            <p className="text-gray-400">© 2024 webdone. All rights reserved.</p>
+                            <div className="flex items-center gap-4">
+                                <p className="text-gray-400">© 2024 webdone. All rights reserved.</p>
+                                <span className="text-gray-500">|</span>
+                                <span className="text-gray-400">Built by <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">webdone</span></span>
+                            </div>
                             <div className="flex space-x-6 mt-4 md:mt-0">
                                 <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
                                 <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a>
