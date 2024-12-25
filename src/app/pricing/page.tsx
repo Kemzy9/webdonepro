@@ -233,7 +233,7 @@ const PricingUI = () => {
                   Special Holiday Discount: Save 20% Extra
                 </h3>
                 <p className="text-gray-400 text-sm mt-1">
-                  Use code{' '}
+                  Applied code{' '}
                   <span 
                     className="font-mono bg-gray-800 px-2 py-1 rounded text-green-400 cursor-pointer hover:bg-gray-700 transition-colors"
                     onClick={() => {
