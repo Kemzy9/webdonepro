@@ -10,8 +10,8 @@ const ServicesSection = () => {
             <section className="py-32 relative overflow-hidden ">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex justify-between items-end mb-16">
-                        <h2 className="text-5xl font-bold">Featured<br />Destinations</h2>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors">View all destinations →</a>
+                        <h2 className="text-5xl font-bold">Create, customize<br />and launch</h2>
+                       
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -75,8 +75,8 @@ const ServicesSection = () => {
                         </div>
                     </div>
                     <div className="flex justify-between items-end mb-16">
-                        <h2 className="text-5xl font-bold">Featured<br />Destinations</h2>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors">View all destinations →</a>
+                        <h2 className="text-5xl font-bold">Fast<br />smart</h2>
+               
                     </div>
 
                     <div className="mb-16">
