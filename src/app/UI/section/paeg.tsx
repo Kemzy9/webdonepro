@@ -361,37 +361,7 @@ const Future = {
 
                 <Faq />
                 <Pricing />
-                <div className="container mx-auto px-6 pt-20">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        {/* Left Side - Text Content */}
-                        <div className="space-y-8 md:order-1">
-                            <div className="inline-block glass-effect px-4 py-2 rounded-full">
-                                <span className="text-[#00DC82]">Web Development Design AI Integration</span>
-                            </div>
-                            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-                                Build Your<br />
-                                <span className="gradient-text">Digital Future</span>
-                            </h1>
-                            <p className="text-gray-400 text-lg md:text-xl">
-                                From concept to deployment, we create cutting-edge websites and applications that define the future of digital experiences.
-                            </p>
-                            <div className="flex space-x-4">
-                                <Link href="/login">
-                                    <button className="modern-gradient text-black px-8 py-4 rounded-xl font-medium hover:opacity-90 transition-opacity">
-                                        Start Building
-                                    </button>
-                                </Link>
-                                <Link href="/login">
-                                    <button className="glass-effect text-white px-8 py-4 rounded-xl font-medium hover:bg-white/10 transition-colors">
-                                        View Projects
-                                    </button>
-                                </Link>
-                            </div>
-                        </div>
-
-                        {/* Right Side - Image Section */}
-                    </div>
-                </div>
+              
                 {/* Footer */}
 
                 <footer className="border-t border-white/10 mt-32">
