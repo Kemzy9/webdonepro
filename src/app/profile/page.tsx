@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Weblike from '@/app/UI/weblike/page'
-import { motion, AnimatePresence } from "framer-motion";
+
 import { RiCommandLine, RiSettingsLine, RiDashboardLine, RiUser3Line } from 'react-icons/ri';
 import { SiOpenai } from 'react-icons/si';
 
