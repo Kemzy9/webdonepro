@@ -75,7 +75,7 @@ const Section: React.FC = () => {
                         <div className="grid md:grid-cols-2 gap-16 items-center">
                             <div>
                                 <h2 className="text-4xl font-bold text-white mb-8">
-                                    Drag and  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">drop</span>
+                                    Drag and  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">Drop With Nextjs Setup</span>
                                 </h2>
                                 <div className="space-y-6">
                                     {[
