@@ -92,11 +92,13 @@ const ServicesSection = () => {
                 <div className="max-w-7xl mx-auto px-6 diagonal-content">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div>
-                            <h2 className="text-5xl font-bold mb-8">Unique<br />Experiences</h2>
-                            <p className="text-xl text-gray-300 mb-8">We curate extraordinary journeys that blend luxury with authentic local experiences.</p>
+                            <h2 className="text-5xl font-bold mb-8">     Experience AI Like Never Before<br /></h2>
+                            <p className="text-xl text-gray-300 mb-8">Build stunning pages effortlessly with the power of AI. Start creating today.</p>
+                                     <a href="/login">
                             <button className="px-8 py-4 bg-white text-black rounded-lg hover:bg-gray-100 transition-colors">
-                                Explore Experiences
+                             Get Started Today
                             </button>
+                                                                     </a>
                         </div>
 
 
