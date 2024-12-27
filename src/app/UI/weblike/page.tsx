@@ -278,7 +278,7 @@ const Webllix: React.FC = () => {
                   </div>
                 ) : (
                   <p className="text-xl text-center text-gray-500">
-                    Start by describing your vision above
+       What would you love to create today?
                   </p>
                 )}
               </div>
