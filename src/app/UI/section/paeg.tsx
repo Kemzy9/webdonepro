@@ -32,41 +32,6 @@ const Section: React.FC = () => {
             <div className="min-h-screen relative overflow-hidden bg-[#0A0A0A]">
 
                 {/* Core Features Section */}
-                <div className="container mx-auto px-6 py-32">
-                    <div className="text-center mb-24">
-                        <h2 className="text-5xl font-bold text-white mb-6">
-                            AI That Gets Your Style – <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> </span>
-                        </h2>t.js Setup
-                        <p className="text-gray-300 text-xl max-w-3xl mx-auto">
-                            Create React landing pages that match your vibe. No generic layouts, just your concept brought to life.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                title: "Smart Layout Generation",
-                                description: "AI analyzes your content and generates optimal layouts that match your brand identity and goals"
-                            },
-                            {
-                                title: "Responsive Adaptation",
-                                description: "Create automatically adapt to any screen size with intelligent breakpoint handling"
-                            },
-                            {
-                                title: "AI Assistant",
-                                description: "Build what You want to make your website good "
-                            }
-                        ].map((feature, index) => (
-                            <div key={index} className="group relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300">
-                                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl blur-xl"></div>
-                                <div className="relative">
-                                    <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
-                                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
 
                 {/* Advanced Capabilities Section */}
                 <div className="container mx-auto px-6 py-32 relative">
@@ -119,88 +84,9 @@ const Section: React.FC = () => {
                 </div>
 
                 {/* Workflow Optimization Section */}
-                <div className="container mx-auto px-6 py-32">
-                    <div className="max-w-4xl mx-auto text-center mb-24">
-                        <h2 className="text-4xl font-bold text-white mb-6">
-                            Create Like a Pro  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">(No Coding Needed)</span>
-                        </h2>
-                        <p className="text-gray-300 text-xl">
-                            AI turns your ideas into stunning React pages that look and talk like they were built by you.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-12">
-                        {[
-                            {
-                                title: "AI in your Control",
-                                description: "Make changes and manage pattern with AI Assistant",
-                                features: ["Automatic stunning patter", "Unique layout ", "Creative Theme"]
-                            },
-                            {
-                                title: "Color ,Style ",
-                                description: "want to change color Select the color Click any where ANd color will be changed",
-                                features: ["Live editing", "Stylish Color"]
-                            },
-                            {
-                                title: "Theme,Image",
-                                description: "Need Theme ,Wallpaper Generate in With AI  ",
-                                features: ["Creative Style", "High Quality "]
-                            },
-                            {
-                                title: "Export",
-                                description: "Export in minutes React javascript/Typescript ",
-                                features: ["Multiple formats", "Code generation",]
-                            }
-                        ].map((item, index) => (
-                            <div key={index} className="group relative">
-                                <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                                <div className="relative p-8 bg-white/5 rounded-2xl border border-white/10">
-                                    <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
-                                    <p className="text-gray-400 mb-6">{item.description}</p>
-                                    <ul className="space-y-3">
-                                        {item.features.map((feature, i) => (
-                                            <li key={i} className="text-gray-300 flex items-center">
-                                                <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mr-3"></span>
-                                                {feature}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Performance Metrics Section */}
-                <div className="container mx-auto px-6 overflow-hidden py-32">
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                metric: "10x",
-                                label: "Faster Building",
-                                description: "Build Faster and Creative  with AI assistance"
-                            },
-                            {
-                                metric: "95%",
-                                label: "Time Saved",
-                                description: "Reduce repetitive tasks with automation"
-                            },
-                            {
-                                metric: "24/7",
-                                label: "24/7 AI is in you hand",
-                                description: "Give your Fraustration to  AI  "
-                            }
-                        ].map((stat, index) => (
-                            <div key={index} className="relative p-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-4">
-                                    {stat.metric}
-                                </div>
-                                <h3 className="text-xl font-bold text-white mb-2">{stat.label}</h3>
-                                <p className="text-gray-400">{stat.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+               
+    
+      
 
                 {/* New Testimonials Section */}
                 <div className="container mx-auto px-6 py-32">
