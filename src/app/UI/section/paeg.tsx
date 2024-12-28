@@ -84,11 +84,77 @@ const Section: React.FC = () => {
                 </div>
 
                 {/* Workflow Optimization Section */}
-               
-    
-      
+
+
+
 
                 {/* New Testimonials Section */}
+
+
+                <div className="grid md:grid-cols-2 gap-16 items-center px-8 md:px-16 lg:px-24 py-16 bg-gradient-to-b from-gray-900 via-black to-gray-900 rounded-full">
+                    {/* Left Side - Text */}
+
+                    <div className="space-y-8">
+                        <h3 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
+                            Build with Next.js
+                        </h3>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                            {technologies.map((tech, index) => (
+                                <div
+                                    key={index}
+                                    className="relative group p-4 rounded-lg bg-gradient-to-br from-gray-800/50 to-gray-700/50 backdrop-blur-md shadow-lg hover:scale-105 transition transform duration-300"
+                                >
+                                    <div className="flex justify-center items-center h-16 w-16 mx-auto">
+                                        <Image
+                                            src={tech.logo}
+                                            alt={tech.name}
+                                            width={64}
+                                            height={64}
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                    <span className="absolute inset-x-0 bottom-2 text-sm text-gray-300 text-center group-hover:text-white">
+                                        {tech.name}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right Side - Images */}
+                    <div className="relative">
+                        <div className="floating-card rounded-2xl p-8">
+                            <div className="code-block p-6 text-sm text-gray-300">
+                                <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight font-['Satoshi']">
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-br from-violet-300 via-green-300 to-fuchsia-400">Next.js from Scratch </span>
+                                    <span className="tracking-tight">Building a Full-Stack Application</span>
+                                </h1>
+                                <p className="text-lg md:text-xl text-gray-300 mb-10 font-['Inter'] leading-relaxed">
+                                Build a complete application using Next.js, covering both frontend and backend, from setup to deploymen
+                                </p>
+                                <a href="/login">
+                                <button className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full hover:from-indigo-600 hover:to-violet-600 transition-all duration-300 font-medium font-['Inter'] shadow-lg shadow-indigo-500/25 group">
+Start Creating
+                                    <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform duration-300">
+                                        ✨
+                                    </span>
+                                </button>
+                            </a>
+                            </div>
+                        </div>
+                        {/* Decorative Elements */}
+                        <div className="absolute -z-10 top-10 right-10 w-72 h-72 modern-gradient rounded-full blur-[120px] opacity-20"></div>
+                        <div className="absolute -z-10 bottom-10 left-10 w-72 h-72 bg-blue-500 rounded-full blur-[120px] opacity-20"></div>
+                    </div>
+                </div>
+
+
+
+
+        
+                <Pricing />
+                <Faq />
+
                 <div className="container mx-auto px-6 py-32">
                     <h2 className="text-4xl font-bold text-center text-white mb-16">
                         Loved by
@@ -131,124 +197,6 @@ const Section: React.FC = () => {
                     </div>
                 </div>
 
-
-                <div className="grid md:grid-cols-2 gap-16 items-center px-8 md:px-16 lg:px-24 py-16 bg-gradient-to-b from-gray-900 via-black to-gray-900 rounded-full">
-                    {/* Left Side - Text */}
-
-                    <div className="space-y-8">
-                        <h3 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
-                            Build with Next.js
-                        </h3>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                            {technologies.map((tech, index) => (
-                                <div
-                                    key={index}
-                                    className="relative group p-4 rounded-lg bg-gradient-to-br from-gray-800/50 to-gray-700/50 backdrop-blur-md shadow-lg hover:scale-105 transition transform duration-300"
-                                >
-                                    <div className="flex justify-center items-center h-16 w-16 mx-auto">
-                                        <Image
-                                            src={tech.logo}
-                                            alt={tech.name}
-                                            width={64}
-                                            height={64}
-                                            className="object-contain"
-                                        />
-                                    </div>
-                                    <span className="absolute inset-x-0 bottom-2 text-sm text-gray-300 text-center group-hover:text-white">
-                                        {tech.name}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Right Side - Images */}
-                    <div className="relative">
-                        <div className="floating-card rounded-2xl p-8">
-                            <div className="code-block p-6 text-sm text-gray-300">
-                                <pre>
-                                    <code>
-                                        {`// Your vision, our code
-const Future = {
-  design: "Stunning",
-  performance: "Lightning",
-  features: ["AI", "Web3", "Mobile"],
-  deploy: () => "Success! 🚀"
-};`}
-                                    </code>
-                                </pre>
-                            </div>
-                        </div>
-                        {/* Decorative Elements */}
-                        <div className="absolute -z-10 top-10 right-10 w-72 h-72 modern-gradient rounded-full blur-[120px] opacity-20"></div>
-                        <div className="absolute -z-10 bottom-10 left-10 w-72 h-72 bg-blue-500 rounded-full blur-[120px] opacity-20"></div>
-                    </div>
-                </div>
-
-                {/* New How It Works Section */}
-                <div className="container mx-auto px-6 py-32">
-
-                    <h2 className="text-4xl font-bold text-center text-white mb-24">
-                        How
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> It Works</span>
-                    </h2>
-
-
-                    <div className="relative">
-                        {/* Connection Line */}
-                        <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 transform -translate-y-1/2 hidden md:block"></div>
-
-                        <div className="grid md:grid-cols-4 gap-12">
-                            {[
-                                {
-                                    step: "01",
-                                    title: " Command  ",
-                                    description: "Create a  landing page for Saas For AI Photo generation tool ",
-                                    icon: "🎨"
-                                },
-                                {
-                                    step: "02",
-                                    title: "Edit/Chat",
-                                    description: "Use AI to personalize colors, layouts, and content ,Need Change use  AI assistant to make changes",
-                                    icon: "⚡"
-                                },
-                                {
-                                    step: "03",
-                                    title: "If need Nextjs Boilerplate ",
-                                    description: "Add your landing page in Next js and boom your startup is ready for launch    ,",
-                                    icon: "✍️"
-                                },
-                                {
-                                    step: "04",
-                                    title: "Launch it ",
-                                    description: ",You have made landing page /website ,Nextjs Boilerplate ",
-                                    icon: "🚀"
-                                }
-                            ].map((item, index) => (
-                                <div key={index} className="relative z-10">
-                                    <div className="bg-white/10 backdrop-blur-lg p-8 rounded-2xl border border-white/10 hover:transform hover:-translate-y-2 transition-all duration-300">
-                                        <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-full flex items-center justify-center mb-6 mx-auto">
-                                            <span className="text-3xl">{item.icon}</span>
-                                        </div>
-                                        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full w-12 h-12 flex items-center justify-center">
-                                            <span className="text-white font-bold">{item.step}</span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-white text-center mb-4">{item.title}</h3>
-                                        <p className="text-gray-400 text-center">{item.description}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <Pricing />
-                <Faq />
-
-              
-                {/* Footer */}
 
                 <footer className="border-t border-white/10 mt-32">
                     <div className="container mx-auto px-6 py-12">
