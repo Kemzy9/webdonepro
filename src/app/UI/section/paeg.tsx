@@ -67,15 +67,15 @@ const Section: React.FC = () => {
                             <div className="relative max-w-5xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-2xl overflow-hidden">
 
                                 <div className="w-full max-w-5xl mx-auto perspective" style={{ perspective: '1000px' }}>
+
                                     <video
-                                        src="/Nextj-boiler-plate.mp4"
-                                        width={300} // New width
-                                        height={450} // New height
-                                        autoPlay
-                                        loop
-                                        muted
-                                        className="w-full h-auto object-cover rounded-lg shadow-2xl"
-                                    />
+                                        className=" max-w-4xl mx-auto w-full h-auto object-cover rounded-2xl shadow-2xl relative z-20 
+            transition-all duration-300 hover:shadow-violet-500/50" controls autoPlay muted>
+                                        <source src="/Nextj-boiler-plate.mp4" type="video/mp4" />
+                                        Your browser does not support the video tag.
+
+
+                                    </video>
                                 </div>
 
                             </div>
@@ -130,16 +130,16 @@ const Section: React.FC = () => {
                                     <span className="tracking-tight">Building a Full-Stack Application</span>
                                 </h1>
                                 <p className="text-lg md:text-xl text-gray-300 mb-10 font-['Inter'] leading-relaxed">
-                                Build a complete application using Next.js, covering both frontend and backend, from setup to deploymen
+                                    Build a complete application using Next.js, covering both frontend and backend, from setup to deploymen
                                 </p>
                                 <a href="/login">
-                                <button className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full hover:from-indigo-600 hover:to-violet-600 transition-all duration-300 font-medium font-['Inter'] shadow-lg shadow-indigo-500/25 group">
-Start Creating
-                                    <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform duration-300">
-                                        ✨
-                                    </span>
-                                </button>
-                            </a>
+                                    <button className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full hover:from-indigo-600 hover:to-violet-600 transition-all duration-300 font-medium font-['Inter'] shadow-lg shadow-indigo-500/25 group">
+                                        Start Creating
+                                        <span className="ml-2 group-hover:translate-x-1 inline-block transition-transform duration-300">
+                                            ✨
+                                        </span>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         {/* Decorative Elements */}
@@ -151,7 +151,7 @@ Start Creating
 
 
 
-        
+
                 <Pricing />
                 <Faq />
 
