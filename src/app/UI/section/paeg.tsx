@@ -244,9 +244,9 @@ const Future = {
 
 
 
-
-                <Faq />
                 <Pricing />
+                <Faq />
+
               
                 {/* Footer */}
 
