@@ -10,37 +10,6 @@ const Hero: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [rotation, setRotation] = useState({ x: 0, y: 0 });
-    const videoRef = useRef<HTMLVideoElement>(null)
-    const [isPlaying, setIsPlaying] = useState(true);
-    const [progress, setProgress] = useState(0);
-
-    const togglePlay = () => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
-
-    const handleTimeUpdate = () => {
-        if (videoRef.current) {
-            const progress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
-            setProgress(progress);
-        }
-    };
-
-    const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (videoRef.current) {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const seekPercentage = (x / rect.width) * 100;
-            const seekTime = (videoRef.current.duration / 100) * seekPercentage;
-            videoRef.current.currentTime = seekTime;
-        }
-    };
 
     // Add scroll effect to header
     useEffect(() => {
@@ -174,11 +143,11 @@ const Hero: React.FC = () => {
                     {/* Text Section */}
                     <div className="text-center md:text-left md:w-1/2 p-8">
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight font-['Satoshi']">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-br from-violet-300 via-violet-400 to-fuchsia-400">AI Turns Your Concepts into</span>
-                            <span className="tracking-tight"> Custom Landing Pages</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-br from-violet-300 via-violet-400 to-fuchsia-400">Explain Less, Achieve More</span>
+                            <span className="tracking-tight">AI Build Landing Pages Like Magic</span>
                         </h1>
                         <p className="text-lg md:text-xl text-gray-300 mb-10 font-['Inter'] leading-relaxed">
-                            Imagine getting a beautiful website without the headache! Our AI buddy understands exactly what you want and creates it in minutes. No more boring templates or complicated coding - just tell us your concept, and watch the magic happen! 🚀
+                        Skip the coding headaches— AI builds beautiful landing pages based on your ideas, fast and easy
                         </p>
                         <div className="flex flex-col sm:flex-row items-center gap-6 justify-center md:justify-start">
                             <a href="/login">
@@ -353,8 +322,7 @@ const Hero: React.FC = () => {
                     {renderGlitchOverlay()}
 
                     {/* Video with Enhanced Styling */}
-                 
-                          <video
+                    <video
                         className=" max-w-4xl mx-auto w-full h-auto object-cover rounded-2xl shadow-2xl relative z-20 
             transition-all duration-300 hover:shadow-violet-500/50" controls autoPlay muted>
                         <source src="/React-AI-landing-page-builder.mp4" type="video/mp4" />
@@ -372,19 +340,7 @@ const Hero: React.FC = () => {
             z-30 
             pointer-events-none 
             transition-all 
-            duration-500 
-            group-hover:opacity-80"></div>
-
-                    {/* Custom Video Controls */}
-                    <div className="absolute bottom-4 left-4 right-4 z-40 flex items-center justify-between px-4 py-2 bg-black/50 rounded-lg">
-                        <button onClick={togglePlay} className="text-white">
-                            {isPlaying ? 'Pause' : 'Play'}
-                        </button>
-                        <div className="relative w-full h-1 bg-gray-300 rounded-full mx-4 cursor-pointer" onClick={handleSeek}>
-                            <div className="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style={{ width: `${progress}%` }}></div>
-                        </div>
-                        <span className="text-white">{Math.round(progress)}%</span>
-                    </div>
+            duration-500"></div>
                 </div>
             </div>
 
