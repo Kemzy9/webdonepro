@@ -353,19 +353,15 @@ const Hero: React.FC = () => {
                     {renderGlitchOverlay()}
 
                     {/* Video with Enhanced Styling */}
-                    <video
-                        ref={videoRef}
-                        src="/React-AI-landing-page-builder.mp4"
-                        width="100%"
-                        height="auto"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        onTimeUpdate={handleTimeUpdate}
-                        className="w-full h-auto object-cover rounded-2xl shadow-2xl relative z-20 
-            transition-all duration-300 hover:shadow-violet-500/50"
-                    />
+                 
+                          <video
+                        className=" max-w-4xl mx-auto w-full h-auto object-cover rounded-2xl shadow-2xl relative z-20 
+            transition-all duration-300 hover:shadow-violet-500/50" controls autoPlay muted>
+                        <source src="/React-AI-landing-page-builder.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+
+
+                    </video>
 
                     {/* Layered Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-b 
