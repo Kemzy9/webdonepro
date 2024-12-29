@@ -702,6 +702,7 @@ const CodePreview: React.FC = () => {
   };
 
   
+  
   const handleSendMessage = async () => {
     if (!inputMessage.trim() && !selectedImage) return;
     if (!userId || !sessionId) {
@@ -736,7 +737,7 @@ const CodePreview: React.FC = () => {
         formData.append('image', selectedImage);
       }
 
-      const response = await fetch('/api/users/weblike', {
+      const response = await fetch('/api/users/weblikefast', {
         method: 'POST',
         body: formData,
       });
@@ -801,6 +802,7 @@ const CodePreview: React.FC = () => {
       setLoading(false);
     }
   };
+
   // Add this function to generate a session ID
   const generateSessionId = () => {
     return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
