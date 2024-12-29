@@ -345,23 +345,7 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Social Proof */}
-            <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-8">
-                <div className="flex items-center gap-2">
-                    <span className="text-4xl">⭐</span>
-                    <div className="text-left">
-                        <div className="text-white font-bold">4.9/5 Rating</div>
-                        <div className="text-gray-400">from 1000+ reviews</div>
-                    </div>
-                </div>
-                <div className="flex items-center gap-2">
-                    <span className="text-4xl">🏆</span>
-                    <div className="text-left">
-                        <div className="text-white font-bold">#1 AI Builder</div>
-                        <div className="text-gray-400">Product of the Year</div>
-                    </div>
-                </div>
-
-            </div>
+          
 
         </div>
     );
