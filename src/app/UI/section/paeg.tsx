@@ -155,47 +155,7 @@ const Section: React.FC = () => {
                 <Pricing />
                 <Faq />
 
-                <div className="container mx-auto px-6 py-32">
-                    <h2 className="text-4xl font-bold text-center text-white mb-16">
-                        Loved by
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400"> Creators Worldwide</span>
-                    </h2>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                name: "Sarah Johnson",
-                                role: "Digital Creator",
-                                image: "/testimonial1.jpg",
-                                quote: "The AI-powered features have revolutionized how I create websites. What used to take weeks now takes hours!"
-                            },
-                            {
-                                name: "Mark Chen",
-                                role: "Startup Founder",
-                                image: "/testimonial2.jpg",
-                                quote: "webdone helped us launch our startup website in record time. The AI suggestions were spot-on!"
-                            },
-                            {
-                                name: "Emma Davis",
-                                role: "Freelance Designer",
-
-                                image: "/testimonial3.jpg",
-                                quote: "As a designer, Im impressed by the quality of AI-generated layouts. They're modern and highly customizable."
-                            }
-                        ].map((testimonial, index) => (
-                            <div key={index} className="glass-effect p-8 rounded-2xl">
-                                <div className="flex items-center mb-6">
-                                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 mr-4"></div>
-                                    <div>
-                                        <h4 className="text-white font-bold">{testimonial.name}</h4>
-                                        <p className="text-gray-400">{testimonial.role}</p>
-                                    </div>
-                                </div>
-                                <p className="text-gray-300 italic">&quot;{testimonial.quote}&quot;</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+              
 
 
                 <footer className="border-t border-white/10 mt-32">
