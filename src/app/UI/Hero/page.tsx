@@ -325,7 +325,7 @@ const Hero: React.FC = () => {
                     <video
                         className=" max-w-4xl mx-auto w-full h-auto object-cover rounded-2xl shadow-2xl relative z-20 
             transition-all duration-300 hover:shadow-violet-500/50" controls autoPlay muted>
-                        <source src="/React-AI-landing-page-builder.mp4" type="video/mp4" />
+                        <source src="/Reat-AI-landing-page-maker.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
 
 
