@@ -170,7 +170,7 @@ const Section: React.FC = () => {
                                     Web<span className="text-indigo-400">done</span>
                                 </div>
                             </div>
-                                <p className="text-gray-400"> Build It, Launch It, Love It</p>
+                                <p className="text-gray-400"> Build It, Launch It</p>
                             </div>
 
                             {/* Footer Links */}
