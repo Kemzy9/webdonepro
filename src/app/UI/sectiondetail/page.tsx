@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import Image from "next/image";
-import Banner from "@/app/UI/banner/page"
+import Baner from "@/app/UI/baner/page"
 const Custom404: React.FC = () => {
   return (
 
