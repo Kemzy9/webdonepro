@@ -35,27 +35,24 @@ const FAQPage = () => {
     },
 
     {
-      question: "What technologies do you use for development?",
-      answer: "We use modern tech stacks including React,Tailwindcss ,  TypeScript,javascript, and other cutting-edge technologies. Our choice of technology is based on project requirements and performance needs."
+      question: "What programming languages does webdone use to build landing pages ?",
+      answer: "its use  React,Tailwindcss , and Built in  TypeScript,javascript, supported . "
     },
     {
       "question": "What can I get with the Next.js boilerplate?",
-      "answer": "The Next.js boilerplate includes everything you need to launch your startup, like Stripe integration, Lemon Squeezy, MongoDB, Resend, Google Auth, and more."
+      "answer": "The Next.js boilerplate includes everything you need to launch your startup, Stripe integration, Lemon Squeezy, MongoDB, Resend, Google Auth, and more."
     },
 
     {
       "question": "What are AI Themes/Wallpapers?",
-      "answer": "AI wallpapers are a magical way to enhance your background. They use AI to create stunning themes, making your landing page even more beautiful and engaging."
+      "answer": "AI wallpapers are a magical way to enhance landing page background . AI to create stunning themes, making your landing page even more beautiful and engaging."
     },
     {
       "question": "What does the drag-and-drop feature provide?",
       "answer": "It lets you easily change colors, text, background images, and more."
     },
 
-    {
-      question: "What makes your development approach unique?",
-      answer: "We focus on scalable, performance-optimized solutions with clean code practices. Our development process includes thorough testing, documentation, and regular client communication."
-    }
+  
   ];
 
   return (
