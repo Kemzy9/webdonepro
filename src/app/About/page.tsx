@@ -57,7 +57,7 @@ const About: React.FC = () => {
         <h2 className="text-xl font-semibold mb-3 text-blue-400 font-space tracking-wide">Ready to Create?</h2>
         <div className="bg-neutral-900 p-4 rounded-lg mb-6 border border-blue-400">
           <p className="mb-3 text-xs font-inter">
-            Join thousands of happy creators who are already building their Landing page with Webdone. Whether you&apos;re just starting out or you're a seasoned pro, Webdone Help You to Build  Perfect landing page .
+            Join thousands of happy creators who are already building their Landing page with Webdone. Whether you&apos;re just starting out or you&apos;re a seasoned pro, Webdone Help You to Build  Perfect landing page .
           </p>
           <p className="font-semibold text-blue-300 text-sm font-inter">
             Start Building 🚀
