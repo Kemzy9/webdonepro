@@ -17,6 +17,7 @@ export default function Home() {
     <Feature />
     <Features />
     <Section />
+      <Footer/>
 
 
 
