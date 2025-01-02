@@ -45,7 +45,7 @@ const FAQPage = () => {
 
     {
       "question": "What are AI Themes/Wallpapers?",
-      "answer": "AI wallpapers are a magical way to enhance landing page background . AI to create stunning themes, making your landing page even more beautiful and engaging."
+      "answer": "AI wallpapers are a magical way to enhance landing page background . AI to create stunning themes, making  landing page even more beautiful and engaging."
     },
     {
       "question": "What does the drag-and-drop feature provide?",
