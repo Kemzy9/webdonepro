@@ -166,7 +166,7 @@ const PricingUI = () => {
 
         { feature: 'AI  Themes /Walpaper', tooltip: 'Need Theme for Background  Use AI ' },
         { feature: '24/7 customer support', included: false },
-        { feature: 'Access Unlimited Premium Request/month ', tooltip: 'Receive  1000 AI model (Claude Sonnet) requests, add more additional feature Build landing page based your choice and  your needs.  ' },
+        { feature: 'Access Unlimited Premium Request/month ', tooltip: 'Receive unlimited  AI model (Claude Sonnet) requests,  ' },
         'Export Code',
       ],
       priceId: isYearly
