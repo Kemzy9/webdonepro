@@ -58,23 +58,23 @@ export default function LoginPage() {
                     <p className="text-white mt-2">Welcome back! Please login to continue</p>
                 </div>
 
-                <Card className="w-[350px] sm:w-[400px] border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <Card className="w-[350px] sm:w-[400px] border bg-[#0A0A0A] border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <CardHeader className="space-y-1 pb-6">
-                        <CardTitle className="text-2xl font-bold text-gray-900">Login</CardTitle>
+                        <CardTitle className="text-2xl font-bold text-white">Login</CardTitle>
                         <CardDescription className="text-gray-500">
                             Enter your credentials to access your account
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-5">
                         <div className="grid gap-2">
-                            <Label htmlFor="email" className="text-gray-700 font-medium">Email</Label>
+                            <Label htmlFor="email" className=" font-medium text-white">Email</Label>
                             <Input
                                 id="email"
                                 type="email"
                                 placeholder="you@example.com"
                                 value={user.email}
                                 onChange={(e) => setUser({ ...user, email: e.target.value })}
-                                className="h-11 border-gray-200 focus:border-blue-500 focus:ring-blue-500 bg-white"
+                                className="h-11 border-gray-200 text-white focus:border-blue-500 focus:ring-blue-500 bg-neutral-900"
                             />
                         </div>
                         <div className="grid gap-2">
@@ -94,7 +94,7 @@ export default function LoginPage() {
                                     placeholder="••••••••"
                                     value={user.password}
                                     onChange={(e) => setUser({ ...user, password: e.target.value })}
-                                    className="h-11 border-gray-200 focus:border-blue-500 focus:ring-blue-500 bg-white pr-10"
+                                    className="h-11 border-gray-200 text-white focus:border-blue-500 focus:ring-blue-500 bg-neutral-900 pr-10"
                                 />
                                 <button
                                     type="button"
