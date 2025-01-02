@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Baner from '@/app/UI/baner/page'
 const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-white/10 mt-32 bg-gradient-to-b from-transparent to-black/40">
+    <footer className="border-t border-[#1A1A1A] mt-32 bg-[#0A0A0A]">
       <div className="container mx-auto px-6 py-16">
         {/* Newsletter Section */}
        
@@ -36,8 +36,8 @@ Build it,launch it
                 <a
                   key={i}
                   href={social.href}
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center 
-                           hover:bg-white/10 transition-colors duration-200 text-gray-400 hover:text-white"
+                  className="w-10 h-10 rounded-full bg-[#0A0A0A]/5 flex items-center justify-center 
+                           hover:bg-[#0A0A0A]/10 transition-colors duration-200 text-gray-400 hover:text-white"
                 >
                   {social.icon}
                 </a>
@@ -119,7 +119,7 @@ Build it,launch it
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-white/10 pt-8">
+        <div className="border-t border-[#1A1A1A] pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-4 text-sm text-gray-400">
               <span>© 2024 Webdone. All rights reserved.</span>
