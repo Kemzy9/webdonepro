@@ -10,19 +10,19 @@ const About: React.FC = () => {
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4 text-blue-400 font-space tracking-tight">Hey there! 👋</h1>
         <p className="mb-4 text-sm leading-relaxed font-inter">
-          We're Webdone, and we're super excited to help you build Landing page with Ai with customization support ! AI  make website building fun and easy - whether you want a simple and modern landing page or a full-blown Next.js app.
+          We&apos;re Webdone, and we&apos;re super excited to help you build Landing page with Ai with customization support ! AI  make website building fun and easy - whether you want a simple and modern landing page or a full-blown Next.js app.
         </p>
 
-        <h2 className="text-xl font-semibold mb-3 text-blue-400 font-space tracking-wide">What We're All About</h2>
+        <h2 className="text-xl font-semibold mb-3 text-blue-400 font-space tracking-wide">What We&apos;re All About</h2>
         <p className="mb-4 text-sm font-inter">
-          You know how building websites/Landing page can sometimes feel overwhelming? That's exactly why we made this tools ! We've created tools that make the whole process feel like a breeze, not a chore.
+          You know how building websites/Landing page can sometimes feel overwhelming? That&apos;s exactly why we made this tools ! We&apos;ve created tools that make the whole process feel like a breeze, not a chore.
         </p>
 
         <h2 className="text-xl font-semibold mb-3 text-blue-400 font-space tracking-wide">Why People Love Us</h2>
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <div className="bg-neutral-9000 p-4 rounded-lg hover:bg-gray-700 transition-all">
             <h3 className="text-base font-semibold mb-2 text-blue-300 font-poppins tracking-wide">✨ AI Landing Page Magic</h3>
-            <p className="text-xs font-inter">Got 5 to 30 minutes ? That's all you need to create an awesome landing page with  AI,Which Help Build perfect landing page  for your brand ,Saas ,Startup, The Best part is it can be easily customize !</p>
+            <p className="text-xs font-inter">Got 5 to 30 minutes ? That&apos;s all you need to create an awesome landing page with  AI,Which Help Build perfect landing page  for your brand ,Saas ,Startup, The Best part is it can be easily customize !</p>
           </div>
           <div className="bg-neutral-900 p-4 rounded-lg hover:bg-gray-700 transition-all">
             <h3 className="text-base font-semibold mb-2 text-blue-300 font-poppins tracking-wide">🎨 Website Wizard</h3>
@@ -34,11 +34,11 @@ const About: React.FC = () => {
           </div>
           <div className="bg-neutral-900 p-4 rounded-lg hover:bg-gray-700 transition-all">
             <h3 className="text-base font-semibold mb-2 text-blue-300 font-poppins tracking-wide">🤝 Friend in Tech</h3>
-            <p className="text-xs font-inter">Stuck somewhere?like you getting error ,while signing or any thing else  We've got your back 24/7 with friendly email support!</p>
+            <p className="text-xs font-inter">Stuck somewhere?like you getting error ,while signing or any thing else  We&apos;ve got your back 24/7 with friendly email support!</p>
           </div>
         </div>
 
-        <h2 className="text-xl font-semibold mb-3 text-blue-400 font-space tracking-wide">What's in it for You</h2>
+        <h2 className="text-xl font-semibold mb-3 text-blue-400 font-space tracking-wide">What&apos;s in it for You</h2>
         <ul className="mb-6 space-y-3">
           <li className="flex items-start bg-neutral-900 p-3 rounded-lg">
             <span className="text-blue-300 mr-2 text-xs">🎯</span>
@@ -57,7 +57,7 @@ const About: React.FC = () => {
         <h2 className="text-xl font-semibold mb-3 text-blue-400 font-space tracking-wide">Ready to Create?</h2>
         <div className="bg-neutral-900 p-4 rounded-lg mb-6 border border-blue-400">
           <p className="mb-3 text-xs font-inter">
-            Join thousands of happy creators who are already building their Landing page with Webdone. Whether you're just starting out or you're a seasoned pro, Webdone Help You to Build  Perfect landing page .
+            Join thousands of happy creators who are already building their Landing page with Webdone. Whether you&apos;re just starting out or you're a seasoned pro, Webdone Help You to Build  Perfect landing page .
           </p>
           <p className="font-semibold text-blue-300 text-sm font-inter">
             Start Building 🚀
