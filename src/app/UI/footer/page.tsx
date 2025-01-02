@@ -3,7 +3,7 @@ import { Facebook, X, Linkedin, Youtube, Instagram, Globe, Mail, Phone, ChevronR
 import Logo from '@/app/UI/logo/page';
 import Link from 'next/link';
 
-import Banner from '@/app/UI/banner/page'
+import Baner from '@/app/UI/banner/page'
 const Footer: React.FC = () => {
   return (
     <footer className="border-t border-white/10 mt-32 bg-gradient-to-b from-transparent to-black/40">
@@ -116,7 +116,7 @@ Build it,launch it
             
           ))}
         </div>
-        <Banner/>
+        <Baner/>
 
         {/* Bottom Section */}
         <div className="border-t border-white/10 pt-8">
