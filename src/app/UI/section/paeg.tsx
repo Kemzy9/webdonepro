@@ -45,15 +45,15 @@ const Section: React.FC = () => {
                                 </h2>
                                 <div className="space-y-6">
                                     {[
-                                       {
-  title: "Chat with AI and make changes in minutes",
-  description: "AI analyzes patterns and suggests improvements in real-time"
-}
+                                        {
+                                            title: "Chat with AI and make changes in minutes",
+                                            description: "AI analyzes patterns and suggests improvements in real-time"
+                                        },
 {
-  title: "Smart Color Matching",
-  description: "Easily create and adjust colors "
-}
-
+                                            title: "Smart Color Matching",
+                                            description: "Easily create and adjust colors "
+                                        },
+                                        
                                         {
                                             title: "Typography Intelligence",
                                             description: "Get smart font pairing suggestions and hierarchy recommendations"
@@ -132,7 +132,7 @@ const Section: React.FC = () => {
                                     <span className="tracking-tight">Building a Full-Stack Application</span>
                                 </h1>
                                 <p className="text-lg md:text-xl text-gray-300 mb-10 font-['Inter'] leading-relaxed">
-                                Build, Scale, Launch: A Complete Next.js Setup
+                                    Build, Scale, Launch: A Complete Next.js Setup
                                 </p>
                                 <a href="/login">
                                     <button className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full hover:from-indigo-600 hover:to-violet-600 transition-all duration-300 font-medium font-['Inter'] shadow-lg shadow-indigo-500/25 group">
@@ -156,7 +156,7 @@ const Section: React.FC = () => {
 
                 <Pricing />
                 <Faq />
-               < Footer/>
+                < Footer />
 
 
 
