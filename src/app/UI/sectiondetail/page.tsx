@@ -9,7 +9,7 @@ const Custom404: React.FC = () => {
 
     <div className="error-container overflow-hidden bg-gradient-to-br from-pink-100 to-pink-200 text-gray-800 min-h-screen">
       <div>
-      <Banner/>
+      <Baner/>
         <div className="error-content">
 
 
