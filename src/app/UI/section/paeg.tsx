@@ -162,12 +162,14 @@ const Section: React.FC = () => {
                     <div className="container mx-auto px-6 py-12">
                         <div className="grid md:grid-cols-4 gap-8">
                             <div>
-                                <div className="flex items-center space-x-3 mb-6">
-                                    <div className="h-10 w-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center">
-                                        <span className="text-white text-xl font-bold">W</span>
-                                    </div>
-                                    <span className="text-white text-xl font-bold">webdone</span>
+                            <div className="flex items-center space-x-4">
+                                <div className="flex-shrink-0 transform hover:scale-105 transition-transform">
+                                    <Logo />
                                 </div>
+                                <div className="text-2xl font-semibold tracking-tight text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-white to-gray-300 transition-all duration-300 font-['Inter']">
+                                    Web<span className="text-indigo-400">done</span>
+                                </div>
+                            </div>
                                 <p className="text-gray-400"> Build It, Launch It, Love It</p>
                             </div>
 
