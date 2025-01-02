@@ -4,7 +4,7 @@ import Faq from '@/app/UI/faq/page'
 import Image from 'next/image';
 import Pricing from "@/app/pricing/page"
 import Logo from '@/app/UI/logo/page';
-import Footer from './UI/footer/page';
+import Footer from '@/app/UI/footer/page';
 import React, { useState, useEffect } from 'react';
 
 const Section: React.FC = () => {
