@@ -160,13 +160,13 @@ const PricingUI = () => {
       description: 'Perfect for creators looking to experiment and expand their toolkit.',
       isPopular: true,
       features: [
-        { feature: '10 Page', tooltip: 'Build  3 page /month 1 extra ' },
+        { feature: '10 Page', tooltip: 'Build  10 page /month 1 extra ' },
 
       
 
         { feature: 'AI  Themes /Walpaper', tooltip: 'Need Theme for Background  Use AI ' },
         { feature: '24/7 customer support', included: false },
-        { feature: 'Access 1000 Premium Request/month ', tooltip: 'Receive  1000 AI model (Claude Sonnet) requests, add more additional feature Build landing page based your choice and  your needs.  ' },
+        { feature: 'Access Unlimited Premium Request/month ', tooltip: 'Receive  1000 AI model (Claude Sonnet) requests, add more additional feature Build landing page based your choice and  your needs.  ' },
         'Export Code',
       ],
       priceId: isYearly
