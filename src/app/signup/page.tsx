@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import axios from "axios"
 import Image from "next/image"
 import toast from "react-hot-toast"
+import { Eye, EyeOff } from "lucide-react"
 import {
     Card,
     CardContent,
@@ -27,6 +28,7 @@ export default function SignupPage() {
         password: "",
         username: "",
     })
+        const [showPassword, setShowPassword] = useState(false)
 
     const [loading, setLoading] = useState(false)
 
@@ -60,52 +62,64 @@ export default function SignupPage() {
            
 
             {/* Right side - Signup form */}
-            <div className="flex flex-col items-center justify-center w-full md:w-1/2 p-6">
+            <div className="flex flex-col items-center bg-neutral-900 justify-center w-full md:w-1/2 p-6">
                 <div className="mb-8 flex flex-col items-center">
                     <Logo />
                     <h1 className="text-xl font-bold text-white mt-4">Webdone</h1>
-                    <p className="text-gray-500 mt-2">Create your  account</p>
+                    <p className="text-gray-500  bg-neutral-900 mt-2">Building  React Landing Page with AI</p>
                 </div>
-                <Card className="w-[350px] sm:w-[400px] border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <Card className="w-[350px] sm:w-[400px] border bg-neutral-900 border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <CardHeader className="space-y-1 pb-6">
-                        <CardTitle className="text-2xl font-bold text-gray-900">Sign Up</CardTitle>
-                        <CardDescription className="text-gray-500">
+                        <CardTitle className="text-2xl font-bold text-white ">Sign Up</CardTitle>
+                        <CardDescription className="text-white">
                             Enter your details to create your account
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-5">
                         <div className="grid gap-2">
-                            <Label htmlFor="username" className="text-white font-medium">Username</Label>
+                            <Label htmlFor="username" className="text-white bg-neutral-900 font-medium">Username</Label>
                             <Input
                                 id="username"
                                 type="text"
                                 placeholder="devmaster"
                                 value={user.username}
                                 onChange={(e) => setUser({ ...user, username: e.target.value })}
-                                className="h-11 border-gray-200 focus:border-blue-500 focus:ring-blue-500 bg-white"
+                                className="h-11 border-gray-200 bg-neutral-900 text-white focus:border-blue-500 focus:ring-blue-500 "
                             />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="email" className="text-white font-medium">Email</Label>
+                            <Label htmlFor="email" className="text-white font-medium bg-neutral-900">Email</Label>
                             <Input
                                 id="email"
                                 type="email"
                                 placeholder="you@example.com"
                                 value={user.email}
                                 onChange={(e) => setUser({ ...user, email: e.target.value })}
-                                className="h-11 border-gray-200 focus:border-blue-500 focus:ring-blue-500 bg-white"
+                                className="h-11 border-gray-200 text-white bg-neutral-900 focus:border-blue-500 focus:ring-blue-500"
                             />
                         </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="password" className="text-gray-700 font-medium">Password</Label>
+                        <div className="grid gap-2 relative">
+                            <Label htmlFor="password" className="text-white font-medium">Password</Label>
                             <Input
                                 id="password"
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 placeholder="••••••••"
                                 value={user.password}
                                 onChange={(e) => setUser({ ...user, password: e.target.value })}
-                                className="h-11 border-gray-200 focus:border-blue-500 focus:ring-blue-500 bg-white"
+                                className="h-11 border-gray-200 text-white bg-neutral-900 focus:border-blue-500 focus:ring-blue-500"
                             />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3 top-[38px] text-gray-500 hover:text-gray-400 focus:outline-none"
+                                aria-label={showPassword ? "Hide password" : "Show password"}
+                            >
+                                {showPassword ? (
+                                    <EyeOff className="h-5 w-5" />
+                                ) : (
+                                    <Eye className="h-5 w-5" />
+                                )}
+                            </button>
                         </div>
                     </CardContent>
                     <CardFooter className="flex flex-col space-y-4 pt-4">
