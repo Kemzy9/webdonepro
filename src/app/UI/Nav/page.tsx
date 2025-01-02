@@ -8,9 +8,9 @@ const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '/features', label: 'Features' },
+
     { href: '/pricing', label: 'Pricing' },
-    { href: '/about', label: 'About' },
+    { href: '/About', label: 'About' },
   ];
 
   return (
