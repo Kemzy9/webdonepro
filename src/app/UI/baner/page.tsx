@@ -8,9 +8,9 @@ const BuildByBanner = () => {
       href="https://weblike.ai"
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-1.5 rounded-lg border bg-blue-700 px-3 py-2 text-sm transition-all "
+      className="group inline-flex items-center gap-1.5     transition-all "
     >
-      <span className="text-white">AI Landing page maker</span>
+      <span className="text-white">Host Your Site</span>
       <svg 
         className="h-4 w-4 text-red-500" 
         fill="currentColor" 
