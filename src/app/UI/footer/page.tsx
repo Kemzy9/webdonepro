@@ -3,7 +3,7 @@ import { Facebook, X, Linkedin, Youtube, Instagram, Globe, Mail, Phone, ChevronR
 import Logo from '@/app/UI/logo/page';
 import Link from 'next/link';
 
-import Baner from '@/app/UI/banner/page'
+import Baner from '@/app/UI/baner/page'
 const Footer: React.FC = () => {
   return (
     <footer className="border-t border-white/10 mt-32 bg-gradient-to-b from-transparent to-black/40">
@@ -66,30 +66,32 @@ Build it,launch it
             {
               title: "Company",
               links: [
-                { name: "About Us", href: "/about" },
+                { name: "About Us", href: "/About" },
 
 
-                { name: "Terms of Service", href: "/terms" },
-                { name: "Privacy Policy", href: "/privacy" }
+                { name: "Terms of Service", href: "/TermsAndConditions" },
+                { name: "Privacy Policy", href: "/PrivacyPolicy" }
               ]
             },
             {
               title: "Resources",
               links: [
-                { name: "Blog", href: "/blog" },
-                { name: "Community", href: "/community" },
-                { name: "Help Center", href: "/help" },
+                { name: "Blog", href: "/signup" },
+     
        
               ]
             },
             
             {
-              title: "Developers",
+              title: "other service",
               links: [
                 { name: "Getting Started", href: "/documents" },
-             
-             
-              ]
+              ],
+              customContent: (
+                <div className="mt-4 transform hover:scale-105 transition-all duration-300">
+                  <Baner />
+                </div>
+              )
             }
           ].map((section, i) => (
             <div key={i} className="space-y-4">
@@ -111,12 +113,10 @@ Build it,launch it
                   </li>
                 ))}
               </ul>
-          
+              {section.customContent}
             </div>
-            
           ))}
         </div>
-        <Baner/>
 
         {/* Bottom Section */}
         <div className="border-t border-white/10 pt-8">
