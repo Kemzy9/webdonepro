@@ -72,7 +72,7 @@ export default function SignupPage() {
                     <CardHeader className="space-y-1 pb-6">
                         <CardTitle className="text-2xl font-bold text-white ">Sign Up</CardTitle>
                         <CardDescription className="text-white">
-                            Enter your details to create your account
+                            Enter  details to create your account
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-5">
